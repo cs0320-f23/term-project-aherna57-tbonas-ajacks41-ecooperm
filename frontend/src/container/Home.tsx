@@ -16,23 +16,25 @@ const Home = () => {
   const query = userQuery(userInfo?.sub);
 
   return (
-     <div className="main-container">
-      <h1 className="welcome-message">Bear Bites</h1>
-       
-      
-
-    
     <div>
-      
-      <Routes>
-        <Route path="/user-profile/:userId" element={<UserProfile />} />
-        <Route
-          path="/restaurant-profile/:restaurantId"
-          element={<Restaurant />}
-        />
-        <Route path="/*" />
-      </Routes>
-    </div>
+      <img className="userIm" src="user.jpg"></img>
+      <h1 className="header">
+        Bear &nbsp; <img className="iconTop" src="logo.png"></img> &nbsp; Bites
+      </h1>
+      <hr></hr>
+      <p>
+      </p>
+
+      <div>
+        <Routes>
+          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route
+            path="/restaurant-profile/:restaurantId"
+            element={<Restaurant />}
+          />
+          <Route path="/*" />
+        </Routes>
+      </div>
     </div>
   );
 };

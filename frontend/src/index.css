@@ -1,6 +1,34 @@
 
 /******************** HOME PAGE  ********************/
+.header {
+  margin-bottom: 1rem;
+  font-size: 1.8rem; 
+  color: #875430; 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  word-spacing: .5rem;
+}
 
+.iconTop {
+  width: 20%; 
+  max-width: 50px;
+}
+
+.userIm {
+  width: 20%; 
+  max-width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: right;
+}
+
+.hr {
+  border: 10px rgb(248, 7, 7);
+  border-radius: 5px rgb(239, 4, 4);
+}
 
 
 
