@@ -1,13 +1,83 @@
-body {
+
+/******************** LOGIN PAGE  ********************/
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: #FAD4B8; 
+  font-family: Inter, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-container {
+  width: 100%; 
+  max-width: 800px;
+  margin: 0 auto; 
+  padding: rem;
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  background: #FAD4B8;
 }
+
+.login-form {
+  width: 100%; 
+  max-width: 400px; 
+  padding: 2rem; 
+  box-sizing: border-box; 
+  border-radius: 20px; 
+}
+
+label, input, button, a {
+  display: block;
+  width: 100%; 
+  margin: 0.6rem 0; 
+}
+
+input {
+  padding: 0.5rem;
+  border: 2px solid #875430; 
+  border-radius: 20px;
+  background: transparent; 
+}
+
+button {
+  padding: 0.5rem;
+  border: none; 
+  border-radius: 20px; 
+  background: #875430; 
+  color: white; 
+  margin-top: 1rem; 
+}
+
+button:hover {
+  background: #43281d; 
+}
+
+.login-button {
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: #875430; 
+  text-decoration: none; 
+  font-weight: bold;
+  text-align: center; 
+  margin-top: 1rem;
+}
+
+.welcome-message {
+  margin-bottom: 1rem;
+  font-size: 1.8rem; 
+  color: #875430; 
+}
+
+/************************************************/
+
+
+
+

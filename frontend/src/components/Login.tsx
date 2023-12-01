@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { decodedMockResponse } from "../mockedUser/user1Mock";
+import "../index.css";
+
 
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
@@ -30,12 +32,29 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      Login
-        <GoogleLogin
+    <div className="main-container">
+      <h1 className="welcome-message">Welcome Back!</h1>
+
+      <div className="login-form">
+        <label className="label">Username:</label>
+        <input type="text" id="username" className="input-field" />
+        <label className="label">Password:</label>
+
+        <input type="password" id="password" className="input-field" />
+        <button className="login-button">Login</button>
+        <div className="login-button">
+          <GoogleLogin
             onSuccess={handleLogin}
-            onError={() => console.log("error!!!!")}
-        />
+            onError={() => console.log("errorrrrr")}
+          />
+        </div>
+      </div>
+
+      <div className="register-prompt">
+        <span>
+          Dont have an account? <a href="/register">Register</a>
+        </span>
+      </div>
     </div>
   );
 };
