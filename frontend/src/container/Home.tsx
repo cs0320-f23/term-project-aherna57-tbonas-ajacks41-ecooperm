@@ -16,10 +16,14 @@ const Home = () => {
   const query = userQuery(userInfo?.sub);
 
   return (
+     <div className="main-container">
+      <h1 className="welcome-message">Bear Bites</h1>
+       
+      
 
-    // also ignore this part, but dont delete
+    
     <div>
-      Home
+      
       <Routes>
         <Route path="/user-profile/:userId" element={<UserProfile />} />
         <Route
@@ -28,6 +32,7 @@ const Home = () => {
         />
         <Route path="/*" />
       </Routes>
+    </div>
     </div>
   );
 };
