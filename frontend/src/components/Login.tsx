@@ -42,7 +42,7 @@ export const Login = () => {
 
         <input type="password" id="password" className="input-field" />
         <button className="login-button">Login</button>
-        <div className="login-button">
+        <div className="google-button">
           <GoogleLogin
             onSuccess={handleLogin}
             onError={() => console.log("errorrrrr")}
@@ -51,9 +51,8 @@ export const Login = () => {
       </div>
 
       <div className="register-prompt">
-        <span>
-          Dont have an account? <a href="/register">Register</a>
-        </span>
+        <span>Don't have an account?&nbsp;</span>
+        <a href="/register">Register</a>
       </div>
     </div>
   );

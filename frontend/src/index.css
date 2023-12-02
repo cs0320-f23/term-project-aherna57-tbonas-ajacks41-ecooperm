@@ -149,6 +149,14 @@ button:hover {
   align-items: center;
 }
 
+.google-button {
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
 a {
   color: #875430; 
   text-decoration: none; 
@@ -161,6 +169,10 @@ a {
   margin-bottom: 1rem;
   font-size: 1.8rem; 
   color: #875430; 
+}
+
+.register-prompt span, .register-prompt a {
+  display: inline;
 }
 
 /************************************************/

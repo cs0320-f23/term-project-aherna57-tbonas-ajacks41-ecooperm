@@ -1,0 +1,42 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/backend/node_modules
+/backend/.pnp
+/backend/.pnp.js
+
+# testing
+/backend/coverage
+
+# database
+/backend/prisma/db.sqlite
+/backend/prisma/db.sqlite-journal
+
+# next.js
+/backend/.next/
+/backend/out/
+/backend/next-env.d.ts
+
+# production
+/backend/build
+
+# misc
+/backend/.DS_Store
+/backend/*.pem
+
+# debug
+/backend/npm-debug.log*
+/backend/yarn-debug.log*
+/backend/yarn-error.log*
+/backend/.pnpm-debug.log*
+
+# local env files
+# do not commit any .env files to git, except for the .env.example file. https://create.t3.gg/en/usage/env-variables#using-environment-variables
+/backend/.env
+/backend/.env*.local
+
+# vercel
+/backend/.vercel
+
+# typescript
+/backend/*.tsbuildinfo
