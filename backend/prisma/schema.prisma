@@ -47,7 +47,7 @@ model RestaurantCategory {
 }
 
 model Review {
-  id           Int        @id @default(autoincrement())
+  id           String        @id @default(cuid())
   restaurantId String
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   title        String
