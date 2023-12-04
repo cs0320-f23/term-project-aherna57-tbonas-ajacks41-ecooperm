@@ -6,8 +6,6 @@ import { jwtDecode } from "jwt-decode";
 import { decodedMockResponse } from "../mockedUser/user1Mock";
 import "../index.css";
 
-
-
 // Right now if you login via google, it will use your google account information to fill in the user profile
 // You can change this by uncommenting the indicated lines below and commenting out everything else in handleLogin
 export const Login = () => {
@@ -17,7 +15,7 @@ export const Login = () => {
 
     console.log("login response:", response);
     if (response.credential) {
-      const obj = jwtDecode(response.credential); 
+      const obj = jwtDecode(response.credential);
       localStorage.setItem("user", JSON.stringify(obj));
       console.log("decoded token:", obj);
       navigate("/");

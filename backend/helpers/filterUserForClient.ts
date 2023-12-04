@@ -1,4 +1,4 @@
-import type { User } from "@clerk/nextjs/dist/types/api";
+import type { User } from "@react-oauth/google";
 
 export const filterUserForClient = (user: User) => {
   return {
