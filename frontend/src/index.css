@@ -1,3 +1,92 @@
+/******************** RESTAURANT SEARCH ********************/
+
+/* Add this to your existing CSS styles */
+
+/* Container for the restaurant boxes */
+.restaurant-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Adjust the margin for better spacing between restaurant boxes */
+.restaurant-box {
+  margin: 10px;
+}
+
+/* Adjust the width of the restaurant box */
+@media (min-width: 768px) {
+  .restaurant-box {
+    width: 45%; /* Adjust as needed */
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .restaurant-box {
+    width: 100%; /* Adjust as needed for smaller screens */
+  }
+}
+
+
+.restaurant-box {
+  display: flex;
+  border: 2px solid #875430;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.image-container {
+  width: 50%;
+  overflow: hidden;
+  border-right: 2px solid #875430;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.info-container {
+  padding: 10px;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #875430;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cuisine {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ratings span {
+  color: #875430;
+  margin-right: 3px;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+
+
+
 
 /******************** HOME PAGE  ********************/
 /* Add a style for the header container */

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
-import Restaurant from "../components/RestaurantProfile";
+import RestaurantBox from "../components/RestaurantBox";
 import { userQuery } from "../utils/data";
 import { decodedMockResponse } from "../mockedUser/user1Mock";
 import axios from "axios";
@@ -68,7 +68,18 @@ const Home = () => {
           <Route path="/user-profile/:userId" element={<UserProfile />} />
           <Route
             path="/restaurant-profile/:restaurantId"
-            element={<Restaurant />}
+            element={
+              <RestaurantBox
+                restaurantData={{
+                  imageUrl: "",
+                  name: "",
+                  cuisineType: "",
+                  dollarSigns: undefined,
+                  stars: undefined,
+                  address: undefined,
+                }}
+              />
+            }
           />
           <Route path="/*" />
         </Routes>
@@ -137,6 +148,16 @@ const Home = () => {
               "Asian",
               "Healthy",
               "Lebanese",
+              "Chinese",
+              "Fast Food",
+              "Dessert",
+              "Breakfast",
+              "Sushi",
+              "Sandwiches",
+              "Mexican",
+              "Indian",
+              "Ramen",
+              "Burgers",
             ])}
         </button>
 
@@ -149,14 +170,23 @@ const Home = () => {
           Ratings
           <span className="dropdown-icon">&#9660;</span>
           {activeButton === "ratings" &&
-            renderDropdown([
-              "High to low",
-              "Low to high",
-              "5 star only"
-            ])}
+            renderDropdown(["High to low", "Low to high", "5 star only"])}
         </button>
       </div>
       <p className="search-bar-line"></p>
+
+      {/* Container for the restaurant boxes */}
+      <div className="restaurant-box-container">
+        {/* Sample RestaurantBox components */}
+        <RestaurantBox
+          restaurantData={
+            {
+              /* Sample data */
+            }
+          }
+        />
+        {/* Add more RestaurantBox components as needed */}
+      </div>
     </div>
   );
 };
