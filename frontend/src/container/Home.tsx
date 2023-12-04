@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
 import Restaurant from "../components/RestaurantProfile";
 import { userQuery } from "../utils/data";
@@ -9,17 +9,18 @@ import Result from "./Result";
 import Searchbar from "./SearchBar";
 import { ResultProps } from "./Result";
 
-
-//// for now you can use the information from the decoded Mock Response directly to design the home page (name, img, etc.)
-//// we will also need to create mock restaurant profiles
-
 const Home = () => {
-  // ignore this, this is to check whether the user is logged in or not (forces someone to the login page)
   const userItem = localStorage.getItem("user");
-  const userInfo = userItem && userItem !== "undefined" ? JSON.parse(userItem) : localStorage.clear();
+  const userInfo =
+    userItem && userItem !== "undefined"
+      ? JSON.parse(userItem)
+      : localStorage.clear();
   const query = userQuery(userInfo?.sub);
 
   const [result, setResult] = useState<any[]>([]);
+  const [activeButton, setActiveButton] = useState<string | null>(null);
+
+  const navigate = useNavigate(); // hook for navigation
 
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
@@ -29,14 +30,37 @@ const Home = () => {
     return data.products;
   };
 
+  const handleUserImageClick = () => {
+    // Navigate to the user profile page
+    navigate(`/user-profile/${userInfo.userId}`);
+  };
+
+   const handleButtonToggle = (buttonName: string) => {
+     setActiveButton((prev) => (prev === buttonName ? null : buttonName));
+   };
+
+   const renderDropdown = (options: string[]) => {
+     return (
+       <div className="dropdown">
+         {options.map((option, index) => (
+           <div key={index} className="dropdown-item">
+             {option}
+           </div>
+         ))}
+       </div>
+     );
+   };
+
   return (
     <div>
-      <img className="userIm" src="user.jpg"></img>
       <h1 className="header">
-        Bear &nbsp; <img className="iconTop" src="logo.png"></img> &nbsp; Bites
+        <div className="userIm" onClick={handleUserImageClick}>
+          <img src="user.png" alt="Clickable Button" />
+        </div>
+        Bear &nbsp; <img className="iconTop" src="logo.png" alt="Logo"></img>{" "}
+        &nbsp; Bites
       </h1>
-      <hr></hr>
-      <p></p>
+      <p className="headerLine" />
 
       <div>
         <Routes>
@@ -48,16 +72,68 @@ const Home = () => {
           <Route path="/*" />
         </Routes>
       </div>
-      <div>
+      <div className="search-bar-container">
         <Searchbar
           fetchData={fetchData}
           setResult={setResult}
           suggestionKey="title"
         />
+
         {result.map((item: ResultProps, index: number) => (
           <Result key={index} {...item} />
         ))}
+        {/* Brown line after the search bar */}
+        <p className="search-bar-line"></p>
       </div>
+
+      {/* Row of buttons */}
+      <div className="button-row">
+       {/* Price Button */}
+      <button
+        className={`toggle-button ${activeButton === "price" ? "active" : ""}`}
+        onClick={() => handleButtonToggle("price")}
+      >
+        Price
+        <span className="dropdown-icon">&#9660;</span>
+        {activeButton === "price" && renderDropdown(["Low to High", "High to Low"])}
+      </button>
+
+      {/* Dietary Restrictions Button */}
+      <button
+        className={`toggle-button ${
+          activeButton === "dietaryRestrictions" ? "active" : ""
+        }`}
+        onClick={() => handleButtonToggle("dietaryRestrictions")}
+      >
+        Dietary Restrictions
+        <span className="dropdown-icon">&#9660;</span>
+        {activeButton === "dietaryRestrictions" &&
+          renderDropdown(["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"])}
+      </button>
+
+      {/* Cuisine Button */}
+      <button
+        className={`toggle-button ${
+          activeButton === "cuisine" ? "active" : ""
+        }`}
+        onClick={() => handleButtonToggle("cuisine")}
+      >
+        Cuisine
+        <span className="dropdown-icon">&#9660;</span>
+        {activeButton === "cuisine" && renderDropdown(["Italian", "Japanese", "Asian", "Healthy", "Lebanese"])}
+      </button>
+    
+
+        <button
+          className={`toggle-button ${
+            activeButton === "fiveStar" ? "active" : ""
+          }`}
+          onClick={() => handleButtonToggle("fiveStar")}
+        >
+          5 Star Only
+        </button>
+      </div>
+      <p className="search-bar-line"></p>
     </div>
   );
 };
