@@ -28,7 +28,7 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
         <img src={imageUrl} alt="Restaurant" />
       </div>
       <div className="info-container">
-        <Link to="/restaurant-details" className="title">
+        <Link to="/restaurant-details" className="titleRest">
           {name}
         </Link>
         <p className="cuisine">{cuisineType}</p>
