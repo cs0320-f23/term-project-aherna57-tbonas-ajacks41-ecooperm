@@ -55,7 +55,7 @@ const Home = () => {
     <div>
       <h1 className="header">
         <div className="title">
-            Bear <img className="iconTop" src="logo.png" alt="Logo"></img> Bites
+          Bear <img className="iconTop" src="logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
           <img src="user.png" alt="Clickable Button" />
@@ -142,11 +142,18 @@ const Home = () => {
 
         <button
           className={`toggle-button ${
-            activeButton === "fiveStar" ? "active" : ""
+            activeButton === "ratings" ? "active" : ""
           }`}
-          onClick={() => handleButtonToggle("fiveStar")}
+          onClick={() => handleButtonToggle("ratings")}
         >
-          5 Star Only
+          Ratings
+          <span className="dropdown-icon">&#9660;</span>
+          {activeButton === "ratings" &&
+            renderDropdown([
+              "High to low",
+              "Low to high",
+              "5 star only"
+            ])}
         </button>
       </div>
       <p className="search-bar-line"></p>
