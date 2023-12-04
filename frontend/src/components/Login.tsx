@@ -3,7 +3,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { decodedMockResponse } from "../mockedUser/user1Mock";
+import { decodedMockResponse, userMockSchema } from "../mockedUser/user1Mock";
 import "../index.css";
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
@@ -11,22 +11,23 @@ import "../index.css";
 export const Login = () => {
   const navigate = useNavigate();
   const handleLogin = (response: CredentialResponse) => {
-    console.log("login is a success");
+    // console.log("login is a success");
 
-    console.log("login response:", response);
-    if (response.credential) {
-      const obj = jwtDecode(response.credential);
-      localStorage.setItem("user", JSON.stringify(obj));
-      console.log("decoded token:", obj);
-      navigate("/");
-    } else {
-      console.log("credential is undefined");
-    }
+    // console.log("login response:", response);
+    // if (response.credential) {
+    //   const obj = jwtDecode(response.credential); 
+    //   localStorage.setItem("user", JSON.stringify(obj));
+    //   console.log("decoded token:", obj);
+    //   navigate("/");
+    // } else {
+    //   console.log("credential is undefined");
+    // }
 
     // ****** uncomment the following lines to use the mocked user and comment out the above code *******
-    // const obj = decodedMockResponse;
-    // console.log("Decoded token:", obj);
-    // navigate("/");
+    const obj = userMockSchema;
+    localStorage.setItem("user", JSON.stringify(obj));
+    console.log("Decoded token:", obj);
+    navigate("/");
   };
 
   return (
@@ -40,7 +41,7 @@ export const Login = () => {
 
         <input type="password" id="password" className="input-field" />
         <button className="login-button">Login</button>
-        <div className="login-button">
+        <div className="google-button">
           <GoogleLogin
             onSuccess={handleLogin}
             onError={() => console.log("errorrrrr")}
@@ -49,9 +50,8 @@ export const Login = () => {
       </div>
 
       <div className="register-prompt">
-        <span>
-          Dont have an account? <a href="/register">Register</a>
-        </span>
+        <span>Don't have an account?&nbsp;</span>
+        <a href="/register">Register</a>
       </div>
     </div>
   );

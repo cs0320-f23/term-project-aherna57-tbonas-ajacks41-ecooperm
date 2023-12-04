@@ -28,4 +28,18 @@ const decodedMockResponse = {
   sub: "118706276059609132574",
 };
 
-export { googleMockResponse, decodedMockResponse };
+const userMockSchema = {
+  id: "11249341595-h07q06w4c22qjpvfl1jhwcfm7v5pro0c.apps.googleusercontent.com",
+  username: "bruno_bear",
+  email: "bruno_bear@brown.edu",
+  password: "bears2024",
+  firstName: "Bruno",
+  lastName: "Bear",
+  profilePictureURL:"https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png",
+  updatedAt: "2020-09-26T00:00:00.000Z",
+  createdAt: "2020-09-26T00:00:00.000Z",
+  reviews: [],
+  favorites: [],
+};
+
+export { googleMockResponse, decodedMockResponse, userMockSchema };
