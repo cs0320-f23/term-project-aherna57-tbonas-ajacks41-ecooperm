@@ -5,7 +5,6 @@ const googleMockResponse = {
   select_by: "btn"
 };
 
-
 // Before we begin giving the user the ability to "sign up" for an account, 
 // lets use the information from google to set up the account for them
 // that means they do not get to choose their username/name

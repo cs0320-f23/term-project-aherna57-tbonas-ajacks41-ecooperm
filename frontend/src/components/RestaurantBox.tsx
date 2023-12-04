@@ -14,7 +14,7 @@ interface RestaurantBoxProps {
 
 const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
   const {
-    imageUrl = "baja.jpg",
+    imageUrl = "/baja.jpg",
     name = "Baja's Taqueria",
     cuisineType = "Mexican",
     dollarSigns = 3,

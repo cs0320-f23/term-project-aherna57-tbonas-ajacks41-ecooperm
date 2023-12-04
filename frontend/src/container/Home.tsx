@@ -55,10 +55,10 @@ const Home = () => {
     <div>
       <h1 className="header">
         <div className="title">
-          Bear <img className="iconTop" src="logo.png" alt="Logo"></img> Bites
+          Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
-          <img src="user.png" alt="Clickable Button" />
+          <img src="/user.png" alt="Clickable Button" />
         </div>
       </h1>
       <p className="headerLine" />
@@ -186,6 +186,23 @@ const Home = () => {
           }
         />
         {/* Add more RestaurantBox components as needed */}
+      </div>
+      <div>
+        <Routes>
+          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route
+            path="/restaurant-profile/:restaurantId"
+            element={<RestaurantBox restaurantData={{
+              imageUrl: undefined,
+              name: undefined,
+              cuisineType: undefined,
+              dollarSigns: undefined,
+              stars: undefined,
+              address: undefined
+            }} />}
+          />
+         
+        </Routes>
       </div>
     </div>
   );
