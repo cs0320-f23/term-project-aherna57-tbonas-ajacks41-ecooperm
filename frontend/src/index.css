@@ -177,6 +177,58 @@ a {
 
 /************************************************/
 
+.user-container {
+  background: rgb(255, 255, 255);
+  background-size: contain;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  position: relative;
+}
+
+.user-container::before {
+  content: '';
+  position: absolute;
+  top: auto; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100px; 
+  background: rgba(255, 255, 255, 0.785);
+  z-index: 0;
+  border-radius: 0 0 24px 24px;
+}
+
+
+.user-content {
+  display: flex;
+  align-items: center;
+  padding: 10px; 
+  width: 100%; 
+  z-index: 1;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px; 
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 

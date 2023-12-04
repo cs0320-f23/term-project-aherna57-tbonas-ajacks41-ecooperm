@@ -31,23 +31,12 @@ const Home = () => {
 
   return (
     <div>
-      <img className="userIm" src="user.jpg"></img>
       <h1 className="header">
-        Bear &nbsp; <img className="iconTop" src="logo.png"></img> &nbsp; Bites
+        Bear &nbsp; <img className="iconTop" src="/logo.png"></img> &nbsp; Bites
       </h1>
       <hr></hr>
       <p></p>
 
-      <div>
-        <Routes>
-          <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route
-            path="/restaurant-profile/:restaurantId"
-            element={<Restaurant />}
-          />
-          <Route path="/*" />
-        </Routes>
-      </div>
       <div>
         <Searchbar
           fetchData={fetchData}
@@ -57,6 +46,16 @@ const Home = () => {
         {result.map((item: ResultProps, index: number) => (
           <Result key={index} {...item} />
         ))}
+      </div>
+      <div>
+        <Routes>
+          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route
+            path="/restaurant-profile/:restaurantId"
+            element={<Restaurant />}
+          />
+          <Route path="/*" />
+        </Routes>
       </div>
     </div>
   );
