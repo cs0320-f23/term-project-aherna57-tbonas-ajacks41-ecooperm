@@ -1,38 +1,163 @@
+/******************** RESTAURANT SEARCH ********************/
+
+/* Add this to your existing CSS styles */
+
+/* Container for the restaurant boxes */
+.restaurant-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Adjust the margin for better spacing between restaurant boxes */
+.restaurant-box {
+  margin: 10px;
+}
+
+/* Adjust the width of the restaurant box */
+@media (min-width: 768px) {
+  .restaurant-box {
+    width: 45%; /* Adjust as needed */
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .restaurant-box {
+    width: 100%; /* Adjust as needed for smaller screens */
+  }
+}
+
+
+.restaurant-box {
+  display: flex;
+  border: 2px solid #875430;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.image-container {
+  width: 50%;
+  overflow: hidden;
+  border-right: 2px solid #875430;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.info-container {
+  padding: 10px;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #875430;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cuisine {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ratings span {
+  color: #875430;
+  margin-right: 3px;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+
+
+
 
 /******************** HOME PAGE  ********************/
+/* Add a style for the header container */
+/* Update the header styles to use the header-container class */
+.header-container {
+  background-color: #875430; /* Darker yellow/brown color */
+  color: white; /* Text color */
+  padding: 30px; /* Adjust the padding as needed */
+}
+
 .header {
-  margin-bottom: 1rem;
-  font-size: 1.8rem; 
-  color: #875430; 
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #875430;
+  background-color: #c59d6d;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  word-spacing: .5rem;
+  justify-content: space-between;
+  word-spacing: 5px;
+  margin-left: 40%;
 }
 
 .iconTop {
-  width: 20%; 
+  width: 20%;
   max-width: 50px;
+  margin-left: 10px; /* Add margin for spacing between title and logo */
+  margin-right: 10px;
+  align-items: center;
 }
 
 .userIm {
-  width: 20%; 
-  max-width: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-items: right;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-.hr {
-  border: 10px rgb(248, 7, 7);
-  border-radius: 5px rgb(239, 4, 4);
+.userIm img {
+  width: 30px;
+  height: auto;
+}
+
+.userIm:hover {
+  transform: scale(1.2);
+}
+
+
+.headerLine {
+  width: 100%;
+  height: 4px; /* Adjust thickness as needed */
+  background-color: #875430; /* Brown color */
+  margin-top: 20px; /* Adjust margin to create space above the line */
+  margin-bottom: 10px;
+}
+
+.iconTop {
+  width: 20%;
+  max-width: 50px;
 }
 
 .container {
-  width: 30rem;
-  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  padding: 2px;
 }
 
 .textbox {
@@ -40,32 +165,39 @@
   height: 2rem;
   outline: none;
   box-sizing: border-box;
-  padding: 1px 10px;
+  padding: 3px 10px;
   transition: 0.2s ease-in-out;
   width: 100%;
-}
-
-.textbox:focus {
-  /* We'll change the border color of the textbox as long as it is being focused */
-  border: 1px solid blue;
-  transition: 0.2s ease-in-out;
+  max-width: 100%; /* Change to 100% to take up the full width of the container */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .suggestions {
-  /* Styles of the suggestions container */
   overflow-y: scroll;
   border: 1px solid #f3f3f3;
   background-color: white;
   max-height: 20rem;
-  width: 100%;
+  width: 100%; /* Change to 100% to take up the full width of the container */
+  margin: 10px auto;
   height: fit-content;
   position: absolute;
   z-index: 10;
+  left: 0; /* Adjusted to start from the left edge */
+  right: 0; /* Added to ensure the suggestions box extends to the right edge */
+}
+
+.textbox:focus {
+  /* We'll change the border color of the textbox as long as it is being focused */
+  border: 1px solid rgb(236, 170, 37);
+  transition: 0.2s ease-in-out;
 }
 
 .suggestions.hidden {
   /* Will hide the suggestions */
-  visibility: hidden; 
+  visibility: hidden;
   /*We can also use `opacity: 0`*/
 }
 
@@ -84,6 +216,87 @@
   background-color: #f3f3f3;
 }
 
+.search-bar-container {
+  position: relative;
+}
+
+/* Add brown line after the search bar */
+.search-bar-line {
+  width: 100%;
+  height: 4px; /* Adjust thickness as needed */
+  background-color: #875430;
+  margin-top: 20px; /* Adjust margin to create space above the line */
+  margin-bottom: 10px;
+}
+
+.button-container {
+  position: relative;
+}
+
+.button-row {
+  display: flex;
+  position: relative; /* Add position relative to the button row */
+}
+
+.toggle-button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid #875430;
+  border-radius: 5px;
+  background-color: white;
+  color: #875430;
+  transition: background-color 0.3s ease;
+  position: relative; /* Add position relative to the button */
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: absolute;
+  top: 100%; /* Adjusted to position the dropdown beneath the button */
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+
+/* Active style for buttons */
+.toggle-button.active {
+  background-color: #875430;
+  color: white;
+}
+
+
+/* Show dropdown when button is active */
+.toggle-button.active .dropdown {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+/* Dropdown item styles */
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  background: #FAD4B8;
+}
+
+/* Style for dropdown items on hover */
+.dropdown-item:hover {
+  background-color: #875430;
+}
+
+/* Add styles for the dropdown icon */
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
 
 
 /******************** LOGIN PAGE  ********************/
