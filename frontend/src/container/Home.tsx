@@ -187,6 +187,23 @@ const Home = () => {
         />
         {/* Add more RestaurantBox components as needed */}
       </div>
+      <div>
+        <Routes>
+          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route
+            path="/restaurant-profile/:restaurantId"
+            element={<RestaurantBox restaurantData={{
+              imageUrl: undefined,
+              name: undefined,
+              cuisineType: undefined,
+              dollarSigns: undefined,
+              stars: undefined,
+              address: undefined
+            }} />}
+          />
+          <Route path="/*" />
+        </Routes>
+      </div>
     </div>
   );
 };

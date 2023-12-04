@@ -1,7 +1,5 @@
 /******************** RESTAURANT SEARCH ********************/
 
-/* Add this to your existing CSS styles */
-
 /* Container for the restaurant boxes */
 .restaurant-box-container {
   display: flex;
@@ -9,17 +7,20 @@
   justify-content: center;
   max-width: 80%;
   margin: 0 auto;
+  background-color: #f0f8ff; /* Light blue background */
 }
 
 /* Adjust the margin for better spacing between restaurant boxes */
 .restaurant-box {
   margin: 10px;
+  border: 2px solid #4285f4; /* Blue color */
+  border-radius: 10px;
 }
 
 /* Adjust the width of the restaurant box */
 @media (min-width: 768px) {
   .restaurant-box {
-    width: 45%; /* Adjust as needed */
+    width: 80%;
   }
 }
 
@@ -30,10 +31,9 @@
   }
 }
 
-
 .restaurant-box {
   display: flex;
-  border: 2px solid #875430;
+  border: 2px solid #4285f4; /* Blue color */
   border-radius: 10px;
   overflow: hidden;
   margin: 10px;
@@ -42,7 +42,7 @@
 .image-container {
   width: 50%;
   overflow: hidden;
-  border-right: 2px solid #875430;
+  border-right: 2px solid #4285f4; /* Blue color */
 }
 
 .image-container img {
@@ -58,7 +58,7 @@
 
 .title {
   font-size: 1.2rem;
-  color: #875430;
+  color: #4285f4; /* Blue color */
   text-decoration: none;
   font-weight: bold;
 }
@@ -75,7 +75,7 @@
 }
 
 .ratings span {
-  color: #875430;
+  color: #4285f4; /* Blue color */
   margin-right: 3px;
 }
 
@@ -85,14 +85,12 @@
 }
 
 
-
-
-
 /******************** HOME PAGE  ********************/
+
 /* Add a style for the header container */
 /* Update the header styles to use the header-container class */
 .header-container {
-  background-color: #875430; /* Darker yellow/brown color */
+  background-color: #4285f4; /* Blue color */
   color: white; /* Text color */
   padding: 30px; /* Adjust the padding as needed */
 }
@@ -100,8 +98,8 @@
 .header {
   margin-bottom: 10px;
   font-size: 2rem;
-  color: #875430;
-  background-color: #c59d6d;
+  background-color: #4285f4; /* Blue color */
+  color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -140,11 +138,10 @@
   transform: scale(1.2);
 }
 
-
 .headerLine {
   width: 100%;
   height: 4px; /* Adjust thickness as needed */
-  background-color: #875430; /* Brown color */
+  background-color: #4285f4; /* Blue color */
   margin-top: 20px; /* Adjust margin to create space above the line */
   margin-bottom: 10px;
 }
@@ -187,11 +184,12 @@
   z-index: 10;
   left: 0; /* Adjusted to start from the left edge */
   right: 0; /* Added to ensure the suggestions box extends to the right edge */
+  transition: opacity 0.3s ease;
 }
 
 .textbox:focus {
   /* We'll change the border color of the textbox as long as it is being focused */
-  border: 1px solid rgb(236, 170, 37);
+  border: 1px solid #4285f4; /* Blue color on focus */
   transition: 0.2s ease-in-out;
 }
 
@@ -220,11 +218,11 @@
   position: relative;
 }
 
-/* Add brown line after the search bar */
+/* Add blue line after the search bar */
 .search-bar-line {
   width: 100%;
   height: 4px; /* Adjust thickness as needed */
-  background-color: #875430;
+  background-color: #4285f4; /* Blue color */
   margin-top: 20px; /* Adjust margin to create space above the line */
   margin-bottom: 10px;
 }
@@ -236,16 +234,16 @@
 .button-row {
   display: flex;
   position: relative; /* Add position relative to the button row */
+  background-color: #4285f4; /* Blue color for button row */
 }
 
 .toggle-button {
   padding: 10px;
   margin: 5px;
   cursor: pointer;
-  border: 2px solid #875430;
   border-radius: 5px;
-  background-color: white;
-  color: #875430;
+  border: 2px solid #4285f4; /* Blue color */
+  color: #4285f4; /* Blue color */
   transition: background-color 0.3s ease;
   position: relative; /* Add position relative to the button */
 }
@@ -265,31 +263,32 @@
   transition: visibility 0s, opacity 0.2s ease;
 }
 
-
 /* Active style for buttons */
 .toggle-button.active {
-  background-color: #875430;
+  background-color: #4285f4; /* Blue color */
   color: white;
 }
-
 
 /* Show dropdown when button is active */
 .toggle-button.active .dropdown {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.2s ease;
+  background-color: #4285f4; /* Blue color */
+  color: white;
 }
 
 /* Dropdown item styles */
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
-  background: #FAD4B8;
+  background-color: #ffffff; /* White background */
 }
 
 /* Style for dropdown items on hover */
 .dropdown-item:hover {
-  background-color: #875430;
+  background-color: #4285f4; /* Blue color on hover */
+  color: white;
 }
 
 /* Add styles for the dropdown icon */
@@ -303,7 +302,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  background: #FAD4B8; 
+  background: #f0f8ff; /* Light blue background */
   font-family: Inter, sans-serif;
 }
 
@@ -314,11 +313,11 @@ html, body {
   padding: rem;
   box-sizing: border-box; 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  background: #FAD4B8;
+  background: #f0f8ff; /* Light blue background */
 }
 
 .login-form {
@@ -337,7 +336,7 @@ label, input, button, a {
 
 input {
   padding: 0.5rem;
-  border: 2px solid #875430; 
+  border: 2px solid #4285f4; /* Blue color */
   border-radius: 20px;
   background: transparent; 
 }
@@ -346,13 +345,13 @@ button {
   padding: 0.5rem;
   border: none; 
   border-radius: 20px; 
-  background: #875430; 
+  background: #4285f4; /* Blue color */
   color: white; 
   margin-top: 1rem; 
 }
 
 button:hover {
-  background: #43281d; 
+  background: #0066cc; /* Darker blue color on hover */
 }
 
 .login-button {
@@ -362,8 +361,16 @@ button:hover {
   align-items: center;
 }
 
+.google-button {
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
 a {
-  color: #875430; 
+  color: #4285f4; /* Blue color */
   text-decoration: none; 
   font-weight: bold;
   text-align: center; 
@@ -373,10 +380,67 @@ a {
 .welcome-message {
   margin-bottom: 1rem;
   font-size: 1.8rem; 
-  color: #875430; 
+  color: #4285f4; /* Blue color */
 }
 
+.register-prompt span, .register-prompt a {
+  display: inline;
+}
+
+
 /************************************************/
+
+.user-container {
+  background: rgb(255, 255, 255);
+  background-size: contain;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  position: relative;
+}
+
+.user-container::before {
+  content: '';
+  position: absolute;
+  top: auto; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100px; 
+  background: rgba(255, 255, 255, 0.785);
+  z-index: 0;
+  border-radius: 0 0 24px 24px;
+}
+
+.user-content {
+  display: flex;
+  align-items: center;
+  padding: 10px; 
+  width: 100%; 
+  z-index: 1;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px; 
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
 
 
 
