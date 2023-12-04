@@ -54,11 +54,12 @@ const Home = () => {
   return (
     <div>
       <h1 className="header">
+        <div className="title">
+            Bear <img className="iconTop" src="logo.png" alt="Logo"></img> Bites
+        </div>
         <div className="userIm" onClick={handleUserImageClick}>
           <img src="user.png" alt="Clickable Button" />
         </div>
-        Bear &nbsp; <img className="iconTop" src="logo.png" alt="Logo"></img>{" "}
-        &nbsp; Bites
       </h1>
       <p className="headerLine" />
 
@@ -88,41 +89,56 @@ const Home = () => {
 
       {/* Row of buttons */}
       <div className="button-row">
-       {/* Price Button */}
-      <button
-        className={`toggle-button ${activeButton === "price" ? "active" : ""}`}
-        onClick={() => handleButtonToggle("price")}
-      >
-        Price
-        <span className="dropdown-icon">&#9660;</span>
-        {activeButton === "price" && renderDropdown(["Low to High", "High to Low"])}
-      </button>
+        {/* Price Button */}
+        <button
+          className={`toggle-button ${
+            activeButton === "price" ? "active" : ""
+          }`}
+          onClick={() => handleButtonToggle("price")}
+        >
+          Price
+          <span className="dropdown-icon">&#9660;</span>
+          {activeButton === "price" &&
+            renderDropdown(["Low to High", "High to Low"])}
+        </button>
 
-      {/* Dietary Restrictions Button */}
-      <button
-        className={`toggle-button ${
-          activeButton === "dietaryRestrictions" ? "active" : ""
-        }`}
-        onClick={() => handleButtonToggle("dietaryRestrictions")}
-      >
-        Dietary Restrictions
-        <span className="dropdown-icon">&#9660;</span>
-        {activeButton === "dietaryRestrictions" &&
-          renderDropdown(["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"])}
-      </button>
+        {/* Dietary Restrictions Button */}
+        <button
+          className={`toggle-button ${
+            activeButton === "dietaryRestrictions" ? "active" : ""
+          }`}
+          onClick={() => handleButtonToggle("dietaryRestrictions")}
+        >
+          Dietary Restrictions
+          <span className="dropdown-icon">&#9660;</span>
+          {activeButton === "dietaryRestrictions" &&
+            renderDropdown([
+              "Gluten Free",
+              "Vegetarian",
+              "Vegan",
+              "Kosher",
+              "Halal",
+            ])}
+        </button>
 
-      {/* Cuisine Button */}
-      <button
-        className={`toggle-button ${
-          activeButton === "cuisine" ? "active" : ""
-        }`}
-        onClick={() => handleButtonToggle("cuisine")}
-      >
-        Cuisine
-        <span className="dropdown-icon">&#9660;</span>
-        {activeButton === "cuisine" && renderDropdown(["Italian", "Japanese", "Asian", "Healthy", "Lebanese"])}
-      </button>
-    
+        {/* Cuisine Button */}
+        <button
+          className={`toggle-button ${
+            activeButton === "cuisine" ? "active" : ""
+          }`}
+          onClick={() => handleButtonToggle("cuisine")}
+        >
+          Cuisine
+          <span className="dropdown-icon">&#9660;</span>
+          {activeButton === "cuisine" &&
+            renderDropdown([
+              "Italian",
+              "Japanese",
+              "Asian",
+              "Healthy",
+              "Lebanese",
+            ])}
+        </button>
 
         <button
           className={`toggle-button ${

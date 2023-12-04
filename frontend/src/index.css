@@ -9,17 +9,48 @@
 }
 
 .header {
-  margin-bottom: 10px; /* Add space between the title and the brown line */
+  margin-bottom: 10px;
   font-size: 2rem;
-  color: #875430;  /* Text color */
-  background-color: #c59d6d; /* Light brown background color */
-  padding: 10px; /* Adjust padding as needed */
+  color: #875430;
+  background-color: #c59d6d;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  word-spacing: .5rem;
+  justify-content: space-between;
+  word-spacing: 5px;
+  margin-left: 40%;
 }
+
+.iconTop {
+  width: 20%;
+  max-width: 50px;
+  margin-left: 10px; /* Add margin for spacing between title and logo */
+  margin-right: 10px;
+  align-items: center;
+}
+
+.userIm {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.userIm img {
+  width: 30px;
+  height: auto;
+}
+
+.userIm:hover {
+  transform: scale(1.2);
+}
+
 
 .headerLine {
   width: 100%;
@@ -32,25 +63,6 @@
 .iconTop {
   width: 20%;
   max-width: 50px;
-}
-
-.userIm {
-  width: 30px; /* Adjust the size based on your preference */
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out; /* Added a transition effect on hover */
-  display: flex;
-  flex-direction: row;
-}
-
-.userIm img {
-  width: 100%; /* Ensure the image takes up the entire space within .userIm */
-}
-
-.userIm:hover {
-  transform: scale(1.2); /* Added a scaling effect on hover */
 }
 
 .container {
@@ -132,12 +144,11 @@
   position: relative;
 }
 
-/* Container for the buttons */
 .button-row {
   display: flex;
+  position: relative; /* Add position relative to the button row */
 }
 
-/* Shared styles for buttons */
 .toggle-button {
   padding: 10px;
   margin: 5px;
@@ -147,18 +158,13 @@
   background-color: white;
   color: #875430;
   transition: background-color 0.3s ease;
-}
-
-/* Active style for buttons */
-.toggle-button.active {
-  background-color: #875430;
-  color: white;
+  position: relative; /* Add position relative to the button */
 }
 
 /* Dropdown styles */
 .dropdown {
   position: absolute;
-  top: calc(100% + 5px); /* Adjust this value to fine-tune the dropdown position */
+  top: 100%; /* Adjusted to position the dropdown beneath the button */
   left: 0;
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -169,6 +175,14 @@
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
 }
+
+
+/* Active style for buttons */
+.toggle-button.active {
+  background-color: #875430;
+  color: white;
+}
+
 
 /* Show dropdown when button is active */
 .toggle-button.active .dropdown {
@@ -181,6 +195,7 @@
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
+  background: #FAD4B8;
 }
 
 /* Style for dropdown items on hover */
