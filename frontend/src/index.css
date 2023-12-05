@@ -177,7 +177,6 @@
   width: 20%;
   max-width: 50px;
 }
-
 .container {
   width: 80%;
   margin: 0 auto;
@@ -186,7 +185,7 @@
 
 .textbox {
   border: 1px solid #f3f3f3;
-  color:#001f3f;
+  color: #001f3f;
   height: 2rem;
   outline: none;
   box-sizing: border-box;
@@ -198,6 +197,10 @@
   flex-direction: row;
 }
 
+.textbox::placeholder {
+  /* Set the color of the placeholder text */
+  color: #001f3f; /* Dark blue color */
+}
 
 .suggestions {
   overflow-y: scroll;
