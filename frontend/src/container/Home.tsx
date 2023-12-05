@@ -19,6 +19,14 @@ const Home = () => {
 
   const [result, setResult] = useState<any[]>([]);
   const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [dropdownSelection, setDropdownSelection] = useState<string | null>(
+    null
+  );
+  const [activeDropdownButton, setActiveDropdownButton] = useState<
+    string | null
+  >(null);
+
+
 
   const navigate = useNavigate(); // hook for navigation
 
@@ -35,18 +43,49 @@ const Home = () => {
     navigate(`/user-profile/${userInfo.userId}`);
   };
 
-   const handleButtonToggle = (buttonName: string) => {
-     setActiveButton((prev) => (prev === buttonName ? null : buttonName));
-   };
+    const handleButtonToggle = (buttonName: string) => {
+       setActiveButton((prev) => (prev === buttonName ? null : buttonName));
+       setDropdownSelection(null); // Reset dropdown selection when toggling buttons
+     };
+
+  const handleDropdownSelect = (option: string) => {
+    setDropdownSelection(option);
+  };
 
    const renderDropdown = (options: string[]) => {
      return (
        <div className="dropdown">
          {options.map((option, index) => (
-           <div key={index} className="dropdown-item">
+           <div
+             key={index}
+             className="dropdown-item"
+             onClick={() => handleDropdownSelect(option)}
+           >
              {option}
            </div>
          ))}
+       </div>
+     );
+   };
+
+   const renderButton = (
+     buttonName: string,
+     dropdownOptions: string[] | null = null
+   ) => {
+     return (
+       <div className="button-container" key={buttonName}>
+         <button
+           className={`toggle-button ${
+             activeButton === buttonName ? "active" : ""
+           }`}
+           onClick={() => handleButtonToggle(buttonName)}
+         >
+           {dropdownSelection || buttonName}
+           {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
+         </button>
+         {dropdownOptions &&
+           activeButton === buttonName &&
+           renderDropdown(dropdownOptions)}
        </div>
      );
    };
@@ -101,6 +140,7 @@ const Home = () => {
       {/* Row of buttons */}
       <div className="button-row">
         {/* Price Button */}
+        
         <button
           className={`toggle-button ${
             activeButton === "price" ? "active" : ""
