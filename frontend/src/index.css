@@ -466,10 +466,13 @@ a {
   bottom: 0;
   left: 0;
   height: 90px;
-  background: rgba(255, 255, 255, 0.785);
+  background: rgba(255, 255, 255, 0.85);
   z-index: 0;
   border-radius: 0 0 24px 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+
 .user-content {
   display: flex;
   align-items: center;
@@ -501,6 +504,7 @@ a {
 }
 
 .user-name{
+  margin-top: 2em;
   text-transform: uppercase;
 }
 
@@ -509,6 +513,103 @@ a {
 
 }
 
+/************************************************/
+
+.ab-container {
+  overflow: hidden;
+}
+
+.ab-container,
+.ab-container * {
+  box-sizing: border-box;
+}
+
+.ab-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 40px;
+  position: relative;
+  width: 383px;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+
+.sug-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 32px;
+  position: relative;
+  width: 365px;
+  padding: 24px 24px 24px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 18;
+  border-radius: 24px;
+  backdrop-filter: blur(21px);
+}
+
+.divider {
+  height: 1px;
+  background-color: rgb(227, 225, 225); 
+  width: 100%; 
+  margin: 0;
+}
+
+.header-text {
+  flex-shrink: 0;
+  position: relative;
+  color: rgb(7, 20, 59);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.46px;
+}
+
+.wrapper-about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 24px;
+  position: relative;
+  width: 384px;
+  padding: 24px 24px 24px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(21px);
+}
+
+.about-info {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  color: rgb(149, 152, 149);
+  letter-spacing: 0.32px;
+}
+
+.about-info-ans {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  color: rgb(135, 84, 49);
+  letter-spacing: 0.32px;
+}
+
+.wrapper-suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 32px;
+  position: relative;
+  width: 317px;
+}
 
 
 
