@@ -62,7 +62,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onBlur={handleBlur}
           type="search"
           className="textbox"
-          placeholder="Search data..."
+          placeholder="Search for a restaurant..."
           value={value}
           onChange={handleSearchInputChange}
         />
