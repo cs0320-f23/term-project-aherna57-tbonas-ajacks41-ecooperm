@@ -9,7 +9,7 @@ import { TRPCError } from "@trpc/server";
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
 
-import { Restaurant } from "@prisma/client";
+import { Review } from "@prisma/client";
 
 // Create a new ratelimiter, that allows 3 requests per 1 minute
 const ratelimit = new Ratelimit({
@@ -52,6 +52,30 @@ export const reviewsRouter = createTRPCRouter({
       return (await [review])[0];
     }),
 
+  getByRating: publicProcedure
+    .input(z.object({ rating: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const reviews = await ctx.prisma.review.findMany({
+        where: { rating: input.rating },
+      });
+
+      if (!reviews) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return reviews;
+    }),
+
+    getByKeyword: publicProcedure
+    .input(z.object({ keyword: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const reviews = await ctx.prisma.review.findMany({
+        where: { description: { contains: input.keyword } },
+      });
+
+      if (!reviews) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return reviews;
+    }), 
+
   //Guarantees user is authenticated
 
   //Zod: Use to type-check data essentially
@@ -61,15 +85,15 @@ export const reviewsRouter = createTRPCRouter({
               message: "Restaurant must be a character or longer."
           }).max(500),
       })).mutation(async({ctx, input}) => {
-      const authorId = ctx.userId;
+      const userId = ctx.userId;
 
-      const {success} = await ratelimit.limit(authorId);
+      const {success} = await ratelimit.limit(userId);
       if(!success) throw new TRPCError({code: "TOO_MANY_REQUESTS"});
 
       const review = await ctx.prisma.review.create({
           data: {
-              authorId,
-              content: input.content,
+              userId,
+              description: input.content,
           },
       });
       return review;
