@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     const userItem = localStorage.getItem("user");
+    console.log(userItem)
     const User = userItem && userItem !== "undefined" ? JSON.parse(userItem) : null;
     if (!User) navigate("/login");
   }, [navigate]);

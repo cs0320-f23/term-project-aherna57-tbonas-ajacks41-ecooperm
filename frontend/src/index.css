@@ -455,6 +455,7 @@ a {
   align-items: flex-end;
   height: 200px;
   position: relative;
+  margin-left: 30px;
 }
 
 .user-container::before {
@@ -464,7 +465,7 @@ a {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100px;
+  height: 90px;
   background: rgba(255, 255, 255, 0.785);
   z-index: 0;
   border-radius: 0 0 24px 24px;
@@ -496,6 +497,16 @@ a {
 .user-info {
   display: flex;
   flex-direction: column;
+  font-weight: 700;
+}
+
+.user-name{
+  text-transform: uppercase;
+}
+
+.user-class{
+  color: rgba(0, 0, 0, 0.7);
+
 }
 
 
