@@ -1,18 +1,16 @@
 /******************* RESTAURANT SEARCH *******************/
 
-
 /* Container for the restaurant boxes */
 .restaurant-box-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 85%;
-  max-height: 35%;
   margin: 0 auto;
   background-color: #f0f8ff; /* Light blue background */
 }
 
-/* Adjust the margin for better spacing between restaurant boxes */
+/* Restaurant box styling */
 .restaurant-box {
   width: 100%;
   max-height: 20rem;
@@ -20,36 +18,23 @@
   border: 2px solid #001f3f; /* Navy color */
   border-radius: 10px;
   transition: box-shadow 0.3s ease-in-out;
-  background-color:rgb(94, 145, 217);
+  background-color: rgb(94, 145, 217);
   overflow: hidden;
+  display: flex;
 }
 
-/* Adjust the width of the restaurant box */
+/* Adjust the width of the restaurant box for larger screens */
 @media (min-width: 768px) {
   .restaurant-box {
     width: 80%;
   }
 }
 
-/* Media query for smaller screens */
+/* Adjust the width of the restaurant box for smaller screens */
 @media (max-width: 767px) {
   .restaurant-box {
-    width: 100%; /* Adjust as needed for smaller screens */
-   
+    width: 100%;
   }
-}
-
-.restaurant-box {
-  display: flex;
-  border: 2px solid #001f3f; /* Navy color */
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 10px;
-  transition: box-shadow 0.3s ease-in-out;
-  flex-direction: row;
-  align-items: center;
-
-
 }
 
 .image-container {
@@ -61,8 +46,7 @@
 .image-container img {
   width: 100%;
   height: auto;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+
 }
 
 .info-container {
@@ -71,19 +55,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 50%; /* Added width for the text container */
 }
 
 .titleRest {
   font-size: 1.2rem;
+  width: 75%;
   color: #122b44; /* Navy color */
   text-decoration: none;
   font-weight: bold;
   align-items: center;
   border: 2px solid #122b44; /* Navy color */
-  background-color:#95b5d5;
+  background-color: #95b5d5;
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .cuisine {
@@ -92,33 +80,52 @@
   color: #001f3f; /* Navy color */
 }
 
+/* Add this CSS to center stars above the dollar signs */
 .ratings {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 5px;
 }
 
 .ratings span {
-  color: #001f3f; /* Navy color */
   margin-right: 3px;
 }
 
-.address {
-  font-size: 0.9rem;
-  color: rgb(70, 70, 203);
+/* Add this CSS for the reviews in a smaller font on the right side */
+.ratings span:last-child {
+  margin-left: auto;
+  font-size: 0.8rem;
+}
+
+/* Add this CSS for the dollar signs */
+.dollar-signs {
+  display: flex;
+  align-items: center;
+  margin-top: 5px; /* Adjust as needed for spacing */
+}
+
+.dollar-signs span {
+  margin-right: 3px;
+  font-size: 0.8rem;
 }
 
 
+.address {
+  font-size: 0.9rem;
+  color: #122b44;
+}
+
 /******************* HOME PAGE *******************/
 
-/* Add a style for the header container */
-/* Update the header styles to use the header-container class */
+/* Header container styling */
 .header-container {
   background-color: #14487b; /* Navy color */
   color: white; /* Text color */
   padding: 30px; /* Adjust the padding as needed */
 }
 
+/* Header styling */
 .header {
   margin-bottom: 10px;
   font-size: 2rem;
@@ -131,6 +138,7 @@
   align-items: center;
 }
 
+/* Title styling */
 .title {
   display: flex;
   flex-direction: row;
@@ -142,6 +150,7 @@
   color: #0e1013; /* Navy color */
 }
 
+/* Icon styling */
 .iconTop {
   width: 20%;
   max-width: 50px;
@@ -150,6 +159,7 @@
   align-items: center;
 }
 
+/* User image styling */
 .userIm {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -165,6 +175,7 @@
   transform: scale(1.2);
 }
 
+/* Header line styling */
 .headerLine {
   width: 100%;
   height: 4px; /* Adjust thickness as needed */
@@ -173,16 +184,14 @@
   margin-bottom: 10px;
 }
 
-.iconTop {
-  width: 20%;
-  max-width: 50px;
-}
+/* Container styling */
 .container {
   width: 80%;
   margin: 0 auto;
   padding: 2px;
 }
 
+/* Textbox styling */
 .textbox {
   border: 1px solid #f3f3f3;
   color: #001f3f;
@@ -197,11 +206,12 @@
   flex-direction: row;
 }
 
+/* Placeholder styling */
 .textbox::placeholder {
-  /* Set the color of the placeholder text */
   color: #001f3f; /* Dark blue color */
 }
 
+/* Suggestions styling */
 .suggestions {
   overflow-y: scroll;
   border: 1px solid #f3f3f3;
@@ -217,20 +227,19 @@
   transition: opacity 0.3s ease;
 }
 
+/* Focused textbox styling */
 .textbox:focus {
-  /* We'll change the border color of the textbox as long as it is being focused */
   border: 1px solid #001f3f; /* Navy color on focus */
   transition: 0.2s ease-in-out;
 }
 
+/* Hidden suggestions styling */
 .suggestions.hidden {
-  /* Will hide the suggestions */
   visibility: hidden;
-  /*We can also use `opacity: 0`*/
 }
 
+/* Suggestion styling */
 .suggestion {
-  /* Styling of a single suggestion */
   cursor: pointer;
   box-sizing: border-box;
   padding: 1px 10px;
@@ -239,17 +248,18 @@
   align-items: center;
 }
 
+/* Hovered suggestion styling */
 .suggestion:hover {
-  /* Changing background color on hover */
   background-color: #345bc4;
 }
 
+/* Search bar container styling */
 .search-bar-container {
   position: relative;
   background-color: rgb(62, 129, 224);
 }
 
-/* Add blue line after the search bar */
+/* Search bar line styling */
 .search-bar-line {
   width: 100%;
   height: 4px; /* Adjust thickness as needed */
@@ -258,16 +268,19 @@
   margin-bottom: 10px;
 }
 
+/* Button container styling */
 .button-container {
   position: relative;
 }
 
+/* Button row styling */
 .button-row {
   display: flex;
   position: relative; /* Add position relative to the button row */
   background-color: #104881; /* Navy color for button row */
 }
 
+/* Toggle button styling */
 .toggle-button {
   padding: 10px;
   margin: 5px;
@@ -279,7 +292,7 @@
   position: relative; /* Add position relative to the button */
 }
 
-/* Dropdown styles */
+/* Dropdown styling */
 .dropdown {
   position: absolute;
   top: 100%; /* Adjusted to position the dropdown beneath the button */
@@ -294,7 +307,7 @@
   transition: visibility 0s, opacity 0.2s ease;
 }
 
-/* Active style for buttons */
+/* Active toggle button styling */
 .toggle-button.active {
   background-color: #001f3f; /* Navy color */
   color: white;
@@ -309,7 +322,7 @@
   color: white;
 }
 
-/* Dropdown item styles */
+/* Dropdown item styling */
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
@@ -317,13 +330,13 @@
   color: #001f3f; /* Navy color */
 }
 
-/* Style for dropdown items on hover */
+/* Hovered dropdown item styling */
 .dropdown-item:hover {
   background-color: #001f3f; /* Navy color on hover */
   color: white;
 }
 
-/* Add styles for the dropdown icon */
+/* Dropdown icon styling */
 .dropdown-icon {
   margin-left: 5px;
   font-size: 0.8em;
@@ -331,6 +344,7 @@
 
 /******************* LOGIN PAGE *******************/
 
+/* Body styling */
 html, body {
   height: 100%;
   margin: 0;
@@ -338,55 +352,62 @@ html, body {
   font-family: Inter, sans-serif;
 }
 
+/* Main container styling */
 .main-container {
-  width: 100%; 
+  width: 100%;
   max-width: 800px;
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
   background: #f0f8ff; /* Light blue background */
 }
 
+/* Login form styling */
 .login-form {
-  width: 100%; 
-  max-width: 400px; 
-  padding: 2rem; 
-  box-sizing: border-box; 
-  border-radius: 20px; 
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 
+/* Block-level element styling */
 label, input, button, a {
   display: block;
-  width: 100%; 
-  margin: 0.6rem 0; 
+  width: 100%;
+  margin: 0.6rem 0;
 }
 
+/* Input styling */
 input {
   padding: 0.5rem;
   border: 2px solid #001f3f; /* Navy color */
   border-radius: 20px;
-  background: transparent; 
+  background: transparent;
 }
 
+/* Button styling */
 button {
   padding: 0.5rem;
-  border: none; 
-  border-radius: 20px; 
+  border: none;
+  border-radius: 20px;
   background: #001f3f; /* Navy color */
-  color: white; 
-  margin-top: 1rem; 
+  color: white;
+  margin-top: 1rem;
   transition: background-color 0.3s ease;
 }
 
+/* Hovered button styling */
 button:hover {
   background: #003366; /* Darker navy color on hover */
 }
 
+/* Login button styling */
 .login-button {
   width: 355px;
   display: flex;
@@ -394,6 +415,7 @@ button:hover {
   align-items: center;
 }
 
+/* Google button styling */
 .google-button {
   width: 355px;
   display: flex;
@@ -402,28 +424,30 @@ button:hover {
   margin-top: 2rem;
 }
 
+/* Anchor styling */
 a {
   color: #001f3f; /* Navy color */
-  text-decoration: none; 
+  text-decoration: none;
   font-weight: bold;
-  text-align: center; 
+  text-align: center;
   margin-top: 1rem;
 }
 
+/* Welcome message styling */
 .welcome-message {
   margin-bottom: 1rem;
-  font-size: 1.8rem; 
+  font-size: 1.8rem;
   color: #001f3f; /* Navy color */
 }
 
+/* Register prompt styling */
 .register-prompt span, .register-prompt a {
   display: inline;
 }
 
-
-
 /************************************************/
 
+/* User container styling */
 .user-container {
   background: rgb(255, 255, 255);
   background-size: contain;
@@ -434,19 +458,19 @@ a {
   position: relative;
 }
 
+/* User container pseudo-element styling */
 .user-container::before {
   content: '';
   position: absolute;
-  top: auto; 
+  top: auto;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100px; 
+  height: 100px;
   background: rgba(255, 255, 255, 0.785);
   z-index: 0;
   border-radius: 0 0 24px 24px;
 }
-
 .user-content {
   display: flex;
   align-items: center;

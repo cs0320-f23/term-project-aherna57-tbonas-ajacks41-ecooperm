@@ -8,6 +8,7 @@ import axios from "axios";
 import Result from "./Result";
 import Searchbar from "./SearchBar";
 import { ResultProps } from "./Result";
+import RestaurantList from "../components/RestaurantList";
 
 const Home = () => {
   const userItem = localStorage.getItem("user");
@@ -140,7 +141,7 @@ const Home = () => {
       {/* Row of buttons */}
       <div className="button-row">
         {/* Price Button */}
-        
+
         <button
           className={`toggle-button ${
             activeButton === "price" ? "active" : ""
@@ -215,35 +216,12 @@ const Home = () => {
       </div>
       <p className="search-bar-line"></p>
 
-      {/* Container for the restaurant boxes */}
       <div className="restaurant-box-container">
-        {/* Sample RestaurantBox components */}
-        <RestaurantBox
-          restaurantData={
-            {
-              /* Sample data */
-            }
-          }
-        />
-        {/* Add more RestaurantBox components as needed */}
+        {/* The RestaurantList component is used here */}
+        <RestaurantList />
       </div>
-      <div>
-        <Routes>
-          <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route
-            path="/restaurant-profile/:restaurantId"
-            element={<RestaurantBox restaurantData={{
-              imageUrl: undefined,
-              name: undefined,
-              cuisineType: undefined,
-              dollarSigns: undefined,
-              stars: undefined,
-              address: undefined
-            }} />}
-          />
-          <Route path="/*" />
-        </Routes>
-      </div>
+
+     
     </div>
   );
 };
