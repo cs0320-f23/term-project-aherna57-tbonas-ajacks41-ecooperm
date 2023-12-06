@@ -15,7 +15,7 @@ const RestaurantList: React.FC = () => {
     {
       name: "Amy's",
       imageUrl: "amy.jpg",
-      cuisineType: "Placeholder Cuisine",
+      cuisineType: "Diner",
       dollarSigns: 2,
       stars: 5,
       reviews: 6,

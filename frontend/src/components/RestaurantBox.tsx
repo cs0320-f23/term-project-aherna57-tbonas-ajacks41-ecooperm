@@ -17,10 +17,18 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
   const { imageUrl, name, cuisineType, dollarSigns, stars, reviews, address } =
     restaurantData;
 
-  const createIcons = (count?: number) => {
+  const createStars = (count?: number) => {
     return Array.from({ length: count || 0 }, (_, index) => (
       <span key={index} style={{ marginRight: "3px" }}>
         &#9733;
+      </span>
+    ));
+  };
+
+  const createDollarSigns = (count?: number) => {
+    return Array.from({ length: count || 0 }, (_, index) => (
+      <span key={index} style={{ marginRight: "3px" }}>
+        &#36;
       </span>
     ));
   };
@@ -37,12 +45,12 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
         <p className="cuisine">{cuisineType}</p>
         <div className="ratings">
           <span style={{ marginRight: "3px" }}>&#9733;</span>
-          {createIcons(stars)}
+          {createStars(stars)}
           <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
             {reviews} reviews
           </span>
         </div>
-        <div className="dollar-signs">{createIcons(dollarSigns)}</div>
+        <div className="dollar-signs">{createDollarSigns(dollarSigns)}</div>
         <p className="address">{address}</p>
       </div>
     </div>

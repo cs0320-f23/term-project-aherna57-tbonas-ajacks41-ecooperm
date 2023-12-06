@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 85%;
+  max-width: 95%;
   margin: 0 auto;
   background-color: #f0f8ff; /* Light blue background */
 }
