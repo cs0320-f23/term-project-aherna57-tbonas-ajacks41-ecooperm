@@ -1,3 +1,101 @@
+/******************* RESTAURANT PAGE *******************/
+
+/* Container for restaurant details */
+.restaurant-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+/* Restaurant photo styling */
+.restaurant-photo {
+  flex: 1;
+  max-width: 50%;
+  overflow: hidden;
+  border-right: 2px solid #001f3f; /* Navy color */
+}
+
+.restaurant-photo img {
+  width: 100%;
+  height: auto;
+}
+
+/* Restaurant information styling */
+.restaurant-info {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Hours section styling */
+.hours-section, .menu-section, .reviews-section {
+  margin-top: 20px;
+}
+
+/* Reviews section styling */
+.reviews-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.reviews-section li {
+  margin-bottom: 20px;
+}
+
+/* Common styling for headers in the restaurant page */
+.restaurant-details-container h2,
+.restaurant-details-container h3 {
+  color: #003366; /* Dark blue color */
+}
+
+/* Link styling */
+.menu-section a {
+  color: #001f3f; /* Navy color */
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+  border: 2px solid #001f3f; /* Navy color */
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #003366;
+  transition: background-color 0.3s ease;
+}
+
+.menu-section a:hover {
+  background-color: #001f3f; /* Navy color on hover */
+  color: white;
+}
+
+/* Adjust the width of the restaurant box for larger screens */
+@media (min-width: 768px) {
+  .restaurant-details-container {
+    width: 80%;
+  }
+
+  .restaurant-photo {
+    max-width: 40%;
+  }
+
+  .restaurant-info {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+/* Adjust the width of the restaurant box for smaller screens */
+@media (max-width: 767px) {
+  .restaurant-details-container {
+    width: 100%;
+  }
+
+  .restaurant-photo,
+  .restaurant-info {
+    max-width: 100%;
+  }
+}
+
 /******************* RESTAURANT SEARCH *******************/
 
 /* Container for the restaurant boxes */
