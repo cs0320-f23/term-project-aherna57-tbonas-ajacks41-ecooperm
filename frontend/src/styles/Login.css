@@ -1,0 +1,104 @@
+/******************* LOGIN PAGE *******************/
+
+/* Body styling */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #c7def3; /* Light blue background */
+  font-family: Inter, sans-serif;
+}
+
+/* Main container styling */
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #c7def3; /* Light blue background */
+}
+
+/* Login form styling */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+/* Block-level element styling */
+label, input, button, a {
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+
+/* Input styling */
+input {
+  padding: 0.5rem;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 20px;
+  background: transparent;
+}
+
+/* Button styling */
+button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  background: #001f3f; /* Navy color */
+  color: white;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hovered button styling */
+button:hover {
+  background: #003366; /* Darker navy color on hover */
+}
+
+/* Login button styling */
+.login-button {
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Google button styling */
+.google-button {
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* Anchor styling */
+a {
+  color: #001f3f; /* Navy color */
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Welcome message styling */
+.welcome-message {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #001f3f; /* Navy color */
+}
+
+/* Register prompt styling */
+.register-prompt span, .register-prompt a {
+  display: inline;
+}
+
+/************************************************/

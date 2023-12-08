@@ -39,6 +39,36 @@ const userMockSchema = {
   createdAt: "2020-09-26T00:00:00.000Z",
   reviews: [],
   favorites: [],
+  bio: "I am a bear",
+  phone: "1234567890",
+  location: "Providence, RI",
 };
 
-export { googleMockResponse, decodedMockResponse, userMockSchema };
+const userMockReview = {
+  id: "11249341595-h07q06w4c22qjpvfl1jhwcfm7v5pro0c.apps.googleusercontent.com",
+  timeAgo: "2 days ago",
+  username: "bruno_bear",
+  restaurantName: "Baja's",
+  review:
+    "This is a review of a restaurant, here is the food that was fake eaten at said restaurant.",
+  rating: 5,
+  image:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg/1200px-001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg",
+};
+
+const userMockReview2 = {
+  id: "11249341595-h07q06w4c22qjpvfl1jhwcfm7v5pro0c.apps.googleusercontent.com",
+  timeAgo: "1 day ago",
+  username: "bruno_bear",
+  restaurantName: "Bagel Gourmet",
+  review:
+    "This is another review of a place, here is the food that was fake eaten at said place.",
+  rating: 5,
+  image:
+    "https://cdn.pixabay.com/photo/2015/04/20/21/05/breakfast-732231_1280.jpg",
+};
+    
+
+
+
+export { googleMockResponse, decodedMockResponse, userMockSchema, userMockReview, userMockReview2};

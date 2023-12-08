@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route, Routes, useNavigate, useLocation} from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import UserProfile from "../components/UserProfile";
-import RestaurantBox from "../components/RestaurantBox";
 import { userQuery } from "../utils/data";
-import { decodedMockResponse } from "../mockedUser/user1Mock";
 import axios from "axios";
 import Result from "./Result";
 import Searchbar from "./SearchBar";
 import { ResultProps } from "./Result";
 import RestaurantList from "../components/RestaurantList";
+import "../styles/Home.css";
+import RestaurantProfile from "../components/RestaurantProfile";
+
 
 const Home = () => {
   const userItem = localStorage.getItem("user");
@@ -43,11 +44,15 @@ const Home = () => {
     // Navigate to the user profile page
     navigate(`/user-profile/${userInfo.id}`);
   };
+  const handleHomeClick = () => {
+    // Navigate to the home page
+    navigate('/');
+  };
 
-    const handleButtonToggle = (buttonName: string) => {
-       setActiveButton((prev) => (prev === buttonName ? null : buttonName));
-       setDropdownSelection(null); // Reset dropdown selection when toggling buttons
-     };
+  const handleButtonToggle = (buttonName: string) => {
+      setActiveButton((prev) => (prev === buttonName ? null : buttonName));
+      setDropdownSelection(null); // Reset dropdown selection when toggling buttons
+  };
 
   const handleDropdownSelect = (option: string) => {
     setDropdownSelection(option);
@@ -94,7 +99,7 @@ const Home = () => {
   return (
     <div>
       <h1 className="header">
-        <div className="title">
+        <div className="title" onClick={handleHomeClick}>
           Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
@@ -108,18 +113,7 @@ const Home = () => {
           <Route path="/user-profile/:userId" element={<UserProfile />} />
           <Route
             path="/restaurant-profile/:restaurantId"
-            element={
-              <RestaurantBox
-                restaurantData={{
-                  imageUrl: "",
-                  name: "",
-                  cuisineType: "",
-                  dollarSigns: undefined,
-                  stars: undefined,
-                  address: undefined,
-                }}
-              />
-            }
+            element={<RestaurantProfile />}
           />
           <Route path="/*" />
         </Routes>

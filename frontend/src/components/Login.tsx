@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { decodedMockResponse, userMockSchema } from "../mockedUser/user1Mock";
-import "../index.css";
+import "../styles/Login.css";
 
 
 

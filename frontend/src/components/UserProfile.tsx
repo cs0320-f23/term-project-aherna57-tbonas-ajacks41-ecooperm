@@ -1,12 +1,13 @@
 import React, { CSSProperties, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../index.css";
+import "../styles/UserProfile.css";
+import UserAbout from "./UserAbout";
+import Review from "./Review";
 
 /// intrface placeholder for now --- update when reviews are implemented
 interface Review {
 
 }
-
 
 interface User {
   id: string;
@@ -72,35 +73,15 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-
-      <div className="ab-container">
-        {/* About Section */}
-        <div className="wrapper-about">
-          <span className="header-text">About</span>
-          <hr className="divider" />
-          <span className="about-info">bio</span>
-          <span className="about-info">Email: </span>
-          <span className="about-info-ans">nikjone@demoo.com</span>
-          <span className="about-info">Phone:</span>
-          <span className="about-info-ans">001235125612</span>
-          <span className="about-info">Location:</span>
-          <span className="about-info-ans">USA</span>
+      <div className="main-user-container">
+        {/* User Reviews */}
+        <div className="left-container">
+          <Review />
         </div>
 
-        {/* Suggestions Section */}
-        <div className="sug-container">
-          <span className="header-text">Suggestions</span>
-          <hr className="divider" />
-          <div className="wrapper-suggestions">
-            <span>restaurant 1</span>
-            <hr className="divider" />
-            <span>restaurant 2</span>
-            <hr className="divider" />
-            <span>restaurant 3</span>
-            <hr className="divider" />
-            <span>restaurant 4</span>
-            <hr className="divider" />
-          </div>
+        {/* User About & Suggestions */}
+        <div className="right-container">
+          <UserAbout />
         </div>
       </div>
     </div>

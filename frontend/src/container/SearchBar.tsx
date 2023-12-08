@@ -1,5 +1,6 @@
 import React, { SetStateAction, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce.js";
+import "../styles/RestaurantSearch.css";
 
 interface SearchBarProps {
   fetchData: (value: string) => Promise<any[]>;
