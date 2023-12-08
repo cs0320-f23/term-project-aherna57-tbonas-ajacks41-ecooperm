@@ -81,8 +81,8 @@ export const reviewsRouter = createTRPCRouter({
   //Zod: Use to type-check data essentially
     create: privateProcedure.input(
       z.object({
-          content: z.string().min(1, {
-              message: "Restaurant must be a character or longer."
+          content: z.string().min(3, {
+              message: "Review must be three characters or longer."
           }).max(500),
       })).mutation(async({ctx, input}) => {
       const userId = ctx.userId;
@@ -92,8 +92,12 @@ export const reviewsRouter = createTRPCRouter({
 
       const review = await ctx.prisma.review.create({
           data: {
+              //TODO: Fix this later
               userId,
               description: input.content,
+              restaurantId: "",
+              title: "",
+              rating: 0,
           },
       });
       return review;
