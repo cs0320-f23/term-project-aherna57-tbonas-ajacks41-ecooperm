@@ -1,0 +1,42 @@
+.restaurant-container {
+  background: rgb(255, 255, 255);
+  background-size: contain;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  position: relative;
+  margin-left: 30px;
+}
+
+.restaurant-container::before {
+  content: '';
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.restaurant-content {
+  display: flex;
+  align-items: center;
+  padding: 10px; 
+  width: 100%; 
+  z-index: 1;
+}
+
+
+.restaurant-name {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase; 
+  letter-spacing: 0.01em; 
+}

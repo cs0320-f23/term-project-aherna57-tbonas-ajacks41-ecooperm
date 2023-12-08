@@ -1,14 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google"; // Make sure to import this correctly
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login";
 import Home from "./container/Home";
 import { GOOGLE_API_TOKEN } from "./private/api";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userItem = localStorage.getItem("user");
+    console.log(userItem)
+    const User = userItem && userItem !== "undefined" ? JSON.parse(userItem) : null;
+    if (!User) navigate("/login");
+  }, [navigate]);
+
   return (
-    <Router>
-      {/* You need to provide a valid Google API token here! */}
       <GoogleOAuthProvider clientId={GOOGLE_API_TOKEN}>
         <div>
           <Routes>
@@ -17,7 +29,6 @@ function App() {
           </Routes>
         </div>
       </GoogleOAuthProvider>
-    </Router>
   );
 }
 
