@@ -37,31 +37,4 @@ export const restaurantsRouter = createTRPCRouter({
         return (await [restaurant])[0]; 
   }),
 
-
-
-
-    
-  //Guarantees user is authenticated
-
-  //Zod: Use to type-check data essentially
-//   create: privateProcedure.input(
-//     z.object({
-//         content: z.string().min(1, { 
-//             message: "Restaurant must be a character or longer." 
-//         }).max(500),
-//     })).mutation(async({ctx, input}) => {
-//     const authorId = ctx.userId;
-
-    
-//     const {success} = await ratelimit.limit(authorId);
-//     if(!success) throw new TRPCError({code: "TOO_MANY_REQUESTS"});
-
-//     const restaurant = await ctx.prisma.restaurant.create({
-//         data: {
-//             authorId,
-//             content: input.content,
-//         },
-//     });
-//     return restaurant;
-//   }),
 });
