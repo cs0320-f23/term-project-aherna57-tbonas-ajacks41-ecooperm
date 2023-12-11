@@ -373,11 +373,16 @@
 /* Button container styling */
 .button-container {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  z-index: 2; /* Ensure the button container is above the dropdown */
+  width: 100%;
 }
 
 /* Button row styling */
 .button-row {
   display: flex;
+  flex-direction: row;
   position: relative; /* Add position relative to the button row */
   background-color: #104881; /* Navy color for button row */
 }
@@ -392,6 +397,7 @@
   color:  #f0f8ff; /* Navy color */
   transition: background-color 0.3s ease;
   position: relative; /* Add position relative to the button */
+  flex-direction: row;
 }
 
 /* Dropdown styling */
@@ -422,6 +428,11 @@
   transition: visibility 0s, opacity 0.2s ease;
   background-color: #001f3f; /* Navy color */
   color: white;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
 }
 
 /* Dropdown item styling */

@@ -45,7 +45,7 @@ const Home = () => {
     setDropdownSelection(null); // Reset dropdown selection when toggling buttons
   };
 
-  const handleDropdownSelect = (category: string, option: string) => {
+  const handleFilterDropdownSelect = (category: string, option: string) => {
     setDropdownSelection(option);
     // Add logic to apply the selected filter to the restaurant list
     // For now, you can console.log the selected category and option
@@ -59,7 +59,7 @@ const Home = () => {
           <div
             key={index}
             className="dropdown-item"
-            onClick={() => handleDropdownSelect(category, option)}
+            onClick={() => handleFilterDropdownSelect(category, option)}
           >
             {option}
           </div>
@@ -68,27 +68,22 @@ const Home = () => {
     );
   };
 
-  const renderButton = (
-    category: string,
-    dropdownOptions: string[] | null = null
-  ) => {
-    return (
-      <div className="button-container" key={category}>
-        <button
-          className={`toggle-button ${
-            activeButton === category ? "active" : ""
-          }`}
-          onClick={() => handleButtonToggle(category)}
-        >
-          {dropdownSelection || category}
-          {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
-        </button>
-        {dropdownOptions &&
-          activeButton === category &&
-          renderDropdown(category, dropdownOptions)}
-      </div>
-    );
-  };
+const renderButton = (
+  category: string,
+  dropdownOptions: string[] | null = null
+) => {
+  return (
+    <div className="button-container" key={category}>
+      <FilterButtons
+        category={category}
+        options={dropdownOptions || []} // Pass the options to FilterButtons
+        activeButton={activeButton}
+        onButtonToggle={handleButtonToggle}
+        onDropdownSelect={handleFilterDropdownSelect} // Adjust the prop name
+      />
+    </div>
+  );
+};
 
   return (
     <div>
@@ -136,25 +131,25 @@ const Home = () => {
       </div>
 
       {/* Row of buttons */}
-      {/* Row of buttons */}
+      <div className="button-row">
       <FilterButtons
-        category="price"
+        category="Price"
         options={["Low to High", "High to Low"]}
         activeButton={activeButton}
         onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleDropdownSelect}
+        onDropdownSelect={handleFilterDropdownSelect}
       />
 
       <FilterButtons
-        category="dietaryRestrictions"
+        category="Dietary Restrictions"
         options={["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"]}
         activeButton={activeButton}
         onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleDropdownSelect}
+        onDropdownSelect={handleFilterDropdownSelect}
       />
 
       <FilterButtons
-        category="cuisine"
+        category="Cuisine"
         options={[
           "Italian",
           "Japanese",
@@ -174,16 +169,17 @@ const Home = () => {
         ]}
         activeButton={activeButton}
         onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleDropdownSelect}
+        onDropdownSelect={handleFilterDropdownSelect}
       />
 
       <FilterButtons
-        category="ratings"
+        category="Ratings"
         options={["High to low", "Low to high", "5 star only"]}
         activeButton={activeButton}
         onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleDropdownSelect}
+        onDropdownSelect={handleFilterDropdownSelect}
       />
+      </div>
       <p className="search-bar-line"></p>
 
       <div className="restaurant-box-container">

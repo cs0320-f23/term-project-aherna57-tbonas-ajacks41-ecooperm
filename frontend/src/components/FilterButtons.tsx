@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 interface FilterButtonsProps {
-  category: string; // Add the category prop
+  category: string;
   options: string[];
   activeButton: string | null;
   onButtonToggle: (category: string) => void;
@@ -15,6 +15,18 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   onButtonToggle,
   onDropdownSelect,
 }) => {
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+  const handleButtonClick = () => {
+    setShowDropdown(!showDropdown);
+    onButtonToggle(category);
+  };
+
+  const handleDropdownSelect = (option: string) => {
+    onDropdownSelect(category, option);
+    setShowDropdown(false);
+  };
+
   const renderDropdown = () => {
     return (
       <div className="dropdown">
@@ -22,7 +34,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
           <div
             key={index}
             className="dropdown-item"
-            onClick={() => onDropdownSelect(category, option)}
+            onClick={() => handleDropdownSelect(option)}
           >
             {option}
           </div>
@@ -35,12 +47,12 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
     <div className="button-container">
       <button
         className={`toggle-button ${activeButton === category ? "active" : ""}`}
-        onClick={() => onButtonToggle(category)}
+        onClick={handleButtonClick}
       >
         {category}
         {options && <span className="dropdown-icon">&#9660;</span>}
       </button>
-      {options && activeButton === category && renderDropdown()}
+      {options && showDropdown && renderDropdown()}
     </div>
   );
 };
