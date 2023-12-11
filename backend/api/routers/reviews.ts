@@ -92,7 +92,7 @@ export const reviewsRouter = createTRPCRouter({
 
       const review = await ctx.prisma.review.create({
           data: {
-              //TODO: Fix this later
+              //TODO: Flesh this out later
               userId,
               description: input.content,
               restaurantId: "",

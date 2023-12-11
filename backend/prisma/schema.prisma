@@ -27,13 +27,13 @@ model Restaurant {
   updatedAt          DateTime             @updatedAt
   createdAt          DateTime             @default(now())
   userId             String?
+  imageUrl           String
+  menuUrl            String?
+  openingHours       String?
+  phone              String?
+  priceCategory      Int
+  rating             Float
   categories         Category[]
-  priceCategory    Int
-  menuUrl           String?
-  openingHours String?
-  phone String?
-  imageUrl String
-  rating Float
   RestaurantCategory RestaurantCategory[]
   Review             Review[]
   User               User?                @relation(fields: [userId], references: [id])
