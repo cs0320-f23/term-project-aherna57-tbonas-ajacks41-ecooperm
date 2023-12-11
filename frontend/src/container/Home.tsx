@@ -53,6 +53,7 @@ const Home = () => {
   };
 
   const renderDropdown = (category: string, options: string[]) => {
+    console.log("Rendering dropdown for category:", category);
     return (
       <div className="dropdown">
         {options.map((option, index) => (
@@ -68,22 +69,24 @@ const Home = () => {
     );
   };
 
-const renderButton = (
-  category: string,
-  dropdownOptions: string[] | null = null
-) => {
-  return (
-    <div className="button-container" key={category}>
-      <FilterButtons
-        category={category}
-        options={dropdownOptions || []} // Pass the options to FilterButtons
-        activeButton={activeButton}
-        onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleFilterDropdownSelect} // Adjust the prop name
-      />
-    </div>
-  );
-};
+  const renderButton = (
+    category: string,
+    dropdownOptions: string[] | null = null
+  ) => {
+    console.log("Rendering button for category:", category);
+    return (
+      <div className="button-container" key={category}>
+        <FilterButtons
+          category={category}
+          options={dropdownOptions || []}
+          activeButton={activeButton}
+          onButtonToggle={handleButtonToggle}
+          onDropdownSelect={handleFilterDropdownSelect}
+        />
+      </div>
+    );
+  };
+
 
   return (
     <div>

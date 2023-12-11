@@ -18,11 +18,13 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   const handleButtonClick = () => {
+    console.log("Button clicked for category:", category);
     setShowDropdown(!showDropdown);
     onButtonToggle(category);
   };
 
-  const handleDropdownSelect = (option: string) => {
+  const handleLocalDropdownSelect = (option: string) => {
+    console.log("Dropdown item selected:", option);
     onDropdownSelect(category, option);
     setShowDropdown(false);
   };
@@ -34,7 +36,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
           <div
             key={index}
             className="dropdown-item"
-            onClick={() => handleDropdownSelect(option)}
+            onClick={() => handleLocalDropdownSelect(option)}
           >
             {option}
           </div>
@@ -56,5 +58,6 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
     </div>
   );
 };
+
 
 export default FilterButtons;
