@@ -2,10 +2,21 @@ import "../styles/UserAbout.css";
 
 const UserAbout = () => {
   const userItem = localStorage.getItem("user");
-  const user =
-    userItem && userItem !== "undefined"
-      ? JSON.parse(userItem)
-      : localStorage.clear();
+  let user = null;
+
+  if (userItem && userItem !== "undefined") {
+    try {
+      user = JSON.parse(userItem);
+    } catch (e) {
+      console.error("Error parsing user data:", e);
+      localStorage.clear();
+    }
+  }
+
+  if (!user) {
+    return <div>No user data available</div>;
+  }
+
   return (
     <div className="ab-container">
       {/* About Section */}
@@ -48,5 +59,6 @@ const UserAbout = () => {
     </div>
   );
 };
+
 
 export default UserAbout;

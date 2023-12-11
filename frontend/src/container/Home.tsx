@@ -96,6 +96,13 @@ const Home = () => {
      );
    };
 
+  function handleLogout() {
+      navigate("/login");
+      localStorage.clear();
+      navigate("/login");
+  }
+
+
   return (
     <div>
       <h1 className="header">
@@ -104,8 +111,14 @@ const Home = () => {
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
           <img src="/user.png" alt="Clickable Button" />
+          <div className="dropdown-menu">
+            <a href="#" onClick={handleLogout}>
+              Logout
+            </a>
+          </div>
         </div>
       </h1>
+
       <p className="headerLine" />
 
       <div>
