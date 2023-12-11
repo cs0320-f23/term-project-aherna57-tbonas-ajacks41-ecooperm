@@ -10,6 +10,7 @@ import Searchbar from "./SearchBar";
 import { ResultProps } from "./Result";
 import RestaurantList from "../components/RestaurantList";
 import FilterButtons from "../components/FilterButtons";
+import RestaurantPage from "./RestaurantPage";
 
 const Home = () => {
   const userItem = localStorage.getItem("user");
@@ -117,6 +118,14 @@ const Home = () => {
               />
             }
           />
+
+          {/* New route for RestaurantPage */}
+          <Route
+            path="/restaurant/:restaurantId"
+            element={<RestaurantPage />}
+          />
+
+          {/* Default route */}
           <Route path="/*" />
         </Routes>
       </div>
@@ -135,53 +144,53 @@ const Home = () => {
 
       {/* Row of buttons */}
       <div className="button-row">
-      <FilterButtons
-        category="Price"
-        options={["Low to High", "High to Low"]}
-        activeButton={activeButton}
-        onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleFilterDropdownSelect}
-      />
+        <FilterButtons
+          category="Price"
+          options={["Low to High", "High to Low"]}
+          activeButton={activeButton}
+          onButtonToggle={handleButtonToggle}
+          onDropdownSelect={handleFilterDropdownSelect}
+        />
 
-      <FilterButtons
-        category="Dietary Restrictions"
-        options={["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"]}
-        activeButton={activeButton}
-        onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleFilterDropdownSelect}
-      />
+        <FilterButtons
+          category="Dietary Restrictions"
+          options={["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"]}
+          activeButton={activeButton}
+          onButtonToggle={handleButtonToggle}
+          onDropdownSelect={handleFilterDropdownSelect}
+        />
 
-      <FilterButtons
-        category="Cuisine"
-        options={[
-          "Italian",
-          "Japanese",
-          "Asian",
-          "Healthy",
-          "Lebanese",
-          "Chinese",
-          "Fast Food",
-          "Dessert",
-          "Breakfast",
-          "Sushi",
-          "Sandwiches",
-          "Mexican",
-          "Indian",
-          "Ramen",
-          "Burgers",
-        ]}
-        activeButton={activeButton}
-        onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleFilterDropdownSelect}
-      />
+        <FilterButtons
+          category="Cuisine"
+          options={[
+            "Italian",
+            "Japanese",
+            "Asian",
+            "Healthy",
+            "Lebanese",
+            "Chinese",
+            "Fast Food",
+            "Dessert",
+            "Breakfast",
+            "Sushi",
+            "Sandwiches",
+            "Mexican",
+            "Indian",
+            "Ramen",
+            "Burgers",
+          ]}
+          activeButton={activeButton}
+          onButtonToggle={handleButtonToggle}
+          onDropdownSelect={handleFilterDropdownSelect}
+        />
 
-      <FilterButtons
-        category="Ratings"
-        options={["High to low", "Low to high", "5 star only"]}
-        activeButton={activeButton}
-        onButtonToggle={handleButtonToggle}
-        onDropdownSelect={handleFilterDropdownSelect}
-      />
+        <FilterButtons
+          category="Ratings"
+          options={["High to low", "Low to high", "5 star only"]}
+          activeButton={activeButton}
+          onButtonToggle={handleButtonToggle}
+          onDropdownSelect={handleFilterDropdownSelect}
+        />
       </div>
       <p className="search-bar-line"></p>
 
