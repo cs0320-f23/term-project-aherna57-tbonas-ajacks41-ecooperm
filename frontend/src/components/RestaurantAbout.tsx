@@ -34,7 +34,7 @@ const RestaurantAbout = ( {restaurant} : any) => {
 
         {/* Suggestions Section */}
         <div className="sug-container">
-          <span className="header-text">Similar Restaurants</span>
+          <span className="header-text">Similar Restaurants:</span>
           <hr className="divider" />
           <div className="wrapper-suggestions">
             <span>restaurant 1</span>
