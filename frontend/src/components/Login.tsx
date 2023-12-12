@@ -6,8 +6,6 @@ import { jwtDecode } from "jwt-decode";
 import { decodedMockResponse, userMockSchema } from "../mockedUser/user1Mock";
 import "../styles/Login.css";
 
-
-
 // Right now if you login via google, it will use your google account information to fill in the user profile
 // You can change this by uncommenting the indicated lines below and commenting out everything else in handleLogin
 export const Login = () => {
