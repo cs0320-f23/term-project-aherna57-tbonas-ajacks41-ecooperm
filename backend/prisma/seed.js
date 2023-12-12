@@ -1,5 +1,10 @@
+//@ts-nocheck
 import { PrismaClient } from "@prisma/client";
-import { categories, restaurants } from "../prisma/data.js";
+import {
+  categories,
+  restaurantCategories,
+  restaurants,
+} from "../prisma/data.js";
 const prisma = new PrismaClient();
 
 async function clearDatabase() {
@@ -20,6 +25,27 @@ const load = async () => {
       data: restaurants,
     });
     console.log("Restaurants loaded");
+
+    for (let key in restaurantCategories) {
+      let keyCategories = restaurantCategories[key];
+      if (keyCategories === undefined) continue;
+      for (let category of keyCategories) {
+        const restaurantRecord = await prisma.restaurant.findFirst({
+          where: { name: key },
+        });
+        const categoryRecord = await prisma.category.findFirst({
+          where: { name: category },
+        });
+        if (restaurantRecord && categoryRecord) {
+          await prisma.restaurantCategory.create({
+            data: {
+              restaurantId: restaurantRecord.id,
+              categoryId: categoryRecord.id,
+            },
+          });
+        }
+      }
+    }
   } catch (e) {
     console.error(e);
   } finally {

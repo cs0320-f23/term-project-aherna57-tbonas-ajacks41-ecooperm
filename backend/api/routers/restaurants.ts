@@ -51,17 +51,16 @@ export const restaurantsRouter = createTRPCRouter({
     }),
 
   getByRatingLeast: publicProcedure
-  .input(z.object({ rating: z.number().min(1).max(5) }))
-  .query(async ({ ctx, input }) => {
-    const restaurants = await ctx.prisma.restaurant.findMany({
-      where: { rating: { gte: input.rating } },
-    });
+    .input(z.object({ rating: z.number().min(1).max(5) }))
+    .query(async ({ ctx, input }) => {
+      const restaurants = await ctx.prisma.restaurant.findMany({
+        where: { rating: { gte: input.rating } },
+      });
 
-    if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
+      if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
 
-    return restaurants;
-  }),
-
+      return restaurants;
+    }),
 
   getByPriceCategory: publicProcedure
     .input(z.object({ priceCategory: z.number().min(1).max(4) }))
@@ -75,17 +74,17 @@ export const restaurantsRouter = createTRPCRouter({
       return restaurants;
     }),
 
-    getByCategory: publicProcedure
+  getByCategory: publicProcedure
     .input(z.object({ categoryName: z.string() }))
     .query(async ({ ctx, input }) => {
       const restaurants = await ctx.prisma.restaurant.findMany({
-        include: { 
+        include: {
           categories: {
             where: {
-              name: input.categoryName
-            }, 
+              name: input.categoryName,
+            },
           },
-        }
+        },
       });
 
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });

@@ -13,7 +13,6 @@ model Category {
   name               String
   updatedAt          DateTime             @updatedAt
   createdAt          DateTime             @default(now())
-  restaurants        Restaurant[]
   RestaurantCategory RestaurantCategory[]
 }
 
@@ -33,7 +32,6 @@ model Restaurant {
   phone              String?
   priceCategory      Int
   rating             Float?
-  categories         Category[]
   RestaurantCategory RestaurantCategory[]
   Review             Review[]
   User               User?                @relation(fields: [userId], references: [id])

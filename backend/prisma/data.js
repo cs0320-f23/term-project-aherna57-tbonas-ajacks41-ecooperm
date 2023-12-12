@@ -162,3 +162,10 @@ export const categories = [
     name: "Coffee",
   },
 ];
+
+export const restaurantCategories = {
+  "Caliente Mexican Grill": ["Mexican", "Fast Food", "Takeout"],
+  "Baja's Tex Mex Grill": ["Mexican", "Fast Food", "Takeout"],
+  "The Capital Grille": ["Grill", "Sit Down"],
+  "Den Den Korean Fried Chicken": ["Korean", "Takeout"],
+};
