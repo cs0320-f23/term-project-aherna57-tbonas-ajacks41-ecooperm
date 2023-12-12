@@ -32,7 +32,7 @@ model Restaurant {
   openingHours       String?
   phone              String?
   priceCategory      Int
-  rating             Float
+  rating             Float?
   categories         Category[]
   RestaurantCategory RestaurantCategory[]
   Review             Review[]

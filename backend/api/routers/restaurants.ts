@@ -20,7 +20,7 @@ export const restaurantsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const restaurants = await ctx.prisma.restaurant.findMany({
       take: 100,
-      orderBy: [{ createdAt: "desc" }],
+      orderBy: [{ rating: "desc" }],
     });
 
     return restaurants;
