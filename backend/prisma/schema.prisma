@@ -14,11 +14,6 @@ model Category {
   updatedAt          DateTime             @updatedAt
   createdAt          DateTime             @default(now())
   restaurants        Restaurant[]
-  id                 Int                  @id @default(autoincrement())
-  name               String
-  updatedAt          DateTime             @updatedAt
-  createdAt          DateTime             @default(now())
-  restaurants        Restaurant[]
   RestaurantCategory RestaurantCategory[]
 }
 
@@ -55,7 +50,6 @@ model RestaurantCategory {
 
 model Review {
   id           String     @id @default(cuid())
-  id           String     @id @default(cuid())
   restaurantId String
   title        String
   description  String
@@ -78,15 +72,6 @@ model User {
   createdAt         DateTime     @default(now())
   reviews           Review[]
   favorites         Restaurant[]
-}
-
-model CategoryToRestaurant {
-  A Int
-  B String
-
-  @@unique([A, B], map: "_CategoryToRestaurant_AB_unique")
-  @@index([B], map: "_CategoryToRestaurant_B_index")
-  @@map("_CategoryToRestaurant")
 }
 
 model CategoryToRestaurant {
