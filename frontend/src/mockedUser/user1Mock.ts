@@ -67,8 +67,5 @@ const userMockReview2 = {
   image:
     "https://cdn.pixabay.com/photo/2015/04/20/21/05/breakfast-732231_1280.jpg",
 };
-    
-
-
 
 export { googleMockResponse, decodedMockResponse, userMockSchema, userMockReview, userMockReview2};

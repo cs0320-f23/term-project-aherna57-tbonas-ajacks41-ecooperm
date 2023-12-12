@@ -9,6 +9,9 @@ import { ResultProps } from "./Result";
 import RestaurantList from "../components/RestaurantList";
 import "../styles/Home.css";
 import RestaurantProfile from "../components/RestaurantProfile";
+import FilterButtons from "../components/FilterButtons";
+import { buttonConfigs } from "../utils/data";
+
 
 
 const Home = () => {
@@ -18,18 +21,7 @@ const Home = () => {
     userItem && userItem !== "undefined"
       ? JSON.parse(userItem)
       : localStorage.clear();
-  const query = userQuery(userInfo?.sub);
-
   const [result, setResult] = useState<any[]>([]);
-  const [activeButton, setActiveButton] = useState<string | null>(null);
-  const [dropdownSelection, setDropdownSelection] = useState<string | null>(
-    null
-  );
-  const [activeDropdownButton, setActiveDropdownButton] = useState<
-    string | null
-  >(null);
-
-
   const navigate = useNavigate(); // hook for navigation
 
   const fetchData = async (value: any) => {
@@ -48,53 +40,6 @@ const Home = () => {
     // Navigate to the home page
     navigate('/');
   };
-
-  const handleButtonToggle = (buttonName: string) => {
-      setActiveButton((prev) => (prev === buttonName ? null : buttonName));
-      setDropdownSelection(null); // Reset dropdown selection when toggling buttons
-  };
-
-  const handleDropdownSelect = (option: string) => {
-    setDropdownSelection(option);
-  };
-
-   const renderDropdown = (options: string[]) => {
-     return (
-       <div className="dropdown">
-         {options.map((option, index) => (
-           <div
-             key={index}
-             className="dropdown-item"
-             onClick={() => handleDropdownSelect(option)}
-           >
-             {option}
-           </div>
-         ))}
-       </div>
-     );
-   };
-
-   const renderButton = (
-     buttonName: string,
-     dropdownOptions: string[] | null = null
-   ) => {
-     return (
-       <div className="button-container" key={buttonName}>
-         <button
-           className={`toggle-button ${
-             activeButton === buttonName ? "active" : ""
-           }`}
-           onClick={() => handleButtonToggle(buttonName)}
-         >
-           {dropdownSelection || buttonName}
-           {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
-         </button>
-         {dropdownOptions &&
-           activeButton === buttonName &&
-           renderDropdown(dropdownOptions)}
-       </div>
-     );
-   };
 
   function handleLogout() {
       navigate("/login");
@@ -131,6 +76,7 @@ const Home = () => {
           <Route path="/*" />
         </Routes>
       </div>
+
       {location.pathname === "/" && (
         <div>
           {/* Search Bar */}
@@ -148,78 +94,15 @@ const Home = () => {
 
           {/* Row of Buttons */}
           <div className="button-row">
-            <button
-              className={`toggle-button ${
-                activeButton === "price" ? "active" : ""
-              }`}
-              onClick={() => handleButtonToggle("price")}
-            >
-              Price
-              <span className="dropdown-icon">&#9660;</span>
-              {activeButton === "price" &&
-                renderDropdown(["Low to High", "High to Low"])}
-            </button>
-
-            {/* Dietary Restrictions Button */}
-            <button
-              className={`toggle-button ${
-                activeButton === "dietaryRestrictions" ? "active" : ""
-              }`}
-              onClick={() => handleButtonToggle("dietaryRestrictions")}
-            >
-              Dietary Restrictions
-              <span className="dropdown-icon">&#9660;</span>
-              {activeButton === "dietaryRestrictions" &&
-                renderDropdown([
-                  "Gluten Free",
-                  "Vegetarian",
-                  "Vegan",
-                  "Kosher",
-                  "Halal",
-                ])}
-            </button>
-
-            {/* Cuisine Button */}
-            <button
-              className={`toggle-button ${
-                activeButton === "cuisine" ? "active" : ""
-              }`}
-              onClick={() => handleButtonToggle("cuisine")}
-            >
-              Cuisine
-              <span className="dropdown-icon">&#9660;</span>
-              {activeButton === "cuisine" &&
-                renderDropdown([
-                  "Italian",
-                  "Japanese",
-                  "Asian",
-                  "Healthy",
-                  "Lebanese",
-                  "Chinese",
-                  "Fast Food",
-                  "Dessert",
-                  "Breakfast",
-                  "Sushi",
-                  "Sandwiches",
-                  "Mexican",
-                  "Indian",
-                  "Ramen",
-                  "Burgers",
-                ])}
-            </button>
-
-            <button
-              className={`toggle-button ${
-                activeButton === "ratings" ? "active" : ""
-              }`}
-              onClick={() => handleButtonToggle("ratings")}
-            >
-              Ratings
-              <span className="dropdown-icon">&#9660;</span>
-              {activeButton === "ratings" &&
-                renderDropdown(["High to low", "Low to high", "5 star only"])}
-            </button>
+            {buttonConfigs.map((config, index) => (
+              <FilterButtons
+                key={index}
+                category={config.category}
+                options={config.options}
+              />
+            ))}
           </div>
+
           <p className="search-bar-line"></p>
         </div>
       )}

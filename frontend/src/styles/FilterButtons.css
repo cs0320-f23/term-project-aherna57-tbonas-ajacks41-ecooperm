@@ -1,0 +1,84 @@
+/******************* BUTTON STYLE *******************/
+
+
+/* Button container styling */
+.button-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+/* Button row styling */
+.button-row {
+  display: flex;
+  flex-direction: row;
+  position: relative; /* Add position relative to the button row */
+  background-color: #104881; /* Navy color for button row */
+}
+
+/* Toggle button styling */
+.toggle-button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #10579e; /* Navy color */
+  color:  #f0f8ff; /* Navy color */
+  transition: background-color 0.3s ease;
+  position: relative; /* Add position relative to the button */
+  flex-direction: row;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: absolute;
+  top: 100%; /* Adjusted to position the dropdown beneath the button */
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+/* Active toggle button styling */
+.toggle-button.active {
+  background-color: #001f3f; /* Navy color */
+  color: white;
+}
+/* Show dropdown when button is active */
+.toggle-button.active + .dropdown { /* Use adjacent sibling selector */
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.2s ease;
+  background-color: #001f3f; /* Navy color */
+  color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white; /* White background */
+  color: #001f3f; /* Navy color */
+}
+
+/* Hovered dropdown item styling */
+.dropdown-item:hover {
+  background-color: #001f3f; /* Navy color on hover */
+  color: white;
+}
+
+/* Dropdown icon styling */
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 0.8em;
+}

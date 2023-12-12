@@ -44,12 +44,14 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
   };
 
   return (
-    <Link to={`/restaurant-profile/${id}`} className="restaurant-box">
+    <div className="restaurant-box">
       <div className="image-container">
         <img src={imageUrl} alt="Restaurant" />
       </div>
       <div className="info-container">
-        <div className="titleRest">{name}</div>
+        <Link className="titleRest" to={`/restaurant-profile/${id}`}>
+          {name} {" "}
+        </Link>
         <p className="cuisine">{cuisineType}</p>
         <div className="ratings">
           <span style={{ marginRight: "3px" }}>&#9733;</span>
@@ -61,7 +63,7 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
         <div className="dollar-signs">{createDollarSigns(dollarSigns)}</div>
         <p className="address">{address}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

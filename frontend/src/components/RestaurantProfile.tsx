@@ -8,12 +8,12 @@ import ReviewR from "./ReviewR";
 
 
 const RestaurantProfile = () => {
-    const { restaurantId } = useParams();
-    const restaurantProfileData = restaurants.find((restaurant) => restaurant.id.toString() === restaurantId);
-    const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
-    const restBackground: CSSProperties = {
-      backgroundImage: `url(${restaurant.background})`,
-    };
+  const { restaurantId } = useParams();
+  const restaurantProfileData = restaurants.find((restaurant) => restaurant.id.toString() === restaurantId);
+  const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
+  const restBackground: CSSProperties = {
+    backgroundImage: `url(${restaurant.background})`,
+  };
 
 
   return (
