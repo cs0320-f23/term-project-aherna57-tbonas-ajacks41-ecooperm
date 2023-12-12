@@ -4,7 +4,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  background: #c7def3; /* Light blue background */
+  background: #f0f8ff; /* Light blue background */
   font-family: Inter, sans-serif;
 }
 
@@ -13,14 +13,13 @@ html, body {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #c7def3; /* Light blue background */
+  background: #f0f8ff; /* Light blue background */
 }
 
 /* Login form styling */
@@ -93,12 +92,22 @@ a {
 .welcome-message {
   margin-bottom: 1rem;
   font-size: 1.8rem;
-  color: #001f3f; /* Navy color */
+  color: #001f3f;
+  font-weight: bold;
+
 }
 
-/* Register prompt styling */
-.register-prompt span, .register-prompt a {
-  display: inline;
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
+
+.grow {
+  display: inline-block;
+  animation: grow 0.5s ease-in-out;
+}
+
+
+
 
 /************************************************/

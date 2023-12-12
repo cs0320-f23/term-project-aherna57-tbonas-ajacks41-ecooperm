@@ -4,55 +4,40 @@ import "../styles/FilterButtons.css";
 interface FilterButtonsProps {
   category: string;
   options: string[];
-  activeCategory: string | null;
-  setActiveCategory: (category: string | null) => void;
-}
-interface SelectedOptions {
-  [key: string]: string;
+  activeButton: string | null;
+  onButtonToggle: (category: string) => void;
+  onDropdownSelect: (category: string, option: string) => void;
 }
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({
   category,
   options,
-  activeCategory,
-  setActiveCategory,
+  activeButton,
+  onButtonToggle,
+  onDropdownSelect,
 }) => {
-  
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [dropdownSelection, setDropdownSelection] = useState<string | null>(
-    null
-  );
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>();
 
-
-  const handleButtonToggle = () => {
-    if (activeCategory === category) {
-      setActiveCategory(null);
-      setShowDropdown(false);
-    } else {
-      setActiveCategory(category);
-      setShowDropdown(true);
-    }
+  const handleButtonClick = () => {
+    console.log("Button clicked for category:", category);
+    setShowDropdown(!showDropdown);
+    onButtonToggle(category);
   };
 
-  const handleFilterDropdownSelect = (category: string, option: string) => {
-    setSelectedOptions((prev) => ({ ...prev, [category]: option }));
-    setDropdownSelection(option);
-    console.log("Selected Filter:", category, option);
+  const handleLocalDropdownSelect = (option: string) => {
+    console.log("Dropdown item selected:", option);
+    onDropdownSelect(category, option);
     setShowDropdown(false);
-    setActiveCategory(null);
   };
 
-  const renderDropdown = (category: string, options: string[]) => {
+  const renderDropdown = () => {
     return (
       <div className="dropdown">
         {options.map((option, index) => (
           <div
             key={index}
-            className={`dropdown-item ${
-              selectedOptions?.[category] === option ? "selected" : ""
-            }`}
-            onClick={() => handleFilterDropdownSelect(category, option)}
+            className="dropdown-item"
+            onClick={() => handleLocalDropdownSelect(option)}
           >
             {option}
           </div>
@@ -62,17 +47,18 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   };
 
   return (
-  <div className="button-container">
-    <button
-      className={`toggle-button ${selectedOptions?.[category] ? "selected" : ""} ${activeCategory === category ? "active" : ""}`}
-      onClick={handleButtonToggle}
-    >
-      {selectedOptions?.[category] || category}
-      {options && <span className="dropdown-icon">&#9660;</span>}
-    </button>
-    {activeCategory === category && renderDropdown(category, options)}
-  </div>
-);
+    <div className="button-container">
+      <button
+        className={`toggle-button ${activeButton === category ? "active" : ""}`}
+        onClick={handleButtonClick}
+      >
+        {category}
+        {options && <span className="dropdown-icon">&#9660;</span>}
+      </button>
+      {options && showDropdown && renderDropdown()}
+    </div>
+  );
 };
+
 
 export default FilterButtons;

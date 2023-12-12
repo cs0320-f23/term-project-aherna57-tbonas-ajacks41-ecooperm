@@ -36,14 +36,15 @@
   align-items: flex-start;
   flex-wrap: nowrap;
   flex-shrink: 0;
-  gap: 32px;
+  gap: 24px;
   position: relative;
-  width: 365px;
+  width: 384px;
   padding: 24px 24px 24px 24px;
   background: rgba(255, 255, 255, 0.6);
-  z-index: 18;
   border-radius: 24px;
   backdrop-filter: blur(21px);
+  border: 3px solid navy;
+  margin-top: 20px;
 }
 
 .divider {
@@ -75,21 +76,24 @@
   background: rgba(255, 255, 255, 0.6);
   border-radius: 24px;
   backdrop-filter: blur(21px);
+  border: 3px solid navy;
+  margin-top: 20px;
 }
 
 .about-info {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
-  color: rgb(149, 152, 149);
+  color: rgb(7, 20, 59);
   letter-spacing: 0.32px;
+  text-decoration: underline;
 }
 
 .about-info-ans {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
-  color: rgb(135, 84, 49);
+  color: rgb(7, 20, 59);
   letter-spacing: 0.32px;
 }
 
