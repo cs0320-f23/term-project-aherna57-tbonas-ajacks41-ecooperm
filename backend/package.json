@@ -27,6 +27,7 @@
     "@trpc/server": "^10.44.1",
     "@types/jest": "^29.5.11",
     "@upstash/ratelimit": "^1.0.0",
+    "@upstash/redis": "^1.25.1",
     "dayjs": "^1.11.10",
     "jest": "^29.7.0",
     "next": "^14.0.3",
