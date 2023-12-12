@@ -9,7 +9,12 @@ test("add a new function to TestCommandToFunction", () => {
 
 test("get boba shops from database", async () => {
   const bobaShops = await appRouter.restaurants.getAll({
-    prisma: prisma,
-    userId: null,
+    ctx: {
+      prisma: prisma,
+      userId: null,
+    },
+    rawInput: undefined,
+    path: "",
+    type: "query",
   });
 });

@@ -8,5 +8,8 @@ module.exports = {
   testEnvironment: "node",
   transform: { "^.+\\.mjs$": "ts-jest" },
   testMatch: ["<rootDir>/tests/**/*.test.ts"],
+  moduleNameMapper: {
+    "^~/(.*)$": "<rootDir>/$1",
+  },
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
 };
