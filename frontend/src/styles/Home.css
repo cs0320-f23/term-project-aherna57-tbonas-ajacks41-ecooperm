@@ -3,7 +3,7 @@
 /* Header container styling */
 .header-container {
   background-color: #14487b; /* Navy color */
-  color: #c7def3; /* Text color */
+  color: white; /* Text color */
   padding: 30px; 
 }
 
@@ -11,8 +11,8 @@
 .header {
   margin-bottom: 10px;
   font-size: 2rem;
-  background-color: #1d64ab; /* Navy color */
-  color: #c7def3;
+  background-color: #003366; /* Navy color */
+  color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -29,13 +29,15 @@
   font-size: 3rem;
   word-spacing: 5px;
   margin-left: 38%;
-  color: #0e1013; /* Navy color */
+  color: #b8d2ec; /* Navy color */
   cursor: pointer;
   
 }
+
 .userIm {
   position: relative;
   display: inline-block;
+  transition: transform 0.2s ease-in-out;
 }
 
 .dropdown-menu {
@@ -128,7 +130,7 @@
 .suggestions {
   overflow-y: scroll;
   border: 1px solid #f3f3f3;
-  background-color: #c7def3;
+  background-color: white;
   max-height: 20rem;
   width: 100%; /* Change to 100% to take up the full width of the container */
   margin: 10px auto;
@@ -169,8 +171,14 @@
 /* Search bar container styling */
 .search-bar-container {
   position: relative;
-  background-color: rgb(62, 129, 224);
+  background-color: rgb(103, 154, 225);
 }
+
+
+
+
+
+
 
 /* Search bar line styling */
 .search-bar-line {
@@ -178,7 +186,7 @@
   height: 4px; 
   background-color: #001f3f; /* Navy color */
   margin-top: 20px; 
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* Button container styling */

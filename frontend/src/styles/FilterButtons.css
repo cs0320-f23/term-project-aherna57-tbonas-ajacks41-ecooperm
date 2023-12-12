@@ -6,6 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  z-index: 2; /* Ensure the button container is above the dropdown */
   width: 100%;
 }
 
@@ -50,14 +51,16 @@
   background-color: #001f3f; /* Navy color */
   color: white;
 }
+
 /* Show dropdown when button is active */
-.toggle-button.active + .dropdown { /* Use adjacent sibling selector */
+.toggle-button.active + .dropdown {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.2s ease;
   background-color: #001f3f; /* Navy color */
   color: white;
   position: absolute;
+  z-index: 1;
   top: 100%;
   left: 0;
   width: 100%;
@@ -81,4 +84,18 @@
 .dropdown-icon {
   margin-left: 5px;
   font-size: 0.8em;
+}
+
+/***********SELECTED OPTIONS*************/
+
+.toggle-button.selected {
+  background-color: rgb(157, 187, 226);
+  color: #000000;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0); 
+}
+
+.dropdown-item.selected {
+  background-color: lightgrey; 
+  font-weight: bold;
 }
