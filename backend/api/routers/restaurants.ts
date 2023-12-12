@@ -26,6 +26,8 @@ export const restaurantsRouter = createTRPCRouter({
     return restaurants;
   }),
 
+  
+
   getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {

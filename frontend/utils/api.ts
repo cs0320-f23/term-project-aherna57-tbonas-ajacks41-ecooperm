@@ -10,6 +10,7 @@ import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
 import { type AppRouter } from "../../backend/api/root";
 
+// This is a helper to get the base url of the server
 const getBaseUrl = () => {
     if (typeof window !== "undefined") return;
     if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url

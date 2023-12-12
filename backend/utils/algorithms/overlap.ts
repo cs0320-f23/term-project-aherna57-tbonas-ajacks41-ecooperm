@@ -12,9 +12,9 @@ function uniqRec(l : any[]): any[] {
 }
 
 /**
- * Creates a vector from two documents
- * @param doc1
- * @param doc2
+ * Creates a vector from two lists
+ * @param categoriesI
+ * @param categoriesII
  * @returns
  */
 function createVector(categoriesI : Category[], categoriesII : Category[]): Category[] {
@@ -25,9 +25,9 @@ function createVector(categoriesI : Category[], categoriesII : Category[]): Cate
 
 
 /**
- * Counts the number of times a word appears in a document
+ * Counts the number of times a word appears in a list of categories
  * @param st
- * @param docu
+ * @param categories
  * @returns
  */
 function countWords(st : string, categories : Category[]): number {
@@ -37,7 +37,7 @@ function countWords(st : string, categories : Category[]): number {
 }
 
 /**
- * Creates a vector for a single document
+ * Creates a vector for a single list
  * @param uniqWords
  * @param categories
  * @returns
