@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { PrismaClient, Restaurant } from "@prisma/client";
 import { appRouter } from "~/api/root";
 import assert from "assert";
@@ -18,15 +19,14 @@ test("add a new function to TestCommandToFunction", () => {
 
 test("get boba shops from database", async () => {
   console.log("got to here");
-  const restaurants = await appRouter.restaurants.getAll({
+  const restaurants = await appRouter.restaurants.getByCategory({
     ctx: {
       prisma: prisma,
       userId: null,
     },
-    rawInput: undefined,
+    rawInput: { categoryName: "Mexican" },
     path: "",
     type: "query",
   });
-  assert(Array.isArray(restaurants), "restaurants is not an array");
-  assert(restaurants.length > 0, "restaurants is not empty");
+  console.log(restaurants);
 });

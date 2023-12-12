@@ -21,6 +21,9 @@ export const restaurantsRouter = createTRPCRouter({
     const restaurants = await ctx.prisma.restaurant.findMany({
       take: 100,
       orderBy: [{ rating: "desc" }],
+      include: {
+        RestaurantCategory: true,
+      },
     });
 
     return restaurants;
@@ -78,12 +81,17 @@ export const restaurantsRouter = createTRPCRouter({
     .input(z.object({ categoryName: z.string() }))
     .query(async ({ ctx, input }) => {
       const restaurants = await ctx.prisma.restaurant.findMany({
-        include: {
-          categories: {
-            where: {
-              name: input.categoryName,
+        where: {
+          RestaurantCategory: {
+            some: {
+              category: {
+                name: input.categoryName,
+              },
             },
           },
+        },
+        include: {
+          RestaurantCategory: true,
         },
       });
 
