@@ -1,18 +1,16 @@
-/******************* RESTAURANT SEARCH *******************/
-
 /* Container for the restaurant boxes */
 .restaurant-box-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 95%;
+  width: 98%;
   margin: 0 auto;
   background-color: #f0f8ff; /* Light blue background */
 }
 
 /* Restaurant box styling */
 .restaurant-box {
-  width: 100%;
+  max-width: 100%;
   max-height: 20rem;
   margin: 10px;
   border: 2px solid #001f3f; /* Navy color */
@@ -61,22 +59,21 @@
 .titleRest {
   font-size: 1.2rem;
   width: 75%;
-  color: #f0f8ff; /* Navy color */
+  color: #f0f8ff;
   text-decoration: none;
   font-weight: bold;
   align-items: center;
   border: 2px solid #122b44; /* Navy color */
   background-color: #003366;
   border-radius: 8px;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .cuisine {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1.5 rem;
   margin-bottom: 7px;
   color: #001f3f; /* Navy color */
 }
@@ -96,9 +93,10 @@
 /* Add this CSS for the reviews in a smaller font on the right side */
 .ratings span:last-child {
   margin-left: auto;
-  font-size: 1.3rem;
+  font-size: 1.3 rem;
 }
 
+/* Add this CSS for the dollar signs */
 .dollar-signs {
   display: flex;
   align-items: center;
@@ -108,7 +106,7 @@
 
 .dollar-signs span {
   margin-right: 3px;
-  font-size: 1rem;
+  font-size: 1 rem;
 }
 
 

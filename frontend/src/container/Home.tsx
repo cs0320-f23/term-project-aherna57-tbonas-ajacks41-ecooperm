@@ -68,7 +68,6 @@ const Home = () => {
         </div>
       </h1>
 
-      <p className="headerLine" />
 
       <div>
         <Routes>
