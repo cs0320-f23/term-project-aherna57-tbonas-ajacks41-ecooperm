@@ -12,8 +12,6 @@ import RestaurantProfile from "../components/RestaurantProfile";
 import FilterButtons from "../components/FilterButtons";
 import { buttonConfigs } from "../utils/data";
 
-
-
 const Home = () => {
   const userItem = localStorage.getItem("user");
   let location = useLocation();
@@ -50,7 +48,6 @@ const Home = () => {
       localStorage.clear();
       navigate("/login");
   }
-
 
   return (
     <div>

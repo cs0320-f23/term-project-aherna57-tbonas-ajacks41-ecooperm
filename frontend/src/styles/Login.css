@@ -92,12 +92,22 @@ a {
 .welcome-message {
   margin-bottom: 1rem;
   font-size: 1.8rem;
-  color: #001f3f; /* Navy color */
+  color: #001f3f;
+  font-weight: bold;
+
 }
 
-/* Register prompt styling */
-.register-prompt span, .register-prompt a {
-  display: inline;
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
+
+.grow {
+  display: inline-block;
+  animation: grow 0.5s ease-in-out;
+}
+
+
+
 
 /************************************************/

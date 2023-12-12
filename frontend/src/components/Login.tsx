@@ -32,15 +32,9 @@ export const Login = () => {
 
   return (
     <div className="main-container">
-      <h1 className="welcome-message">Welcome Back!</h1>
+      <h1 className="welcome-message">Bear Bites</h1>
 
       <div className="login-form">
-        <label className="label">Username:</label>
-        <input type="text" id="username" className="input-field" />
-        <label className="label">Password:</label>
-
-        <input type="password" id="password" className="input-field" />
-        <button className="login-button">Login</button>
         <div className="google-button">
           <GoogleLogin
             onSuccess={handleLogin}
@@ -49,10 +43,6 @@ export const Login = () => {
         </div>
       </div>
 
-      <div className="register-prompt">
-        <span>Don't have an account?&nbsp;</span>
-        <a href="/register">Register</a>
-      </div>
     </div>
   );
 };
