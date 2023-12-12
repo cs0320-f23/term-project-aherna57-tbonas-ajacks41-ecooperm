@@ -38,7 +38,7 @@ export const restaurantsRouter = createTRPCRouter({
       return (await [restaurant])[0];
     }),
 
-  getByRating: publicProcedure
+  getByRatingExact: publicProcedure
     .input(z.object({ rating: z.number().min(1).max(5) }))
     .query(async ({ ctx, input }) => {
       const restaurants = await ctx.prisma.restaurant.findMany({
@@ -49,6 +49,19 @@ export const restaurantsRouter = createTRPCRouter({
 
       return restaurants;
     }),
+
+  getByRatingLeast: publicProcedure
+  .input(z.object({ rating: z.number().min(1).max(5) }))
+  .query(async ({ ctx, input }) => {
+    const restaurants = await ctx.prisma.restaurant.findMany({
+      where: { rating: { gte: input.rating } },
+    });
+
+    if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
+
+    return restaurants;
+  }),
+
 
   getByPriceCategory: publicProcedure
     .input(z.object({ priceCategory: z.number().min(1).max(4) }))
