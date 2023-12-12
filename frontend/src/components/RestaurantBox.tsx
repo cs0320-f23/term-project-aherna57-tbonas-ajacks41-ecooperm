@@ -54,7 +54,6 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
         </Link>
         <p className="cuisine">{cuisineType}</p>
         <div className="ratings">
-          <span style={{ marginRight: "3px" }}>&#9733;</span>
           {createStars(stars)}
           <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
             {reviews} reviews

@@ -23,6 +23,10 @@ const Home = () => {
       : localStorage.clear();
   const [result, setResult] = useState<any[]>([]);
   const navigate = useNavigate(); // hook for navigation
+  const [activeFilterCategory, setActiveFilterCategory] = useState<
+    string | null
+  >(null);
+
 
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
@@ -99,6 +103,8 @@ const Home = () => {
                 key={index}
                 category={config.category}
                 options={config.options}
+                activeCategory={activeFilterCategory}
+                setActiveCategory={setActiveFilterCategory}
               />
             ))}
           </div>
