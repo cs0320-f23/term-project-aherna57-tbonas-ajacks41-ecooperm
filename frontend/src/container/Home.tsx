@@ -27,6 +27,14 @@ const Home = () => {
     string | null
   >(null);
 
+  const [resetKey, setResetKey] = useState<number>(0); // Add a state to trigger a reset
+
+  const handleResetFilters = () => {
+    // Reset all filters
+    setActiveFilterCategory(null);
+    // Trigger a reset by updating the resetKey
+    setResetKey((prevKey) => prevKey + 1);
+  };
 
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
@@ -42,15 +50,14 @@ const Home = () => {
   };
   const handleHomeClick = () => {
     // Navigate to the home page
-    navigate('/');
+    navigate("/");
   };
 
   function handleLogout() {
-      navigate("/login");
-      localStorage.clear();
-      navigate("/login");
+    navigate("/login");
+    localStorage.clear();
+    navigate("/login");
   }
-
 
   return (
     <div>
@@ -67,7 +74,6 @@ const Home = () => {
           </div>
         </div>
       </h1>
-
 
       <div>
         <Routes>
@@ -104,8 +110,15 @@ const Home = () => {
                 options={config.options}
                 activeCategory={activeFilterCategory}
                 setActiveCategory={setActiveFilterCategory}
+                resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
               />
             ))}
+            {/* Add the Reset button with styling */}
+            <div className="reset-button-container">
+              <button className="reset-button" onClick={handleResetFilters}>
+                Reset
+              </button>
+            </div>
           </div>
 
           <p className="search-bar-line"></p>

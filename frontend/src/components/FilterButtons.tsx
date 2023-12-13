@@ -6,6 +6,7 @@ interface FilterButtonsProps {
   options: string[];
   activeCategory: string | null;
   setActiveCategory: (category: string | null) => void;
+  resetKey: number; // Add resetKey to the interface
 }
 interface SelectedOptions {
   [key: string]: string;
@@ -16,6 +17,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   options,
   activeCategory,
   setActiveCategory,
+  resetKey, // Include resetKey in the props
 }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
