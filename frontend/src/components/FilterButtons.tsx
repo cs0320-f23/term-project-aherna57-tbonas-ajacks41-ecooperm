@@ -17,16 +17,16 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   activeCategory,
   setActiveCategory,
 }) => {
-  
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [dropdownSelection, setDropdownSelection] = useState<string | null>(
-    null
-  );
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>();
-
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleButtonToggle = () => {
-    if (activeCategory === category) {
+    if (selectedOption === "All" || selectedOption === "None") {
+      // If "All" or "None" is selected, immediately revert to the original state
+      setActiveCategory(null);
+      setShowDropdown(false);
+      setSelectedOption(null);
+    } else if (activeCategory === category) {
       setActiveCategory(null);
       setShowDropdown(false);
     } else {
@@ -35,24 +35,30 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
     }
   };
 
-  const handleFilterDropdownSelect = (category: string, option: string) => {
-    setSelectedOptions((prev) => ({ ...prev, [category]: option }));
-    setDropdownSelection(option);
-    console.log("Selected Filter:", category, option);
-    setShowDropdown(false);
-    setActiveCategory(null);
+  const handleFilterDropdownSelect = (option: string) => {
+    // If "All" or "None" is selected, immediately revert to the original state
+    if (option === "All" || option === "None") {
+      setActiveCategory(null);
+      setShowDropdown(false);
+      setSelectedOption(null);
+    } else {
+      setSelectedOption(option);
+      // Optionally, you can close the dropdown and deactivate the category
+      setShowDropdown(false);
+      setActiveCategory(null);
+    }
   };
 
-  const renderDropdown = (category: string, options: string[]) => {
+  const renderDropdown = () => {
     return (
       <div className="dropdown">
         {options.map((option, index) => (
           <div
             key={index}
             className={`dropdown-item ${
-              selectedOptions?.[category] === option ? "selected" : ""
+              selectedOption === option ? "selected" : ""
             }`}
-            onClick={() => handleFilterDropdownSelect(category, option)}
+            onClick={() => handleFilterDropdownSelect(option)}
           >
             {option}
           </div>
@@ -62,17 +68,19 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   };
 
   return (
-  <div className="button-container">
-    <button
-      className={`toggle-button ${selectedOptions?.[category] ? "selected" : ""} ${activeCategory === category ? "active" : ""}`}
-      onClick={handleButtonToggle}
-    >
-      {selectedOptions?.[category] || category}
-      {options && <span className="dropdown-icon">&#9660;</span>}
-    </button>
-    {activeCategory === category && renderDropdown(category, options)}
-  </div>
-);
+    <div className="button-container">
+      <button
+        className={`toggle-button ${selectedOption ? "selected" : ""} ${
+          activeCategory === category ? "active" : ""
+        }`}
+        onClick={handleButtonToggle}
+      >
+        {selectedOption || category}
+        {options && <span className="dropdown-icon">&#9660;</span>}
+      </button>
+      {activeCategory === category && renderDropdown()}
+    </div>
+  );
 };
 
 export default FilterButtons;
