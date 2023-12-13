@@ -47,7 +47,7 @@ export const Login = () => {
     setTimeout(() => {
       setCurrentVideo((currentVideo + 1) % videos.length);
       setIsFadingOut(false);
-    }, 500); // Corresponds to the duration of the fadeOut animation
+    }, 500); 
   };
 
   const videoClassName = isFadingOut ? "video fade-out" : "video fade-in";

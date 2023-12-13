@@ -11,11 +11,12 @@ export const buttonConfigs = [
   },
   {
     category: "Dietary Restrictions",
-    options: ["Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"],
+    options: ["None","Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"],
   },
   {
     category: "Cuisine",
     options: [
+      "All",
       "Italian",
       "Japanese",
       "Asian",

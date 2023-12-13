@@ -99,3 +99,25 @@
   background-color: lightgrey; 
   font-weight: bold;
 }
+
+/***********RESET BUTTON*************/
+
+/* Add this style for the reset button container */
+.reset-button-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+/* Add this style for the reset button */
+.reset-button {
+  border: 1px solid #ffffff; /* White outline */
+  background-color: #001f3f;  /* Transparent background */
+  color: #ffffff; /* White text color */
+  border-radius: 5px; /* Rounded rectangular edges */
+  padding: 5px 10px; /* Adjust padding as needed */
+  margin-top: .8px;
+  margin-bottom: .8px;
+  height: 70% ;
+  cursor: pointer;
+}
