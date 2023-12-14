@@ -1,6 +1,14 @@
-//import {  }  from "@react-oauth/google";
-//import type { CredentialResponse } from "~/node_modules/@react-oauth/google/dist/index.d.ts";
-import type { User } from "~/node_modules/@clerk/nextjs/dist/types/api";
+
+type User = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  imageUrl: string;
+  GoogleOAuth: {
+    provider: string;
+    username: string;
+  }[];
+}
 
 export const filterUserForClient = (user: User) => {
   return {
@@ -8,9 +16,7 @@ export const filterUserForClient = (user: User) => {
     firstName: user.firstName,
     lastName: user.lastName,
     profilePictureURL: user.imageUrl,
-    externalUsername:
-      user.externalAccounts.find(
-        (externalAccount) => externalAccount.provider === "oauth_google"
-      )?.username || null,
+    username: user.GoogleOAuth[0]?.username,
   };
 };
+

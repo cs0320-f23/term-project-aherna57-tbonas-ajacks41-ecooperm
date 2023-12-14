@@ -15,9 +15,9 @@ const RestaurantProfile = () => {
     //   id: "clq2uwq3u000012iwtstwjr4j",
     // });
 
-    // const { restaurant } = api.restaurants.getById.useQuery({
-    //   id: "clq2uwq3u000012iwtstwjr4j",
-    // });
+    const { restaurant } = api.reviews.getById.useQuery({
+      id: "clq2uwq3u000012iwtstwjr4j",
+    });
   
     const { restaurantId } = useParams();
     const restaurantProfileData = restaurants.find((restaurant) => restaurant.id.toString() === restaurantId);
