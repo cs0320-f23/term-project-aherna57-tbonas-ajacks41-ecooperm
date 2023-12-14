@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import UserProfile from "../components/UserProfile";
-import { userQuery } from "../utils/data";
 import axios from "axios";
 import Result from "./Result";
 import Searchbar from "./SearchBar";
@@ -54,9 +53,8 @@ const Home = () => {
   };
 
   function handleLogout() {
-    navigate("/login");
     localStorage.clear();
-    navigate("/login");
+    setTimeout(() => navigate("/login"), 0);
   }
 
   return (
@@ -70,11 +68,15 @@ const Home = () => {
           Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
-          <img src="/user.png" alt="Clickable Button" />
+          {userInfo && <img src={userInfo.profilePictureURL} alt="Clickable Button" />}
           <div className="dropdown-menu">
-            <a href="#" onClick={handleLogout} aria-label="Logout">
+            <button
+              className="dropbtn"
+              onClick={handleLogout}
+              aria-label="Logout"
+            >
               Logout
-            </a>
+            </button>
           </div>
         </div>
       </h1>

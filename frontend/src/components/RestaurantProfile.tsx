@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useEffect } from "react";
+import { CSSProperties, useState } from "react";
 import "../styles/RestaurantProfile.css";
 import { useParams } from "react-router-dom";
 import { restaurants } from "../mockRestaurants/restaurants";

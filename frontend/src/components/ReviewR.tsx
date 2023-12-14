@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../styles/Review.css";
 import { userMockReview, userMockReview2 } from "../mockedUser/user1Mock";
 

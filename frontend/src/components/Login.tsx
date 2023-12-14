@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
@@ -65,14 +65,18 @@ export const Login = () => {
       />
 
       <div className="login-form">
-        <h1 className="welcome-message">Bear Bites</h1>
-
+        <h1 className="welcome-message">
+          Bear <img className="iconTop" src="/logo.png" alt="Logo"></img>Bites
+        </h1>
         <div className="google-button">
           <GoogleLogin
             onSuccess={handleLogin}
             onError={() => console.log("errorrrrr")}
           />
         </div>
+
+        <h1 className="tease-message">
+          Taste the Providence, one review at a time.</h1>
       </div>
     </div>
   );
