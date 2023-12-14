@@ -68,16 +68,20 @@ const Home = () => {
           Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
-          {userInfo && <img src={userInfo.profilePictureURL} alt="Clickable Button" />}
-          <div className="dropdown-menu">
-            <button
-              className="dropbtn"
-              onClick={handleLogout}
-              aria-label="Logout"
-            >
-              Logout
-            </button>
-          </div>
+          {userInfo && (
+            <img src={userInfo.profilePictureURL} alt="Clickable Button" />
+          )}
+         
+            <div className="dropdown-menu">
+              <button
+                className="dropbtn"
+                onClick={handleLogout}
+                aria-label="Logout"
+              >
+                Logout
+              </button>
+            </div>
+          
         </div>
       </h1>
 

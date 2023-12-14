@@ -85,6 +85,7 @@ path {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
+  
   box-sizing: border-box;
   font-weight: bold;
   border-radius: 20px;
@@ -135,9 +136,10 @@ button:hover {
 .google-button {
   width: 355px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  
   margin-top: 2rem;
+  margin-left: 1.4rem;
+
 }
 
 /* Anchor styling */
@@ -158,6 +160,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: auto;
   z-index: 1;
 }
 
