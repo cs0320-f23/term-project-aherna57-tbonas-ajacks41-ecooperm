@@ -1,3 +1,9 @@
+/**The file exports a mock data array named restaurants, which contains information about two restaurants, 
+ * including their names, phone numbers, menus, images, cuisine types, dollar signs, stars, reviews, addresses, 
+ * and background images. This data is intended for testing and development purposes, 
+ * mimicking the structure of a restaurant dataset in a real-world application. */
+
+// Mock data for a list of restaurants
 const restaurants = [
   {
     id: 1,
@@ -29,4 +35,5 @@ const restaurants = [
   },
 ];
 
-export {restaurants};
+// Exporting the mock data for restaurants
+export { restaurants };

@@ -10,48 +10,47 @@ import vid2 from "../assets/vid2.mp4";
 import vid3 from "../assets/vid3.mp4";
 import vid4 from "../assets/vid4.mp4";
 
-
-
+/**The Login component is a React functional component responsible for rendering a login screen. It integrates Google OAuth 
+ * for user authentication and provides a seamless login experience. Additionally, it includes a dynamic video background that transitions 
+ * between different video clips. The component uses mocked user data for testing purposes, allowing developers to simulate a successful 
+ * login without relying on Google authentication. The overall purpose of the file is to present a visually appealing and user-friendly 
+ * login interface with integrated Google login functionality. */
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
 // You can change this by uncommenting the indicated lines below and commenting out everything else in handleLogin
+
+// Functional component definition for the Login component
 export const Login = () => {
+  // React Router navigation hook
   const navigate = useNavigate();
+
+  // Function to handle login, invoked on successful Google login
   const handleLogin = (response: CredentialResponse) => {
-    // console.log("login is a success");
-
-    // console.log("login response:", response);
-    // if (response.credential) {
-    //   const obj = jwtDecode(response.credential); 
-    //   localStorage.setItem("user", JSON.stringify(obj));
-    //   console.log("decoded token:", obj);
-    //   navigate("/");
-    // } else {
-    //   console.log("credential is undefined");
-    // }
-
-    // ****** uncomment the following lines to use the mocked user and comment out the above code *******
+    // Uncomment the following lines to use the mocked user and comment out the above code
     const obj = userMockSchema;
     localStorage.setItem("user", JSON.stringify(obj));
     console.log("Decoded token:", obj);
     navigate("/");
   };
 
-
+  // Array of video sources and state variables for video playback control
   const videos = [vid1, vid2, vid3, vid4];
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
+  // Function to handle video end, triggering a fade-out effect and updating the current video
   const handleVideoEnd = () => {
     setIsFadingOut(true);
     setTimeout(() => {
       setCurrentVideo((currentVideo + 1) % videos.length);
       setIsFadingOut(false);
-    }, 500); 
+    }, 500);
   };
 
+  // Dynamic class name for video element based on fading state
   const videoClassName = isFadingOut ? "video fade-out" : "video fade-in";
 
+  // JSX structure for the Login component
   return (
     <div className="main-container">
       <video
@@ -69,6 +68,7 @@ export const Login = () => {
           Bear <img className="iconTop" src="/logo.png" alt="Logo"></img>Bites
         </h1>
         <div className="google-button">
+          {/* Google Login component */}
           <GoogleLogin
             onSuccess={handleLogin}
             onError={() => console.log("errorrrrr")}
@@ -76,10 +76,12 @@ export const Login = () => {
         </div>
 
         <h1 className="tease-message">
-          Taste the Providence, one review at a time.</h1>
+          Taste the Providence, one review at a time.
+        </h1>
       </div>
     </div>
   );
 };
 
+// Default export for the Login component
 export default Login;
