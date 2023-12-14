@@ -1,9 +1,15 @@
-export const userQuery = (userId : any) => {
+/**The file exports a function named userQuery that generates a query for fetching user data based on the provided userId. 
+ * Additionally, the file exports an array named buttonConfigs, which holds configurations for filter buttons on the home page. 
+ * These configurations include categories like "Price," "Dietary Restrictions," "Cuisine," and "Ratings," each with corresponding 
+ * options for filtering. The purpose is to provide a structured set of options for users to filter and sort restaurant data on the home page. */
+
+// Function to generate a user query based on the provided userId
+export const userQuery = (userId: any) => {
   const query = `*[_type == "user" && _id == '${userId}']`;
   return query;
 };
 
-
+// Configuration for filter buttons on the home page
 export const buttonConfigs = [
   {
     category: "Price",
@@ -11,7 +17,7 @@ export const buttonConfigs = [
   },
   {
     category: "Dietary Restrictions",
-    options: ["None","Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"],
+    options: ["None", "Gluten Free", "Vegetarian", "Vegan", "Kosher", "Halal"],
   },
   {
     category: "Cuisine",
