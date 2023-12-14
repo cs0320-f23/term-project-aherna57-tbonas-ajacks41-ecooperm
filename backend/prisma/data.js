@@ -153,6 +153,20 @@ export const restaurants = [
     phone: "4015428368",
     priceCategory: 2,
   },
+  {
+    name: "Starbucks",
+    address: "218 Thayer St, Providence, RI 02906",
+    latitude: 41.827523542804094,
+    longitude: -71.40072649325398,
+    description:
+      "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+    imageUrl:
+      "https://lh5.googleusercontent.com/p/AF1QipPkrX30qhe1YayrOScouXCcCJBo4DL5nGV91rjZ=w426-h240-k-no",
+    menuUrl: "https://www.starbucks.com/menu",
+    openingHours: "7 AM–6 PM",
+    phone: "4014211677",
+    priceCategory: 2,
+  },
 ];
 
 export const categories = [
@@ -238,6 +252,7 @@ export const categories = [
     name: "Cookies",
   },
   { name: "Dessert" },
+  { name: "Breakfast" },
 ];
 
 export const restaurantCategories = {
@@ -259,4 +274,12 @@ export const restaurantCategories = {
   "Ten One Tea House": ["Boba Tea", "Takeout"],
   "Shaking Crab": ["Seafood", "Sit Down", "Drinks"],
   "Insomnia Cookies": ["Cookies", "Dessert", "Takeout", "Ice Cream"],
+  Starbucks: [
+    "Coffee",
+    "Bistory",
+    "Takeout",
+    "Breakfast",
+    "Accessible",
+    "Susutainable",
+  ],
 };
