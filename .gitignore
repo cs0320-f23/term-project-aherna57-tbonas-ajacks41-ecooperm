@@ -50,3 +50,4 @@ node_modules
 src/private/api.ts
 
 
+.next

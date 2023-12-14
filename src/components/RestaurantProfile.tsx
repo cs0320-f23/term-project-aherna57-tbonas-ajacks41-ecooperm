@@ -5,6 +5,7 @@ import { restaurants } from "../mockRestaurants/restaurants";
 import RestaurantAbout from "./RestaurantAbout";
 import ReviewR from "./ReviewR";
 import { api } from "~/src/utils/api";
+import { Restaurant } from "@prisma/client";
 
 const RestaurantProfile = () => {
   //TODO: Need to change this with props
@@ -12,18 +13,21 @@ const RestaurantProfile = () => {
   //   id: "clq2uwq3u000012iwtstwjr4j",
   // });
 
-  const { restaurant } = api.restaurants.getById.useQuery({
-    id: "clq2uwq3u000012iwtstwjr4j",
-  });
+  // const { data } = api.restaurants.getById.useQuery({
+  //   id: "clq2uwq3u000012iwtstwjr4j",
+  // });
 
-  const { restaurantId } = useParams();
-  const restaurantProfileData = restaurants.find(
-    (restaurant) => restaurant.id.toString() === restaurantId
-  );
-  //const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
-  const restBackground: CSSProperties = {
-    backgroundImage: `url(${restaurant.background})`,
-  };
+
+    const { restaurantId } = useParams();
+    const restaurantProfileData = restaurants.find(
+      (restaurant) => restaurant.id.toString() === restaurantId
+    );
+    const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
+    const restBackground: CSSProperties = {
+      backgroundImage: `url(${restaurant.imageUrl})`,
+    };
+
+
 
   return (
     <div>
