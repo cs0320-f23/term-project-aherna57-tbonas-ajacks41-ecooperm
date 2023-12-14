@@ -7,15 +7,10 @@ import {
 } from "../prisma/data.js";
 const prisma = new PrismaClient();
 
-async function clearDatabase() {
-  await prisma.restaurant.deleteMany();
-  await prisma.category.deleteMany();
-  // Add more deleteMany calls for all your other models
-}
-
-clearDatabase().catch(console.error);
-
 const load = async () => {
+  await prisma.restaurantCategory.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.restaurant.deleteMany();
   try {
     await prisma.category.createMany({
       data: categories,
@@ -37,6 +32,7 @@ const load = async () => {
           where: { name: category },
         });
         if (restaurantRecord && categoryRecord) {
+          console.log(restaurantRecord.id, categoryRecord.id);
           await prisma.restaurantCategory.create({
             data: {
               restaurantId: restaurantRecord.id,
@@ -47,6 +43,7 @@ const load = async () => {
       }
     }
   } catch (e) {
+    console.log("Error loading seed data");
     console.error(e);
   } finally {
     await prisma.$disconnect();

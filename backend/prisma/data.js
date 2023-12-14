@@ -98,6 +98,61 @@ export const restaurants = [
     phone: "4016421516",
     priceCategory: 1,
   },
+  {
+    name: "New Rivers",
+    address: "7 Steeple St, Providence, RI 02903",
+    latitude: 41.82744598192308,
+    longitude: -71.40962500304695,
+    description:
+      "Bistro in a historic warehouse featuring locally sourced American eats plus uncommon wines.",
+    imageUrl:
+      "https://lh5.googleusercontent.com/p/AF1QipOQzq_oS4fOdLvTzior71zKGi35JExpUibNhppD=w408-h398-k-no",
+    menuUrl: "https://www.newriversrestaurant.com/menu",
+    openingHours: "4:30–9:30 PM Weds - Sat",
+    phone: "4017510350",
+    priceCategory: 3,
+  },
+  {
+    name: "Geoff's Superlative Sandwiches",
+    address: "401 S Main St, Providence, RI 029033",
+    latitude: 41.820828880271335,
+    longitude: -71.40387647421134,
+    description:
+      "Spicy pickles & deli sandwiches crammed with creative ingredients star at this quirky long-timer.",
+    menuUrl: "https://geoffssuperlativesandwiches.com/menu",
+    imageUrl:
+      "https://lh5.googleusercontent.com/p/AF1QipPjxZiHKuh2CWRyz_gbHtOGMYIJtruEwwthkxp2=w408-h612-k-no",
+    openingHours: "11 AM–7 PM",
+    phone: "4017512248",
+    priceCategory: 1,
+  },
+  {
+    name: "Shaking Crab",
+    address: "284 Thayer St, Providence, RI 02912",
+    latitude: 441.82965387348382,
+    longitude: -71.40099561875846,
+    description: "Seafood restaurant on Thayer",
+    menuUrl: "https://www.shakingcrab.com/menu",
+    imageUrl:
+      "https://lh5.googleusercontent.com/p/AF1QipPXoPvGucut-E59CTTX3iFwJ09PA8tiDUHyqnMr=w408-h306-k-no",
+    openingHours: "4–9:30 PM",
+    phone: "4012740620",
+    priceCategory: 2,
+  },
+  {
+    name: "Insomnia Cookies",
+    address: "307 Thayer St, Providence, RI 02906",
+    latitude: 41.8304563725992,
+    longitude: -71.40076344965738,
+    description:
+      "Bakery chain known for late-night deliveries, with some locations selling ice cream.",
+    imageUrl:
+      "https://lh5.googleusercontent.com/p/AF1QipOQf513NBou21VqVVS4a1psPWiUSPqWcYdslG2X=w408-h544-k-no",
+    menuUrl: "https://insomniacookies.com/menu",
+    openingHours: "12PM - 3AM (Mon-Sun)",
+    phone: "4015428368",
+    priceCategory: 2,
+  },
 ];
 
 export const categories = [
@@ -161,6 +216,28 @@ export const categories = [
   {
     name: "Coffee",
   },
+  {
+    name: "Bistro",
+  },
+  {
+    name: "American",
+  },
+  {
+    name: "Sandwiches",
+  },
+  {
+    name: "Falafel",
+  },
+  {
+    name: "Kebabs",
+  },
+  {
+    name: "Seafood",
+  },
+  {
+    name: "Cookies",
+  },
+  { name: "Dessert" },
 ];
 
 export const restaurantCategories = {
@@ -168,4 +245,18 @@ export const restaurantCategories = {
   "Baja's Tex Mex Grill": ["Mexican", "Fast Food", "Takeout"],
   "The Capital Grille": ["Grill", "Sit Down"],
   "Den Den Korean Fried Chicken": ["Korean", "Takeout"],
+  "New Rivers": ["Bistro", "Sit Down", "Drinks", "American"],
+  "Geoff's Superlative Sandwiches": ["Sandwiches", "Takeout", "Fast Food"],
+  "East Side Pockets": [
+    "Falafel",
+    "Takeout",
+    "Fast Food",
+    "Kebabs",
+    "Accessible",
+  ],
+  "Kung Fu Tea": ["Boba Tea", "Takeout"],
+  "Vivi Bubble Tea": ["Boba Tea", "Takeout"],
+  "Ten One Tea House": ["Boba Tea", "Takeout"],
+  "Shaking Crab": ["Seafood", "Sit Down", "Drinks"],
+  "Insomnia Cookies": ["Cookies", "Dessert", "Takeout", "Ice Cream"],
 };
