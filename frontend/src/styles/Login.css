@@ -8,6 +8,10 @@ html, body {
   font-family: Inter, sans-serif;
 }
 
+path {
+  fill: transparent;
+}
+
 /* Main container styling */
 .main-container {
   width: 100%;
@@ -22,13 +26,70 @@ html, body {
   background: #f0f8ff; /* Light blue background */
 }
 
-/* Login form styling */
+.tease-message{
+  margin-top: 2rem;
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: #001f3f; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.vid-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+.fade-out {
+  animation: fadeOut 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+
 .login-form {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
   box-sizing: border-box;
+  font-weight: bold;
   border-radius: 20px;
+  background: rgba(155, 208, 237, 0.7);
+  backdrop-filter: blur(10px); 
 }
 
 /* Block-level element styling */
@@ -92,12 +153,24 @@ a {
 .welcome-message {
   margin-bottom: 1rem;
   font-size: 1.8rem;
+  font-weight: 800;
   color: #001f3f; /* Navy color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 /* Register prompt styling */
 .register-prompt span, .register-prompt a {
   display: inline;
 }
+
+
+.debug {
+  border: 5px solid red; 
+}
+
+
 
 /************************************************/

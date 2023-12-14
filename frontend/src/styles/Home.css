@@ -1,5 +1,11 @@
 /******************* HOME PAGE *******************/
 
+.dropbtn{
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
 /* Header container styling */
 .header-container {
   background-color: #14487b; /* Navy color */
@@ -29,7 +35,7 @@
   font-size: 3rem;
   word-spacing: 5px;
   margin-left: 38%;
-  color: #b8d2ec; /* Navy color */
+  color: #b8d2ec; 
   cursor: pointer;
   
 }
@@ -38,20 +44,21 @@
   position: relative;
   display: inline-block;
   transition: transform 0.2s ease-in-out;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
+.dropdown-menu {
+  display: block; 
+  position: absolute;
+  right: -170px; 
+  top: 50%;
+  min-width: 160px;
+  z-index: 1000;
+  transition: right 0.5s ease; 
+}
+
 .userIm:hover .dropdown-menu {
-  display: block;
+    right: 0; 
 }
 
 .dropdown-menu a {
@@ -62,8 +69,6 @@
 .dropdown-menu a:hover {
   background-color: #ddd;
 }
-
-
 
 /* Icon styling */
 .iconTop {
@@ -78,10 +83,11 @@
 .userIm {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  border: 5px #000000;
 }
 
 .userIm img {
-  width: 30px;
+  width: 40px;
   height: auto;
   padding-right: 3px;
 }
@@ -173,12 +179,6 @@
   position: relative;
   background-color: rgb(103, 154, 225);
 }
-
-
-
-
-
-
 
 /* Search bar line styling */
 .search-bar-line {

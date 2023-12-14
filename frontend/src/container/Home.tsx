@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import UserProfile from "../components/UserProfile";
-import { userQuery } from "../utils/data";
 import axios from "axios";
 import Result from "./Result";
 import Searchbar from "./SearchBar";
@@ -27,6 +26,14 @@ const Home = () => {
     string | null
   >(null);
 
+  const [resetKey, setResetKey] = useState<number>(0); // Add a state to trigger a reset
+
+  const handleResetFilters = () => {
+    // Reset all filters
+    setActiveFilterCategory(null);
+    // Trigger a reset by updating the resetKey
+    setResetKey((prevKey) => prevKey + 1);
+  };
 
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
@@ -42,32 +49,37 @@ const Home = () => {
   };
   const handleHomeClick = () => {
     // Navigate to the home page
-    navigate('/');
+    navigate("/");
   };
 
   function handleLogout() {
-      navigate("/login");
-      localStorage.clear();
-      navigate("/login");
+    localStorage.clear();
+    setTimeout(() => navigate("/login"), 0);
   }
-
 
   return (
     <div>
       <h1 className="header">
-        <div className="title" onClick={handleHomeClick}>
+        <div
+          className="title"
+          onClick={handleHomeClick}
+          aria-label="Navigate to Home Page"
+        >
           Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
         </div>
         <div className="userIm" onClick={handleUserImageClick}>
-          <img src="/user.png" alt="Clickable Button" />
+          {userInfo && <img src={userInfo.profilePictureURL} alt="Clickable Button" />}
           <div className="dropdown-menu">
-            <a href="#" onClick={handleLogout}>
+            <button
+              className="dropbtn"
+              onClick={handleLogout}
+              aria-label="Logout"
+            >
               Logout
-            </a>
+            </button>
           </div>
         </div>
       </h1>
-
 
       <div>
         <Routes>
@@ -88,9 +100,14 @@ const Home = () => {
               fetchData={fetchData}
               setResult={setResult}
               suggestionKey="title"
+              aria-label="Search Bar"
             />
             {result.map((item: ResultProps, index: number) => (
-              <Result key={index} {...item} />
+              <Result
+                key={index}
+                {...item}
+                aria-label={`Search Result ${index + 1}`}
+              />
             ))}
             <p className="search-bar-line"></p>{" "}
           </div>
@@ -104,8 +121,20 @@ const Home = () => {
                 options={config.options}
                 activeCategory={activeFilterCategory}
                 setActiveCategory={setActiveFilterCategory}
+                resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
+                aria-label={`Filter restaurant list by ${config.category}`}
               />
             ))}
+            {/* Add the Reset button with styling */}
+            <div className="reset-button-container">
+              <button
+                className="reset-button"
+                onClick={handleResetFilters}
+                aria-label="Reset Filters"
+              >
+                Reset
+              </button>
+            </div>
           </div>
 
           <p className="search-bar-line"></p>
@@ -122,3 +151,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
