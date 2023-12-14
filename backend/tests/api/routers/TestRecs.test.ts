@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { PrismaClient, Restaurant } from "@prisma/client";
 import { appRouter } from "~/api/root";
-import assert from "assert";
+import assert, { AssertionError } from "assert";
 
 let prisma: PrismaClient;
 
@@ -28,5 +28,19 @@ test("get boba shops from database", async () => {
     path: "",
     type: "query",
   });
-  console.log(restaurants);
+  const category = await appRouter.category.getByName({
+    ctx: {
+      prisma: prisma,
+      userId: null,
+    },
+    rawInput: { name: "Mexican" },
+    path: "",
+    type: "query",
+  });
+  for (const restaurant of restaurants) {
+    assert.equal(
+      restaurant.RestaurantCategory.some((rc) => rc.categoryId === category.id),
+      true
+    );
+  }
 });
