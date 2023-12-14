@@ -23,6 +23,10 @@ export const buttonConfigs = [
     category: "Cuisine",
     options: [
       "All",
+      "American",
+      "Seafood",
+      "Grill",
+      "Coffee",
       "Italian",
       "Japanese",
       "Asian",

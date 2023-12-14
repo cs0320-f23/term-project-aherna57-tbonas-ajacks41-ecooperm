@@ -14,6 +14,8 @@ test("test going to homepage without logging in", async ({ page }) => {
     await page
       .frameLocator('iframe[title="Sign in with Google Button"]')
       .locator("#container");
+    await page.screenshot({path: "testing/images/home-basic-1.png", fullPage: true,})
+});
 
 
 //   await page.getByLabel("Command input").click();
@@ -28,8 +30,4 @@ test("test going to homepage without logging in", async ({ page }) => {
 //   await page.waitForSelector("text=9511");
 //   const text4 = await page.locator("text=9511");
 //   await expect(text4).toBeVisible();
-//   await page.screenshot({
-//     path: "tests/mocked-backend/testing-images/integration-basic-1.png",
-//     fullPage: true,
-//   });
-});
+//   ;
