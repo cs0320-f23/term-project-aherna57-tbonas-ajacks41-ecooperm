@@ -8,7 +8,7 @@ import {
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login";
 import Home from "./container/Home";
-import { GOOGLE_API_TOKEN } from "~/src/private/api";
+
 
 function App() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function App() {
   }, [navigate]);
 
   return (
-      <GoogleOAuthProvider clientId={GOOGLE_API_TOKEN}>
+      <GoogleOAuthProvider clientId={process.env.GOOGLE_API_TOKEN!}>
         <div>
           <Routes>
             <Route path="login" element={<Login />} />

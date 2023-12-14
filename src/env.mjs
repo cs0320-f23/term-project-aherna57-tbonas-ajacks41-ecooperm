@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
+    GOOGLE_API_TOKEN: z.string().min(1),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -26,6 +27,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    GOOGLE_API_TOKEN: process.env.GOOGLE_API_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
