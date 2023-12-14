@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
 import { userQuery } from "../utils/data";
 import axios from "axios";
@@ -9,7 +9,6 @@ import { ResultProps } from "./Result";
 import RestaurantList from "../components/RestaurantList";
 import "../styles/Home.css";
 import RestaurantProfile from "../components/RestaurantProfile";
-
 
 const Home = () => {
   const userItem = localStorage.getItem("user");
@@ -29,7 +28,6 @@ const Home = () => {
     string | null
   >(null);
 
-
   const navigate = useNavigate(); // hook for navigation
 
   const fetchData = async (value: any) => {
@@ -46,55 +44,55 @@ const Home = () => {
   };
   const handleHomeClick = () => {
     // Navigate to the home page
-    navigate('/');
+    navigate("/");
   };
 
   const handleButtonToggle = (buttonName: string) => {
-      setActiveButton((prev) => (prev === buttonName ? null : buttonName));
-      setDropdownSelection(null); // Reset dropdown selection when toggling buttons
+    setActiveButton((prev) => (prev === buttonName ? null : buttonName));
+    setDropdownSelection(null); // Reset dropdown selection when toggling buttons
   };
 
   const handleDropdownSelect = (option: string) => {
     setDropdownSelection(option);
   };
 
-   const renderDropdown = (options: string[]) => {
-     return (
-       <div className="dropdown">
-         {options.map((option, index) => (
-           <div
-             key={index}
-             className="dropdown-item"
-             onClick={() => handleDropdownSelect(option)}
-           >
-             {option}
-           </div>
-         ))}
-       </div>
-     );
-   };
+  const renderDropdown = (options: string[]) => {
+    return (
+      <div className="dropdown">
+        {options.map((option, index) => (
+          <div
+            key={index}
+            className="dropdown-item"
+            onClick={() => handleDropdownSelect(option)}
+          >
+            {option}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
-   const renderButton = (
-     buttonName: string,
-     dropdownOptions: string[] | null = null
-   ) => {
-     return (
-       <div className="button-container" key={buttonName}>
-         <button
-           className={`toggle-button ${
-             activeButton === buttonName ? "active" : ""
-           }`}
-           onClick={() => handleButtonToggle(buttonName)}
-         >
-           {dropdownSelection || buttonName}
-           {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
-         </button>
-         {dropdownOptions &&
-           activeButton === buttonName &&
-           renderDropdown(dropdownOptions)}
-       </div>
-     );
-   };
+  const renderButton = (
+    buttonName: string,
+    dropdownOptions: string[] | null = null
+  ) => {
+    return (
+      <div className="button-container" key={buttonName}>
+        <button
+          className={`toggle-button ${
+            activeButton === buttonName ? "active" : ""
+          }`}
+          onClick={() => handleButtonToggle(buttonName)}
+        >
+          {dropdownSelection || buttonName}
+          {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
+        </button>
+        {dropdownOptions &&
+          activeButton === buttonName &&
+          renderDropdown(dropdownOptions)}
+      </div>
+    );
+  };
 
   return (
     <div>

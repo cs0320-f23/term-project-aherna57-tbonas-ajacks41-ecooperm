@@ -30,13 +30,23 @@
 /backend/yarn-error.log*
 /backend/.pnpm-debug.log*
 
+
+
 # local env files
 # do not commit any .env files to git, except for the .env.example file. https://create.t3.gg/en/usage/env-variables#using-environment-variables
-/backend/.env
-/backend/.env*.local
+.env
+.env*.local
+
 
 # vercel
 /backend/.vercel
 
 # typescript
 /backend/*.tsbuildinfo
+
+
+
+node_modules
+src/private/api.ts
+
+

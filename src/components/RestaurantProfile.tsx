@@ -7,25 +7,24 @@ import ReviewR from "./ReviewR";
 import { client } from "~/utils/client";
 import { api } from "~/utils/api";
 
-
 const RestaurantProfile = () => {
+  //TODO: Need to change this with props
+  // const restaurant = client.restaurants.getById.useQuery({
+  //   id: "clq2uwq3u000012iwtstwjr4j",
+  // });
 
-    //TODO: Need to change this with props
-    // const restaurant = client.restaurants.getById.useQuery({
-    //   id: "clq2uwq3u000012iwtstwjr4j",
-    // });
+  const { restaurant } = api.reviews.getById.useQuery({
+    id: "clq2uwq3u000012iwtstwjr4j",
+  });
 
-    const { restaurant } = api.reviews.getById.useQuery({
-      id: "clq2uwq3u000012iwtstwjr4j",
-    });
-  
-    const { restaurantId } = useParams();
-    const restaurantProfileData = restaurants.find((restaurant) => restaurant.id.toString() === restaurantId);
-    const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
-    const restBackground: CSSProperties = {
-      backgroundImage: `url(${restaurant.background})`,
-    };
-
+  const { restaurantId } = useParams();
+  const restaurantProfileData = restaurants.find(
+    (restaurant) => restaurant.id.toString() === restaurantId
+  );
+  const [restaurant, setRestaurant] = useState<any>(restaurantProfileData);
+  const restBackground: CSSProperties = {
+    backgroundImage: `url(${restaurant.background})`,
+  };
 
   return (
     <div>

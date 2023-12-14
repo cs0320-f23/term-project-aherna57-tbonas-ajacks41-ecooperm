@@ -120,6 +120,6 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
       userId: ctx.userId,
     },
   });
-}); 
+});
 
 export const privateProcedure = t.procedure.use(enforceUserIsAuthed);

@@ -3,9 +3,7 @@ import RestaurantBox from "./RestaurantBox";
 import "../styles/index.css";
 import { restaurants } from "../mockRestaurants/restaurants";
 
-
 const RestaurantList: React.FC = () => {
-
   const sortedRestaurants = [...restaurants].sort((a, b) =>
     a.name.localeCompare(b.name)
   );

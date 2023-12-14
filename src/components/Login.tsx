@@ -3,7 +3,10 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { decodedMockResponse, userMockSchema } from "../mockedUser/user1Mock";
+import {
+  decodedMockResponse,
+  userMockSchema,
+} from "../../frontend/temp/mockedUser/user1Mock";
 import "../styles/Login.css";
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
@@ -15,7 +18,7 @@ export const Login = () => {
 
     // console.log("login response:", response);
     // if (response.credential) {
-    //   const obj = jwtDecode(response.credential); 
+    //   const obj = jwtDecode(response.credential);
     //   localStorage.setItem("user", JSON.stringify(obj));
     //   console.log("decoded token:", obj);
     //   navigate("/");
