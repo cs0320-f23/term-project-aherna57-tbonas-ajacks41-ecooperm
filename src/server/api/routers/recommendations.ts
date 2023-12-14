@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, privateProcedure, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import { overlap } from "~/utils/algorithms/overlap";
+import { overlap } from "~/src/server/utils/algorithms/overlap";
 import { Restaurant } from "@prisma/client";
 
 export const recsRouter = createTRPCRouter({
