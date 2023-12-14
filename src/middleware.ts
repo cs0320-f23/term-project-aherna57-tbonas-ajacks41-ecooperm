@@ -1,12 +1,20 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-// In rewrite method you pass a page folder name(as a string). which // you create to handle underConstraction  functionalty.
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  const url = req.nextUrl.clone();
-  url.pathname = "/login";
-  return NextResponse.rewrite(url);
+
+//https://medium.com/@zachshallbetter/middleware-in-next-js-a-comprehensive-guide-7dd0a928541a
+
+// Using Next.js 
+export function middleware(request: NextRequest) {
+  if (!request.cookies?.has('authenticated=true')) {
+    
+    //cookie?.includes('authenticated=true')) {
+    // Redirect to the login page
+    return NextResponse.rewrite('https://localhost:3000/');
+  }
+  return NextResponse.next();
 }
+
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
