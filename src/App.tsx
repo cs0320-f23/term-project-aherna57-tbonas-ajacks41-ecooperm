@@ -8,7 +8,7 @@ import {
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login";
 import Home from "./container/Home";
-import { GOOGLE_API_TOKEN } from "./private/api";
+import { GOOGLE_API_TOKEN } from "~/src/private/api";
 
 function App() {
   const navigate = useNavigate();

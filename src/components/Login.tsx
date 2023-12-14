@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import {
   decodedMockResponse,
   userMockSchema,
-} from "../../frontend/temp/mockedUser/user1Mock";
+} from "~/src/mockedUser/user1Mock";
 import "../styles/Login.css";
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
