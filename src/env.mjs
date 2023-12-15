@@ -19,6 +19,7 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+    NEXT_PUBLIC_GOOGLE_API_TOKEN: z.string().min(1),
   },
 
   /**

@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import "../styles/RestaurantProfile.css";
+import styles from "../styles/RestaurantProfile.module.css";
 import { useParams } from "react-router-dom";
 import { restaurants } from "../mockRestaurants/restaurants";
 import RestaurantAbout from "../components/RestaurantAbout";
@@ -28,7 +28,7 @@ const RestaurantProfile = () => {
 
   return (
     <div>
-      <div className="restaurant-container" style={restBackground}>
+      <div className={styles.restaurantContainer} style={restBackground}>
         {/* User Top Container */}
         <div className="restaurant-content">
           <span className="restaurant-name">

@@ -1,4 +1,4 @@
-import "../styles/UserAbout.css";
+import "../styles/UserAbout.module.css";
 
 const UserAbout = () => {
   const userItem = localStorage.getItem("user");

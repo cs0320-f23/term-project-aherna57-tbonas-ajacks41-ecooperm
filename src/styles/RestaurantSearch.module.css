@@ -1,7 +1,7 @@
 /******************* RESTAURANT SEARCH *******************/
 
 /* Container for the restaurant boxes */
-.restaurant-box-container {
+.restaurantBoxContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -11,7 +11,7 @@
 }
 
 /* Restaurant box styling */
-.restaurant-box {
+.restaurantBox {
   width: 100%;
   max-height: 20rem;
   margin: 10px;
@@ -37,19 +37,19 @@
   }
 }
 
-.image-container {
+.imageContainer {
   width: 50%;
   overflow: hidden;
   border-right: 2px solid #001f3f; /* Navy color */
 }
 
-.image-container img {
+.imageContainer img {
   width: 100%;
   height: auto;
 
 }
 
-.info-container {
+.infoContainer {
   padding: 10px;
   display: flex;
   flex-direction: column;

@@ -1,34 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import UserProfile from "../pages/UserProfile";
+import {  useLocation } from "react-router-dom";
+import UserProfile from "./UserProfile";
 import { userQuery } from "../utils/data";
 import axios from "axios";
-import Result from "./Result";
-import Searchbar from "./SearchBar";
-import { ResultProps } from "./Result";
+import Result from "../container/Result";
+import Searchbar from "../container/SearchBar";
+import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
-import "../styles/Home.css";
-import RestaurantProfile from "../pages/RestaurantProfile";
+import styles from "../styles/Home.module.css";
+import RestaurantProfile from "./RestaurantProfile";
+import { useRouter } from "next/router";
+import { api } from "~/src/utils/api";
 
 const Home = () => {
-  const userItem = localStorage.getItem("user");
+  const router = useRouter();
+
+  // const { user } = api.profile.getById.useQuery({
+
+  // });
+
+
+  const userItem =
+    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  // This line checks if the code is running in a browser environment (client-side) by checking if the "window" object is defined.
+  // If it is, it retrieves the value of the "user" key from the browser's local storage using the "getItem" method of the "localStorage" object.
+  // Otherwise, it sets the "userItem" variable to null.
+
   let location = useLocation();
+  // This line initializes a variable called "location" using the "useLocation" hook.
+  // The "useLocation" hook is typically used in React Router to get the current location object.
+
   const userInfo =
     userItem && userItem !== "undefined"
       ? JSON.parse(userItem)
       : localStorage.clear();
+  // This line checks if the "userItem" variable has a truthy value and is not equal to the string "undefined".
+  // If it is, it parses the value of "userItem" as JSON using the "JSON.parse" method and assigns it to the "userInfo" variable.
+  // Otherwise, it clears the local storage using the "clear" method of the "localStorage" object.
+
   const query = userQuery(userInfo?.sub);
+  // This line calls a function called "userQuery" and passes the value of "userInfo?.sub" as an argument.
+  // The "?." operator is used to safely access the "sub" property of the "userInfo" object, in case it is null or undefined.
 
   const [result, setResult] = useState<any[]>([]);
+  // This line initializes a state variable called "result" using the "useState" hook.
+  // The initial value of "result" is an empty array ([]), and the "setResult" function is used to update its value.
+
   const [activeButton, setActiveButton] = useState<string | null>(null);
+  // This line initializes a state variable called "activeButton" using the "useState" hook.
+  // The initial value of "activeButton" is null, and the "setActiveButton" function is used to update its value.
+
   const [dropdownSelection, setDropdownSelection] = useState<string | null>(
     null
   );
+  // This line initializes a state variable called "dropdownSelection" using the "useState" hook.
+  // The initial value of "dropdownSelection" is null, and the "setDropdownSelection" function is used to update its value.
+
   const [activeDropdownButton, setActiveDropdownButton] = useState<
     string | null
   >(null);
+  // This line initializes a state variable called "activeDropdownButton" using the "useState" hook.
+  // The initial value of "activeDropdownButton" is null, and the "setActiveDropdownButton" function is used to update its value.
 
-  const navigate = useNavigate(); // hook for navigation
+  //const navigate = useNavigate(); // hook for navigation
 
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
@@ -40,12 +74,12 @@ const Home = () => {
 
   const handleUserImageClick = () => {
     // Navigate to the user profile page
-    navigate(`/user-profile/${userInfo.id}`);
+    //router.push(`/user-profile/${userInfo.id}`);
   };
-  
+
   const handleHomeClick = () => {
     // Navigate to the home page
-    navigate("/");
+    router.push("/home");
   };
 
   const handleButtonToggle = (buttonName: string) => {
@@ -59,11 +93,11 @@ const Home = () => {
 
   const renderDropdown = (options: string[]) => {
     return (
-      <div className="dropdown">
+      <div className={styles.dropdown}>
         {options.map((option, index) => (
           <div
             key={index}
-            className="dropdown-item"
+            className={styles.dropdownItem}
             onClick={() => handleDropdownSelect(option)}
           >
             {option}
@@ -78,7 +112,7 @@ const Home = () => {
     dropdownOptions: string[] | null = null
   ) => {
     return (
-      <div className="button-container" key={buttonName}>
+      <div className={styles.buttonContainer} key={buttonName}>
         <button
           className={`toggle-button ${
             activeButton === buttonName ? "active" : ""
@@ -86,7 +120,7 @@ const Home = () => {
           onClick={() => handleButtonToggle(buttonName)}
         >
           {dropdownSelection || buttonName}
-          {dropdownOptions && <span className="dropdown-icon">&#9660;</span>}
+          {dropdownOptions && <span className={styles.dropdownIcon}>&#9660;</span>}
         </button>
         {dropdownOptions &&
           activeButton === buttonName &&
@@ -99,28 +133,19 @@ const Home = () => {
     <div>
       <h1 className="header">
         <div className="title" onClick={handleHomeClick}>
-          Bear <img className="iconTop" src="/logo.png" alt="Logo"></img> Bites
+          Bear <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>{" "}
+          Bites
         </div>
-        <div className="userIm" onClick={handleUserImageClick}>
+        <div className={styles.userIm} onClick={handleUserImageClick}>
           <img src="/user.png" alt="Clickable Button" />
         </div>
       </h1>
-      <p className="headerLine" />
+      <p className={styles.headerLine} />
 
-      <div>
-        <Routes>
-          <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route
-            path="/restaurant-profile/:restaurantId"
-            element={<RestaurantProfile />}
-          />
-          <Route path="/*" />
-        </Routes>
-      </div>
       {location.pathname === "/" && (
         <div>
           {/* Search Bar */}
-          <div className="search-bar-container">
+          <div className={styles.searchBarContainer}>
             <Searchbar
               fetchData={fetchData}
               setResult={setResult}
@@ -129,19 +154,19 @@ const Home = () => {
             {result.map((item: ResultProps, index: number) => (
               <Result key={index} {...item} />
             ))}
-            <p className="search-bar-line"></p>{" "}
+            <p className={styles.searchBarLine}></p>{" "}
           </div>
 
           {/* Row of Buttons */}
-          <div className="button-row">
+          <div className={styles.buttonRow}>
             <button
-              className={`toggle-button ${
+              className={`toggleButton ${
                 activeButton === "price" ? "active" : ""
               }`}
               onClick={() => handleButtonToggle("price")}
             >
               Price
-              <span className="dropdown-icon">&#9660;</span>
+              <span className={styles.dropdownIcon}>&#9660;</span>
               {activeButton === "price" &&
                 renderDropdown(["Low to High", "High to Low"])}
             </button>
@@ -154,7 +179,7 @@ const Home = () => {
               onClick={() => handleButtonToggle("dietaryRestrictions")}
             >
               Dietary Restrictions
-              <span className="dropdown-icon">&#9660;</span>
+              <span className={styles.dropdownIcon}>&#9660;</span>
               {activeButton === "dietaryRestrictions" &&
                 renderDropdown([
                   "Gluten Free",
@@ -173,7 +198,7 @@ const Home = () => {
               onClick={() => handleButtonToggle("cuisine")}
             >
               Cuisine
-              <span className="dropdown-icon">&#9660;</span>
+              <span className={styles.dropdownIcon}>&#9660;</span>
               {activeButton === "cuisine" &&
                 renderDropdown([
                   "Italian",
@@ -201,17 +226,17 @@ const Home = () => {
               onClick={() => handleButtonToggle("ratings")}
             >
               Ratings
-              <span className="dropdown-icon">&#9660;</span>
+              <span className={styles.dropdownIcon}>&#9660;</span>
               {activeButton === "ratings" &&
                 renderDropdown(["High to low", "Low to high", "5 star only"])}
             </button>
           </div>
-          <p className="search-bar-line"></p>
+          <p className={styles.searchBarLine}></p>
         </div>
       )}
 
       {location.pathname === "/" && (
-        <div className="restaurant-box-container">
+        <div className={styles.restaurantBoxContainer}>
           <RestaurantList />
         </div>
       )}

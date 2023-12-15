@@ -1,6 +1,6 @@
 import React, { SetStateAction, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce.js";
-import "../styles/RestaurantSearch.css";
+import styles from "../styles/RestaurantSearch.module.css";
 
 interface SearchBarProps {
   fetchData: (value: string) => Promise<any[]>;
@@ -67,11 +67,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
           value={value}
           onChange={handleSearchInputChange}
         />
-        <div className="suggestions">
+        <div className={styles.suggestions}>
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              className="suggestion"
+              className={styles.suggestion}
               onClick={() => findResult(suggestion[suggestionKey])}
             >
               {suggestion[suggestionKey]}

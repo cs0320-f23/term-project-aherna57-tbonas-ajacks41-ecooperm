@@ -1,6 +1,6 @@
 import React, { CSSProperties, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "~/src/styles/UserProfile.css";
+import "~/src/styles/UserProfile.module.css";
 import UserAbout from "~/src/components/UserAbout";
 import Review from "~/src/components/Review";
 

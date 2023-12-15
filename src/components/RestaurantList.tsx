@@ -1,6 +1,6 @@
 import React from "react";
 import RestaurantBox from "./RestaurantBox";
-import "../styles/index.css";
+import "../styles/index.module.css";
 import { restaurants } from "../mockRestaurants/restaurants";
 
 const RestaurantList: React.FC = () => {
@@ -8,7 +8,7 @@ const RestaurantList: React.FC = () => {
     a.name.localeCompare(b.name)
   );
 
-  return (
+  return ( 
     <div className="restaurant-box-container">
       {sortedRestaurants.map((restaurant, index) => (
         <RestaurantBox key={index} restaurantData={restaurant} />

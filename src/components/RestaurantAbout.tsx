@@ -1,4 +1,4 @@
-import "../styles/UserAbout.css";
+import "../styles/UserAbout.module.css";
 
 const RestaurantAbout = ( {restaurant} : any) => {
     restaurant = restaurant;

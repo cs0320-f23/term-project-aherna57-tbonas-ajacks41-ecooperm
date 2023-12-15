@@ -6,8 +6,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Login from ".";
-import Home from "../container/Home";
+//import Login from ".";
+//import Home from "./home";
 
 import { type AppType } from "next/app";
 import "~/src/styles/global.css";
@@ -40,13 +40,9 @@ import { Toaster } from "react-hot-toast";
 
 // export default App;
 
-const MyApp : AppType = ({ Component, pageProps }) => {
-
-
+const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <GoogleOAuthProvider
-      clientId={"22249341504-i06p05v3b11pipvfk0hgvbfm6u4qro9b.apps.googleusercontent.com"}
-    >
+    <GoogleOAuthProvider clientId={}>
       <Head>
         <title>Bear Bites</title>
         <meta name="description" content="WIP" />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CredentialResponse } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { decodedMockResponse, userMockSchema } from "../mockedUser/user1Mock";
-import "../styles/Login.module.css";
+import styles from "../styles/login.module.css";
 
 import vid1 from "../assets/vid1.mp4";
 import vid2 from "../assets/vid2.mp4";
@@ -51,10 +51,11 @@ export const Login = () => {
     }, 500);
   };
 
-  const videoClassName = isFadingOut ? "video fade-out" : "video fade-in";
+
+  const videoClassName = isFadingOut ? `${styles.video} ${styles.fadeOut}` : `${styles.video} ${styles.fadeIn}`;
 
   return (
-    <div className="main-container">
+    <div className={styles.mainContainer}>
       <video
         src={require(`../assets/vid${currentVideo}.mp4`)}
         loop={false}
@@ -65,20 +66,20 @@ export const Login = () => {
         className={videoClassName}
       />
 
-      <h1 className="welcome-message">Welcome Back!</h1>
+      <h1 className={styles.welcomeMessage}>Welcome Back!</h1>
 
-      <div className="login-form">
-        <h1 className="welcome-message">
-          Bear <img className="iconTop" src="/logo.png" alt="Logo"></img>Bites
+      <div className={styles.loginForm}>
+        <h1 className={styles.welcomeMessage}>
+          Bear <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>Bites
         </h1>
-        <div className="google-button">
+        <div className={styles.googleButton}>
           <GoogleLogin
             onSuccess={handleLogin}
             onError={() => console.log("errorrrrr")}
           />
         </div>
 
-        <h1 className="tease-message">
+        <h1 className={styles.teaseMessage}>
           Taste the Providence, one review at a time.
         </h1>
       </div>

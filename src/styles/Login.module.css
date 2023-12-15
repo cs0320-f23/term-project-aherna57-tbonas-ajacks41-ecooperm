@@ -2,7 +2,7 @@
 
 
 /* Main container styling */
-.main-container {
+.mainContainer {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
@@ -15,7 +15,17 @@
   background: #f0f8ff; /* Light blue background */
 }
 
-.tease-message{
+/* Icon styling */
+.iconTop {
+  width: 20%;
+  max-width: 50px;
+  margin-left: 10px; /* Add margin for spacing between title and logo */
+  margin-right: 10px;
+  align-items: center;
+}
+
+
+.teaseMessage{
   margin-top: 2rem;
   font-size: 0.65rem;
   font-weight: bold;
@@ -25,17 +35,17 @@
   justify-content: center;
 
 }
-.vid-container{
+.vidContainer{
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.fade-in {
+.fadeIn {
   animation: fadeIn 1s;
 }
 
-.fade-out {
+.fadeOut {
   animation: fadeOut 1s;
 }
 
@@ -70,7 +80,7 @@
 }
 
 
-.login-form {
+.loginForm {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
@@ -85,7 +95,7 @@
 
 
 /* Login button styling */
-.login-button {
+.loginButton {
   width: 355px;
   display: flex;
   justify-content: center;
@@ -93,7 +103,7 @@
 }
 
 /* Google button styling */
-.google-button {
+.googleButton {
   width: 355px;
   display: flex;
   justify-content: center;
@@ -104,7 +114,7 @@
 
 
 /* Welcome message styling */
-.welcome-message {
+.welcomeMessage {
   margin-bottom: 1rem;
   font-size: 1.8rem;
   font-weight: 800;

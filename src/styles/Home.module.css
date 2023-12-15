@@ -138,13 +138,13 @@
 }
 
 /* Search bar container styling */
-.search-bar-container {
+.searchBarContainer {
   position: relative;
   background-color: rgb(62, 129, 224);
 }
 
 /* Search bar line styling */
-.search-bar-line {
+.searchBarLine {
   width: 100%;
   height: 4px; 
   background-color: #001f3f; /* Navy color */
@@ -153,19 +153,19 @@
 }
 
 /* Button container styling */
-.button-container {
+.buttonContainer {
   position: relative;
 }
 
 /* Button row styling */
-.button-row {
+.buttonRow {
   display: flex;
   position: relative; /* Add position relative to the button row */
   background-color: #104881; /* Navy color for button row */
 }
 
 /* Toggle button styling */
-.toggle-button {
+.toggleButton {
   padding: 10px;
   margin: 5px;
   cursor: pointer;
@@ -192,13 +192,13 @@
 }
 
 /* Active toggle button styling */
-.toggle-button.active {
+.toggleButton.active {
   background-color: #001f3f; /* Navy color */
   color: white;
 }
 
 /* Show dropdown when button is active */
-.toggle-button.active .dropdown {
+.toggleButton.active .dropdown {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.2s ease;
@@ -207,7 +207,7 @@
 }
 
 /* Dropdown item styling */
-.dropdown-item {
+.dropdownItem {
   padding: 10px;
   cursor: pointer;
   background-color: white; /* White background */
@@ -215,13 +215,13 @@
 }
 
 /* Hovered dropdown item styling */
-.dropdown-item:hover {
+.dropdownItem:hover {
   background-color: #001f3f; /* Navy color on hover */
   color: white;
 }
 
 /* Dropdown icon styling */
-.dropdown-icon {
+.dropdownIcon {
   margin-left: 5px;
   font-size: 0.8em;
 }

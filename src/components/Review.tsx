@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Review.css";
+import "../styles/Review.module.css";
 import {
   userMockReview,
   userMockReview2,
