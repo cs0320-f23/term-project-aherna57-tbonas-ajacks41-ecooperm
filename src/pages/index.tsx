@@ -12,6 +12,7 @@ import vid3 from "../assets/vid3.mp4";
 import vid4 from "../assets/vid4.mp4";
 
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 // Right now if you login via google, it will use your google account information to fill in the user profile
 // You can change this by uncommenting the indicated lines below and commenting out everything else in handleLogin
@@ -31,7 +32,9 @@ export const Login = () => {
     // }
     //   // ****** uncomment the following lines to use the mocked user and comment out the above code *******
     const obj = userMockSchema;
-    localStorage.setItem("user", JSON.stringify(obj));
+    
+    Cookies.set("user", JSON.stringify(obj));
+    console.log("user:", Cookies.get("user"));
     console.log("Decoded token:", obj);
 
    
@@ -52,7 +55,9 @@ export const Login = () => {
   };
 
 
-  const videoClassName = isFadingOut ? `${styles.video} ${styles.fadeOut}` : `${styles.video} ${styles.fadeIn}`;
+  const videoClassName = isFadingOut
+    ? `${styles.video} ${styles.fadeOut}`
+    : `${styles.video} ${styles.fadeIn}`;
 
   return (
     <div className={styles.mainContainer}>

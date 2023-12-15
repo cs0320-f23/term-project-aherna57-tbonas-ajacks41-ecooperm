@@ -1,15 +1,11 @@
 
 
-.ab-container {
-  overflow: hidden;
-}
-
-.ab-container,
-.ab-container * {
+.abContainer,
+.abContainer * {
   box-sizing: border-box;
 }
 
-.ab-container {
+.abContainer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -24,13 +20,13 @@
   margin-top: 1em;
 }
 
-.about-row {
+.aboutRow {
   display: flex; 
   align-items: center; 
   gap: 0.35em;
 }
 
-.sug-container {
+.sugContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -53,7 +49,7 @@
   margin: 0;
 }
 
-.header-text {
+.headerText {
   flex-shrink: 0;
   position: relative;
   color: rgb(7, 20, 59);
@@ -62,7 +58,7 @@
   letter-spacing: 0.46px;
 }
 
-.wrapper-about {
+.wrapperAbout {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -77,7 +73,7 @@
   backdrop-filter: blur(21px);
 }
 
-.about-info {
+.aboutInfo {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
@@ -85,7 +81,7 @@
   letter-spacing: 0.32px;
 }
 
-.about-info-ans {
+.aboutInfoAns {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
@@ -93,7 +89,7 @@
   letter-spacing: 0.32px;
 }
 
-.wrapper-suggestions {
+.wrapperSuggestions {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

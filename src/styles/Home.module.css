@@ -1,7 +1,7 @@
 /******************* HOME PAGE *******************/
 
 /* Header container styling */
-.header-container {
+.headerContainer {
   background-color: #14487b; /* Navy color */
   color: #c7def3; /* Text color */
   padding: 30px; 
@@ -224,4 +224,128 @@
 .dropdownIcon {
   margin-left: 5px;
   font-size: 0.8em;
+}
+
+/******************* BUTTON STYLE *******************/
+
+
+/* Button container styling */
+.buttonContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  z-index: 2; /* Ensure the button container is above the dropdown */
+  width: 100%;
+}
+
+/* Button row styling */
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  position: relative; /* Add position relative to the button row */
+  background-color: #104881; /* Navy color for button row */
+}
+
+/* Toggle button styling */
+.toggleButton {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #10579e; /* Navy color */
+  color:  #f0f8ff; /* Navy color */
+  transition: background-color 0.3s ease;
+  position: relative; /* Add position relative to the button */
+  flex-direction: row;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: absolute;
+  top: 100%; /* Adjusted to position the dropdown beneath the button */
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+/* Active toggle button styling */
+.toggleButton.active {
+  background-color: #001f3f; /* Navy color */
+  color: white;
+}
+
+/* Show dropdown when button is active */
+.toggleButton.active + .dropdown {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.2s ease;
+  background-color: #001f3f; /* Navy color */
+  color: white;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+/* Dropdown item styling */
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white; /* White background */
+  color: #001f3f; /* Navy color */
+}
+
+/* Hovered dropdown item styling */
+.dropdownItem:hover {
+  background-color: #001f3f; /* Navy color on hover */
+  color: white;
+}
+
+/* Dropdown icon styling */
+.dropdownIcon {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+
+/***********SELECTED OPTIONS*************/
+
+.toggleButton.selected {
+  background-color: rgb(157, 187, 226);
+  color: #000000;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0); 
+}
+
+.dropdownItem.selected {
+  background-color: lightgrey; 
+  font-weight: bold;
+}
+
+/***********RESET BUTTON*************/
+
+/* Add this style for the reset button container */
+.resetButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+/* Add this style for the reset button */
+.resetButton {
+  border: 1px solid #ffffff; /* White outline */
+  background-color: #001f3f;  /* Transparent background */
+  color: #ffffff; /* White text color */
+  border-radius: 5px; /* Rounded rectangular edges */
+  padding: 5px 10px; /* Adjust padding as needed */
+  margin-top: .8px;
+  margin-bottom: .8px;
+  height: 70% ;
+  cursor: pointer;
 }

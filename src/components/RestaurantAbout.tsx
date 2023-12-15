@@ -1,4 +1,4 @@
-import "../styles/UserAbout.module.css";
+import styles from "../styles/about.module.css";
 
 const RestaurantAbout = ( {restaurant} : any) => {
     restaurant = restaurant;
@@ -8,43 +8,43 @@ const RestaurantAbout = ( {restaurant} : any) => {
         ? JSON.parse(userItem)
         : localStorage.clear();
     return (
-      <div className="ab-container">
+      <div className={styles.abContainer}>
         {/* About Section */}
-        <div className="wrapper-about">
-          <span className="header-text">About</span>
-          <hr className="divider" />
-          <div className="about-row">
-            <span className="about-info">Cuisine Type:</span>
-            <span className="about-info-ans">{restaurant.cuisineType}</span>
+        <div className={styles.wrapperAbout}>
+          <span className={styles.headerText}>About</span>
+          <hr className={styles.divider} />
+          <div className={styles.aboutRow}>
+            <span className={styles.aboutInfo}>Cuisine Type:</span>
+            <span className={styles.aboutInfoAns}>{restaurant.cuisineType}</span>
           </div>
-          <div className="about-row">
-            <span className="about-info">Phone:</span>
-            <span className="about-info-ans">{restaurant.phone}</span>
+          <div className={styles.aboutRow}>
+            <span className={styles.aboutInfo}>Phone:</span>
+            <span className={styles.aboutInfoAns}>{restaurant.phone}</span>
           </div>
-          <div className="about-row">
-            <span className="about-info">Location:</span>
-            <span className="about-info-ans">{restaurant.address}</span>
+          <div className={styles.aboutRow}>
+            <span className={styles.aboutInfo}>Location:</span>
+            <span className={styles.aboutInfoAns}>{restaurant.address}</span>
           </div>
-          <div className="about-row">
-            <a href={restaurant.menu} className="about-info-ans" target="_blank" rel="noopener noreferrer">
+          <div className={styles.aboutRow}>
+            <a href={restaurant.menu} className={styles.aboutInfoAns} target="_blank" rel="noopener noreferrer">
                 View Menu
             </a>
           </div>
         </div>
 
         {/* Suggestions Section */}
-        <div className="sug-container">
-          <span className="header-text">Similar Restaurants</span>
-          <hr className="divider" />
-          <div className="wrapper-suggestions">
+        <div className={styles.sugContainer}>
+          <span className={styles.headerText}>Similar Restaurants</span>
+          <hr className={styles.divider} />
+          <div className={styles.wrapperSuggestions}>
             <span>restaurant 1</span>
-            <hr className="divider" />
+            <hr className={styles.divider} />
             <span>restaurant 2</span>
-            <hr className="divider" />
+            <hr className={styles.divider} />
             <span>restaurant 3</span>
-            <hr className="divider" />
+            <hr className={styles.divider} />
             <span>restaurant 4</span>
-            <hr className="divider" />
+            <hr className={styles.divider} />
           </div>
         </div>
       </div>

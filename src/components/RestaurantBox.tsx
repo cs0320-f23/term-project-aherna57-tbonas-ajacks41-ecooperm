@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/index.module.css";
+import styles from "../styles/restaurantbox.module.css";
 
 interface RestaurantBoxProps {
   restaurantData: {
@@ -44,22 +44,22 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
   };
 
   return (
-    <Link to={`/restaurant-profile/${id}`} className="restaurant-box">
-      <div className="image-container">
+    <Link to={`/restaurant-profile/${id}`} className={styles.restaurantBox}>
+      <div className={styles.imageContainer}>
         <img src={imageUrl} alt="Restaurant" />
       </div>
-      <div className="info-container">
-        <div className="titleRest">{name}</div>
-        <p className="cuisine">{cuisineType}</p>
-        <div className="ratings">
+      <div className={styles.infoContainer}>
+        <div className={styles.titleRest}>{name}</div>
+        <p className={styles.cuisine}>{cuisineType}</p>
+        <div className={styles.ratings}>
           <span style={{ marginRight: "3px" }}>&#9733;</span>
           {createStars(stars)}
           <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
             {reviews} reviews
           </span>
         </div>
-        <div className="dollar-signs">{createDollarSigns(dollarSigns)}</div>
-        <p className="address">{address}</p>
+        <div className={styles.dollarSigns}>{createDollarSigns(dollarSigns)}</div>
+        <p className={styles.address}>{address}</p>
       </div>
     </Link>
   );
