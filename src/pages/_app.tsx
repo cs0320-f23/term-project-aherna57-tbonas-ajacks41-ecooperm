@@ -14,6 +14,7 @@ import "~/src/styles/global.css";
 import { api } from "../utils/api";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
+import { env } from "process";
 
 // function App() {
 //   const navigate = useNavigate();
@@ -42,7 +43,7 @@ import { Toaster } from "react-hot-toast";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <GoogleOAuthProvider clientId={}>
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE!}>
       <Head>
         <title>Bear Bites</title>
         <meta name="description" content="WIP" />

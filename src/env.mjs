@@ -19,7 +19,7 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
-    NEXT_PUBLIC_GOOGLE_API_TOKEN: z.string().min(1),
+    NEXT_PUBLIC_GOOGLE: z.string().min(1),
   },
 
   /**
@@ -28,9 +28,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
-    GOOGLE_API_TOKEN: process.env.GOOGLE_API_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NEXT_PUBLIC_GOOGLE_API_TOKEN: process.env.NEXT_PUBLIC_GOOGLE,
+    NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
