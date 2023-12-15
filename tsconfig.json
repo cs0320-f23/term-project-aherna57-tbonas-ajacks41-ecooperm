@@ -63,7 +63,8 @@
     "../src/server/api/routers/recommendations.ts",
     "../src/server/api/routers/restaurants.ts",
     "../src/server/api/routers/reviews.ts",
-    "../src/server/utils/algorithms/overlap.ts"
+    "../src/server/utils/algorithms/overlap.ts",
+    "src/**/*", "typings.d.ts"
   ],
   "exclude": [
     "node_modules"

@@ -37,21 +37,16 @@
   }
 }
 
-/******************* LOGIN PAGE *******************/
-
 /* Body styling */
 html, body {
   height: 100%;
   margin: 0;
-  background: #c7def3; /* Light blue background */
+  background: #f0f8ff; /* Light blue background */
   font-family: Inter, sans-serif;
 }
 
-/* Block-level element styling */
-label, input, button, a {
-  display: block;
-  width: 100%;
-  margin: 0.6rem 0;
+path {
+  fill: transparent;
 }
 
 /* Input styling */
@@ -76,6 +71,13 @@ button {
 /* Hovered button styling */
 button:hover {
   background: #003366; /* Darker navy color on hover */
+}
+
+/* Block-level element styling */
+label, input, button, a {
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
 }
 
 /* Anchor styling */

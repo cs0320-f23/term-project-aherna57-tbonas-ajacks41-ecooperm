@@ -42,15 +42,16 @@ import { Toaster } from "react-hot-toast";
 
 const MyApp : AppType = ({ Component, pageProps }) => {
 
-  
+
   return (
-    <GoogleOAuthProvider clientId={process.env.GOOGLE_API_TOKEN!}>
+    <GoogleOAuthProvider
+      clientId={"22249341504-i06p05v3b11pipvfk0hgvbfm6u4qro9b.apps.googleusercontent.com"}
+    >
       <Head>
         <title>Bear Bites</title>
         <meta name="description" content="WIP" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
 
       <Toaster position="bottom-center" />
       <Component {...pageProps} />
