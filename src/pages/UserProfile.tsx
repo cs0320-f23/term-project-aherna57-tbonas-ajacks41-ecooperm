@@ -1,13 +1,11 @@
 import React, { CSSProperties, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/UserProfile.css";
-import UserAbout from "./UserAbout";
-import Review from "./Review";
+import "~/src/styles/UserProfile.css";
+import UserAbout from "~/src/components/UserAbout";
+import Review from "~/src/components/Review";
 
 /// intrface placeholder for now --- update when reviews are implemented
-interface Review {
-
-}
+interface Review {}
 
 interface User {
   id: string;

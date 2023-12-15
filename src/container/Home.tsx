@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import UserProfile from "../components/UserProfile";
+import UserProfile from "../pages/UserProfile";
 import { userQuery } from "../utils/data";
 import axios from "axios";
 import Result from "./Result";
@@ -8,7 +8,7 @@ import Searchbar from "./SearchBar";
 import { ResultProps } from "./Result";
 import RestaurantList from "../components/RestaurantList";
 import "../styles/Home.css";
-import RestaurantProfile from "../components/RestaurantProfile";
+import RestaurantProfile from "../pages/RestaurantProfile";
 
 const Home = () => {
   const userItem = localStorage.getItem("user");
@@ -42,6 +42,7 @@ const Home = () => {
     // Navigate to the user profile page
     navigate(`/user-profile/${userInfo.id}`);
   };
+  
   const handleHomeClick = () => {
     // Navigate to the home page
     navigate("/");

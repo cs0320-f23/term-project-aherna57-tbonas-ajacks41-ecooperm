@@ -1,11 +1,53 @@
-/******************* LOGIN PAGE *******************/
 
 /* Body styling */
-html, body {
+.html, .body {
   height: 100%;
   margin: 0;
   background: #c7def3; /* Light blue background */
   font-family: Inter, sans-serif;
+}
+
+/* Block-level element styling */
+.label, .input, .button {
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+
+/* Input styling */
+.input {
+  padding: 0.5rem;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 20px;
+  background: transparent;
+}
+
+/* Button styling */
+.button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  background: #001f3f; /* Navy color */
+  color: white;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hovered button styling */
+.button:hover {
+  background: #003366; /* Darker navy color on hover */
+}
+
+/* Anchor styling */
+.a {
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
+  color: #001f3f; /* Navy color */
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 /* Main container styling */
@@ -32,36 +74,7 @@ html, body {
   border-radius: 20px;
 }
 
-/* Block-level element styling */
-label, input, button, a {
-  display: block;
-  width: 100%;
-  margin: 0.6rem 0;
-}
 
-/* Input styling */
-input {
-  padding: 0.5rem;
-  border: 2px solid #001f3f; /* Navy color */
-  border-radius: 20px;
-  background: transparent;
-}
-
-/* Button styling */
-button {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 20px;
-  background: #001f3f; /* Navy color */
-  color: white;
-  margin-top: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-/* Hovered button styling */
-button:hover {
-  background: #003366; /* Darker navy color on hover */
-}
 
 /* Login button styling */
 .login-button {
@@ -80,14 +93,7 @@ button:hover {
   margin-top: 2rem;
 }
 
-/* Anchor styling */
-a {
-  color: #001f3f; /* Navy color */
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 1rem;
-}
+
 
 /* Welcome message styling */
 .welcome-message {

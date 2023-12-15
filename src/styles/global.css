@@ -1,0 +1,88 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/******************* LOGIN PAGE *******************/
+
+/* Body styling */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #c7def3; /* Light blue background */
+  font-family: Inter, sans-serif;
+}
+
+/* Block-level element styling */
+label, input, button, a {
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+
+/* Input styling */
+input {
+  padding: 0.5rem;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 20px;
+  background: transparent;
+}
+
+/* Button styling */
+button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  background: #001f3f; /* Navy color */
+  color: white;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hovered button styling */
+button:hover {
+  background: #003366; /* Darker navy color on hover */
+}
+
+/* Anchor styling */
+a {
+  color: #001f3f; /* Navy color */
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
