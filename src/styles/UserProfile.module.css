@@ -1,5 +1,5 @@
 
-.main-user-container{
+.mainUserContainer{
   display: flex;
   flex-direction: row; 
   gap: 20px; 
@@ -14,14 +14,14 @@
 }
 
 
-.left-container {
+.leftContainer {
   flex: 1;
 }
-.right-container {
+.rightContainer {
   flex: 1;
 }
 
-.user-container {
+.userContainer {
   background: rgb(255, 255, 255);
   background-size: contain;
   border-radius: 0 0 24px 24px;
@@ -32,7 +32,7 @@
   margin-left: 30px;
 }
 
-.user-container::before {
+.userContainer::before {
   content: '';
   position: absolute;
   top: auto;
@@ -47,7 +47,7 @@
 }
 
 
-.user-content {
+.userContent {
   display: flex;
   align-items: center;
   padding: 10px; 
@@ -55,7 +55,7 @@
   z-index: 1;
 }
 
-.user-image {
+.userImage {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -71,18 +71,18 @@
 }
 
 
-.user-info {
+.userInfo {
   display: flex;
   flex-direction: column;
   font-weight: 700;
 }
 
-.user-name{
+.userName{
   margin-top: 2em;
   text-transform: uppercase;
 }
 
-.user-class{
+.userClass{
   color: rgba(0, 0, 0, 0.7);
 
 }

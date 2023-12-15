@@ -17,7 +17,7 @@ const RestaurantList: React.FC = () => {
     a.name.localeCompare(b.name)
   );
 
-  return (
+  return ( 
     <div className={styles.restaurantBoxContainer}>
       {sortedRestaurants.map((restaurant, index) => (
         <RestaurantBox key={index} restaurantData={restaurant} />

@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import styles from "../styles/restaurantbox.module.css";
+import { useRouter } from "next/router";
 
 interface RestaurantBoxProps {
   restaurantData: {
@@ -16,6 +17,9 @@ interface RestaurantBoxProps {
 }
 
 const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
+
+  const router = useRouter();
+
   const {
     id,
     imageUrl,
@@ -44,7 +48,7 @@ const RestaurantBox: React.FC<RestaurantBoxProps> = ({ restaurantData }) => {
   };
 
   return (
-    <Link to={`/restaurant-profile/${id}`} className={styles.restaurantBox}>
+    <Link href={`/restaurant-profile/${id}`} className={styles.restaurantBox}>
       <div className={styles.imageContainer}>
         <img src={imageUrl} alt="Restaurant" />
       </div>

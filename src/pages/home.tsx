@@ -156,7 +156,7 @@ const Home = () => {
 
       {router.pathname === "/home" && (
         <div className={styles.restaurantBoxContainer}>
-          <RestaurantList />
+         <RestaurantList/>
         </div>
       )}
     </div>
