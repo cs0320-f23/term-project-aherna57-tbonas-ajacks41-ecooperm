@@ -1,0 +1,38 @@
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"], // Babel preset
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|mp4)$/,
+        use: ["file-loader"],
+      },
+    ],
+  },
+
+  devServer: {
+    contentBase: "./dist",
+    open: true,
+  },
+  devtool: "inline-source-map",
+};
