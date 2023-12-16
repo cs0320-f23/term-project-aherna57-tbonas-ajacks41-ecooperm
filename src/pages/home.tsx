@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import UserProfile from "./UserProfile";
+import UserProfile from "./users/[userprofile]";
 import { userQuery } from "../utils/data";
 import axios from "axios";
 import Result from "../container/Result";
@@ -8,15 +8,15 @@ import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
 import styles from "../styles/home.module.css";
-import RestaurantProfile from "./RestaurantProfile";
+import RestaurantProfile from "./restaurants/[restaurantprofile]";
 import { useRouter } from "next/router";
 import { api } from "~/src/utils/api";
 import { useSession, signIn, signOut } from "next-auth/react";
-import cookie from "cookie";
 import Cookies from "js-cookie";
 
 import FilterButtons from "../components/FilterButtons";
 import { buttonConfigs } from "../utils/data";
+import { LoadingPage } from "../components/loading";
 
 const Home = () => {
   const router = useRouter();
@@ -40,17 +40,17 @@ const Home = () => {
     setResetKey((prevKey) => prevKey + 1);
   };
 
+  //Search Bar Functionality
   const fetchData = async (value: any) => {
     const { data } = await axios.get(
       `https://dummyjson.com/products/search?q=${value}&limit=10`
     );
-
     return data.products;
   };
 
   const handleUserImageClick = () => {
     // Navigate to the user profile page
-    router.push(`/user-profile/${user.id}`);
+    router.push(`/users/${user.id}`);
   };
   const handleHomeClick = () => {
     // Navigate to the home page
@@ -60,7 +60,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
     Cookies.get("user");
     setIsLoading(false);
     // fetchUser().then((fetchedUser) => {
@@ -70,15 +69,14 @@ const Home = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   function handleLogout() {
     Cookies.remove("user");
-    setTimeout(() => router.push("/login"), 0);
+    router.push("/login");
+    //setTimeout(() => router.push("/login"), 0);
   }
-
-  console.log("router.pathname:", router.pathname);
 
   return (
     <div>
@@ -156,7 +154,7 @@ const Home = () => {
 
       {router.pathname === "/home" && (
         <div className={styles.restaurantBoxContainer}>
-         <RestaurantList/>
+          <RestaurantList />
         </div>
       )}
     </div>

@@ -11,8 +11,10 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { prisma } from "../db";
-import { getAuth } from "@clerk/nextjs/server";
+//import { getAuth } from "@clerk/nextjs/server";
 import { TRPCError } from "@trpc/server";
+import { getToken } from "next-auth/jwt";
+import { getAuth } from "@clerk/nextjs/dist/types/server";
 
 /**
  * 1. CONTEXT
@@ -28,25 +30,12 @@ import { TRPCError } from "@trpc/server";
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (opts: CreateNextContextOptions) => {
-  //No longer gonna underscore escape opts because we actually want to use it.
-  //^ Research further
-
-  // This is a nextjs request from an API which you can actually pass to stuff
-  // in clerk
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req } = opts;
+  const token = await getToken({ req, secret: process.env.JWT_SECRET });
 
-  /*
-  Since clerk is using JWTs, it is able to verify authentication on your server
-  using the signature of the JWT, allowing them to skip a callback to their server
-  just to verify that the user is authenticated. This lets us know for sure that 
-  this is this user and gives us a little bit of info about them, specifically
-  signedin signedout objects which tell us if they are signed in or out.
-  */
+  const userId: string | null = token?.sub || null;
 
-  const sesh = getAuth(req);
-
-  const userId = sesh.userId;
 
   return {
     prisma,

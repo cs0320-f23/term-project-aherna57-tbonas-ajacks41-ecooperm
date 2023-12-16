@@ -4,7 +4,7 @@ const restaurants = [
     name: "Baja's Taqueria",
     phone: "(401) 808-6141",
     menu: "https://bajasrestaurants.com/rhode-island-wakefield-ri-cranston-ri-baja-s-food-menu",
-    imageUrl: "baja.jpg",
+    imageUrl: "public\\baja.jpg",
     cuisineType: "Mexican",
     dollarSigns: 1,
     stars: 2,

@@ -37,8 +37,6 @@ export const Login = () => {
     console.log("user:", Cookies.get("user"));
     console.log("Decoded token:", obj);
 
-   
-
     router.push("/home");
   }
 
