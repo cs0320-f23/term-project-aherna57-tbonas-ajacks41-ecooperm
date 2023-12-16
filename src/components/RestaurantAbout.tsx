@@ -12,7 +12,7 @@ import styles from "../styles/about.module.css";
 const RestaurantAbout = (
   {restaurant} : any) => {
   // Extracting restaurant data from props
-  restaurant = restaurant;
+ 
 
   // const userItem = localStorage.getItem("user");
   // const user =

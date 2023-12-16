@@ -7,7 +7,7 @@ import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
-import styles from "./styles/home.module.css";
+import styles from "../styles/home.module.css";
 import RestaurantProfile from "./restaurants/[restaurantprofile]";
 import { useRouter } from "next/router";
 import { api } from "~/src/utils/api";
