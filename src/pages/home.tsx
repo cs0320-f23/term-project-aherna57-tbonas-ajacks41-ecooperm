@@ -31,12 +31,10 @@ const Feed = () => {
   const { data, isLoading: restaurantsLoading } =
     api.restaurants.getAll.useQuery();
 
-  
-  console.log("data", data); 
+  console.log("data", data);
   // If the data is loading, render a loading message
-if (restaurantsLoading) return <div>Loading...</div>;
-  
-  
+  if (restaurantsLoading) return <div>Loading...</div>;
+
   if (!data) return <div>Something went wrong...</div>;
 
   return (

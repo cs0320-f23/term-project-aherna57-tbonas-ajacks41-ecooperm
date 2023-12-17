@@ -36,7 +36,6 @@ model Restaurant {
   categories         Category[]
   RestaurantCategory RestaurantCategory[]
   Review             Review[]
-  User               User?                @relation(fields: [userId], references: [id])
 }
 
 model RestaurantCategory {
@@ -52,26 +51,15 @@ model Review {
   id           String     @id @default(cuid())
   restaurantId String
   title        String
-  description  String
   rating       Int
   updatedAt    DateTime   @updatedAt
   createdAt    DateTime   @default(now())
-  userId       String?
   imageUrl     String?
+  authorId     String
+  content      String     @db.VarChar(255)
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-  User         User?      @relation(fields: [userId], references: [id])
-}
 
-model User {
-  id                String       @id @default(cuid())
-  email             String       @unique
-  firstName         String
-  lastName          String
-  profilePictureURL String
-  updatedAt         DateTime     @updatedAt
-  createdAt         DateTime     @default(now())
-  reviews           Review[]
-  favorites         Restaurant[]
+  @@index([authorId])
 }
 
 model CategoryToRestaurant {

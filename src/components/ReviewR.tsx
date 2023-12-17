@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Review.module.css";
+import styles from "../styles/Review.module.css";
 import {
   userMockReview,
   userMockReview2,
@@ -26,23 +26,29 @@ const Review = () => {
 
   return (
     <div>
-      <div className="title-container">
-        <h1 className="review-title">REVIEWS</h1>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.reviewTitle}>REVIEWS</h1>
       </div>
       {reviews.map((review, index) => (
-        <div key={index} className="wrapper-review">
-          <span className="time-text">{review.timeAgo}</span>
+        <div key={index} className={styles.wrapperReview}>
+          <span className={styles.timeText}>{review.timeAgo}</span>
 
-          <hr className="divider" />
-          <div className="review-u-restaurant"> User Name</div>
-          <div className="rating-container">{renderStars(review.rating)}</div>
-          <span className="review-text">{review.review}</span>
-          <hr className="divider" />
-
-          <div className="review-image-container">
-            <img className="review-image" src={review.image} alt="Review" />
+          <hr className={styles.divider} />
+          <div className={styles.reviewURestaurant}> User Name</div>
+          <div className={styles.ratingContainer}>
+            {renderStars(review.rating)}
           </div>
-          <hr className="divider" />
+          <span className={styles.reviewText}>{review.review}</span>
+          <hr className={styles.divider} />
+
+          <div className={styles.reviewImageContainer}>
+            <img
+              className={styles.reviewImage}
+              src={review.image}
+              alt="Review"
+            />
+          </div>
+          <hr className={styles.divider} />
         </div>
       ))}
     </div>

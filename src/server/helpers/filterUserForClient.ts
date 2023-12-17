@@ -7,7 +7,7 @@ export const filterUserForClient = (user: User) => {
     lastName: user.lastName,
     email: user.emailAddresses[0].emailAddress,
     profileImageUrl: user.imageUrl,
-
+    fullName: user.firstName + " " + user.lastName,
     externalUsername:
       user.externalAccounts.find(
         (externalAccount) => externalAccount.provider === "oauth_google"

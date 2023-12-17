@@ -2,7 +2,7 @@ import React, { CSSProperties, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "~/src/styles/UserProfile.module.css";
 import UserAbout from "~/src/components/UserAbout";
-import Review from "~/src/components/Review";
+
 import Cookies from "js-cookie";
 import { api } from "~/src/utils/api";
 import { LoadingPage } from "../../components/loading";
@@ -10,10 +10,29 @@ import { LoadingPage } from "../../components/loading";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
+import { ReviewView } from "~/src/components/ReviewView";
+import { Review } from "@prisma/client";
 
 /// intrface placeholder for now --- update when reviews are implemented
-interface Review {}
 
+const ProfileFeed = (props: { userId: string }) => {
+  const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
+    userId: props.userId,
+  });
+
+  if (isLoading) return <LoadingPage />;
+
+  if (!data || data.length === 0)
+    return <div>User has not reviewed any restaurants.</div>;
+
+  return (
+    <div className={styles.leftContainer}>
+      {data.map((fullReview) => (
+        <ReviewView {...fullReview} key={fullReview.review.id} />
+      ))}
+    </div>
+  );
+};
 
 const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
   const { data } = api.profile.getUserById.useQuery({
@@ -26,7 +45,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   //const { userId } = useParams();
 
-  console.log("data", data);
+  // console.log("data", data);
 
   if (!data) return <div>404</div>;
 
@@ -67,7 +86,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
       <div className={styles.mainUserContainer}>
         {/* User Reviews */}
         <div className={styles.leftContainer}>
-          <Review />
+          <ProfileFeed userId={data.id} />
         </div>
 
         {/* User About & Suggestions */}
@@ -78,7 +97,6 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
     </div>
   );
 };
-
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const ssg = generateSSGHelper();
