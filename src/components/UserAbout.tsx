@@ -5,8 +5,13 @@ import Cookies from "js-cookie";
 /// intrface placeholder for now --- update when reviews are implemented
 interface Review {}
 
+/**The UserAbout component is a React functional component that retrieves and displays user information stored in local storage. 
+ * It includes sections for the user's bio, email, phone, and location. In case of any parsing errors or missing user data, 
+ * the component returns a message indicating the absence of user data. Additionally, the component displays a section for restaurant 
+ * suggestions with placeholder names. The overall purpose of the file is to present a structured and visually appealing display of 
+ * user information and restaurant suggestions. */
 
-
+// Functional component definition for the UserAbout component
 const UserAbout = () => {
   // Retrieving user data from local storage
   const userItem = Cookies.get("user");
@@ -82,4 +87,5 @@ const UserAbout = () => {
   );
 };
 
+// Default export for the UserAbout component
 export default UserAbout;

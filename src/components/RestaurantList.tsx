@@ -36,27 +36,28 @@ const RestaurantList = (props: FullRestaurant) => {
 
   // if (!data) return <div>Something went wrong...</div>;
 
-    const createStars = (count: number | null) => {
-      return Array.from({ length: count || 0 }, (_, index) => (
-        <span key={index} style={{ marginRight: "3px" }}>
-          &#9733;
-        </span>
-      ));
-    };
+  const createStars = (count: number | null) => {
+    return Array.from({ length: count || 0 }, (_, index) => (
+      <span key={index} style={{ marginRight: "3px" }}>
+        &#9733;
+      </span>
+    ));
+  };
 
-    const createDollarSigns = (count: number | null) => {
-      return Array.from({ length: count || 0 }, (_, index) => (
-        <span key={index} style={{ marginRight: "3px" }}>
-          &#36;
-        </span>
-      ));
-    };
+  const createDollarSigns = (count: number | null) => {
+    return Array.from({ length: count || 0 }, (_, index) => (
+      <span key={index} style={{ marginRight: "3px" }}>
+        &#36;
+      </span>
+    ));
+  };
 
-    // const handleBoxClick = () => {
-    //   // Navigate to the restaurant profile page
-    //   router.push(`${name}`);
-    // };
+  // const handleBoxClick = () => {
+  //   // Navigate to the restaurant profile page
+  //   router.push(`${name}`);
+  // };
 
+  // JSX structure for the RestaurantList component
   return (
     <div className={styles.restaurantBoxContainer} key={props.id}>
       {/* <RestaurantBox {...fullRestaurant} RestaurantCategory={fullRestaurant.RestaurantCategory} /> */}
