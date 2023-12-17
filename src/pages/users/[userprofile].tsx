@@ -14,39 +14,21 @@ import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 /// intrface placeholder for now --- update when reviews are implemented
 interface Review {}
 
-interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  profilePictureURL: string;
-  updatedAt: Date;
-  createdAt: Date;
-  reviews: Review[];
-  // favorites: Restaurant[];
-}
 
 const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const { data } = api.profile.getUserById.useQuery({
+    userId,
+  });
+
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
   };
+
   //const { userId } = useParams();
 
-  // const { data, isLoading } = api.reviews.getByUserId.useQuery({
-  //   userId: props.userId,
-  // });
+  console.log("data", data);
 
-  //if (!data || data.length === 0) return <div>User has not posted.</div>;
-
-  useEffect(() => {
-    const userCookie = Cookies.get("user");
-    // console.log("userItem", userItem);
-    // if (userItem && userItem !== "undefined") {
-    //   let user = JSON.parse(userItem);
-    //   setUser(user);
-    // }
-  }, [userId]);
+  if (!data) return <div>404</div>;
 
   const getMembershipStatus = (reviews: Review[]) => {
     const numberOfReviews = reviews.length;
@@ -63,24 +45,22 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
         {/* User Top Container */}
         <div className={styles.userContent}>
           <div className={styles.userImage}>
-            {user && (
-              <>
-                <img
-                  src={user.profilePictureURL}
-                  alt="Avatar"
-                  className={styles.avatar}
-                />
-              </>
-            )}
+            <>
+              <img
+                src={data.profileImageUrl}
+                alt={`${
+                  data.firstName ?? data.email ?? "unknown"
+                }'s profile pic`}
+                className={styles.avatar}
+              />
+            </>
           </div>
 
           <div className={styles.userInfo}>
             <span className={styles.userName}>
-              {user && `${user.firstName} ${user.lastName}`}
+              {`${data.firstName} ${data.lastName}`}
             </span>
-            <span className={styles.userClass}>
-              {user && getMembershipStatus(user.reviews)}
-            </span>
+            <span className={styles.userClass}>{}</span>
           </div>
         </div>
       </div>
@@ -99,6 +79,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
   );
 };
 
+
 export const getStaticProps: GetStaticProps = async (context) => {
   const ssg = generateSSGHelper();
 
@@ -106,17 +87,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   if (typeof userprofile !== "string") throw new Error("no userprofile");
 
-  await ssg.profile.getByUserId.prefetch({ id: userprofile });
+  const userId = userprofile.replace("@", "");
+
+  await ssg.profile.getUserById.prefetch({ userId });
 
   return {
     props: {
       trpcState: ssg.dehydrate(),
-      id: userprofile,
-      DATABASE_URL: process.env.DATABASE_URL,
-      NODE_ENV: process.env.NODE_ENV,
-      NEXT_PUBLIC_GOOGLE: process.env.NEXT_PUBLIC_GOOGLE,
-      //NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
-      NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      userId,
     },
   };
 };

@@ -82,7 +82,7 @@
 
 .loginForm {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   padding: 2rem;
   box-sizing: border-box;
   font-weight: bold;
@@ -104,7 +104,7 @@
 
 /* Google button styling */
 .googleButton {
-  width: 355px;
+  width: 465px;
   display: flex;
   justify-content: center;
   align-items: center;

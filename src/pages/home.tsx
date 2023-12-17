@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import UserProfile from "./users/[userprofile]";
 import { userQuery } from "../utils/data";
 import axios from "axios";
@@ -18,12 +17,46 @@ import FilterButtons from "../components/FilterButtons";
 import { buttonConfigs } from "../utils/data";
 import { LoadingPage } from "../components/loading";
 
+import {
+  SignInButton,
+  SignOutButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
+import Link from "next/link";
+import type { User } from "@clerk/nextjs/dist/types/api";
+import Image from "next/image";
+
+const Feed = () => {
+  const { data, isLoading: restaurantsLoading } =
+    api.restaurants.getAll.useQuery();
+
+  
+  console.log("data", data); 
+  // If the data is loading, render a loading message
+if (restaurantsLoading) return <div>Loading...</div>;
+  
+  
+  if (!data) return <div>Something went wrong...</div>;
+
+  return (
+    /*Keys are a way that react uses to identify what should or shouldn't 
+      be updated. Keep amount of time to render down slightly */
+
+    <div className={styles.restaurantBoxContainer}>
+      {data.map((fullRestaurant) => (
+        <RestaurantList {...fullRestaurant} key={fullRestaurant.id} />
+      ))}
+    </div>
+  );
+};
+
 const Home = () => {
   const router = useRouter();
 
-  const userCookie = Cookies.get("user");
-  const user = userCookie ? JSON.parse(userCookie) : null;
-  console.log("user:", user);
+  const { user, isLoaded: userLoaded, isSignedIn } = useUser();
+
+  let userId = user?.id;
 
   const [result, setResult] = useState<any[]>([]);
 
@@ -48,113 +81,111 @@ const Home = () => {
     return data.products;
   };
 
-  const handleUserImageClick = () => {
-    // Navigate to the user profile page
-    router.push(`/users/${user.id}`);
-  };
-  const handleHomeClick = () => {
-    // Navigate to the home page
-    router.push("/");
-  };
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    Cookies.get("user");
-    setIsLoading(false);
-    // fetchUser().then((fetchedUser) => {
-    //   setUser(fetchedUser);
-    //   setIsLoading(false);
-    // });
-  }, []);
-
-  if (isLoading) {
-    return <LoadingPage />;
-  }
-
+  // Function to handle user logout
   function handleLogout() {
     Cookies.remove("user");
-    router.push("/login");
-    //setTimeout(() => router.push("/login"), 0);
+    router.push("/");
   }
+
+  // const handleUserImageClick = () => {
+  //   // Navigate to the user profile page
+  //   router.push(`/users/${user.id}`);
+  // };
+
+  const handleHomeClick = () => {
+    // Navigate to the home page
+    router.push("/home");
+  };
+
+  //Return empty div if user isn't loaded
+  if (!userLoaded) return <div />;
 
   return (
     <div>
-      <h1 className={styles.header}>
-        <div
-          className={styles.title}
-          onClick={handleHomeClick}
-          aria-label="Navigate to Home Page"
-        >
-          Bear <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>{" "}
-          Bites
-        </div>
-        <div className={styles.userIm} onClick={handleUserImageClick}>
-          {user && <img src={user.profilePictureURL} alt="Clickable Button" />}
-          <div className={styles.dropdownMenu}>
-            <button
-              className={styles.dropbtn}
-              onClick={handleLogout}
-              aria-label="Logout"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </h1>
-
-      {router.pathname === "/home" && (
-        <div>
-          {/* Search Bar */}
-          <div className={styles.searchBarContainer}>
-            <Searchbar
-              fetchData={fetchData}
-              setResult={setResult}
-              suggestionKey="title"
-              aria-label="Search Bar"
-            />
-            {result.map((item: ResultProps, index: number) => (
-              <Result
-                key={index}
-                {...item}
-                aria-label={`Search Result ${index + 1}`}
-              />
-            ))}
-            <p className={styles.searchBarLine}></p>{" "}
-          </div>
-
-          {/* Row of Buttons */}
-          <div className={styles.buttonRow}>
-            {buttonConfigs.map((config, index) => (
-              <FilterButtons
-                key={index}
-                category={config.category}
-                options={config.options}
-                activeCategory={activeFilterCategory}
-                setActiveCategory={setActiveFilterCategory}
-                resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
-                aria-label={`Filter restaurant list by ${config.category}`}
-              />
-            ))}
-            {/* Add the Reset button with styling */}
-            <div className={styles.resetButtonContainer}>
-              <button
-                className={styles.resetButton}
-                onClick={handleResetFilters}
-                aria-label="Reset Filters"
-              >
-                Reset
-              </button>
-            </div>
-          </div>
-
-          <p className={styles.searchBarLine}></p>
+      {!isSignedIn && (
+        <div className="flex justify-center">
+          <SignInButton />
         </div>
       )}
 
-      {router.pathname === "/home" && (
-        <div className={styles.restaurantBoxContainer}>
-          <RestaurantList />
+      {isSignedIn && (
+        <div>
+          <h1 className={styles.header}>
+            <div
+              className={styles.title}
+              onClick={handleHomeClick}
+              aria-label="Navigate to Home Page"
+            >
+              Bear{" "}
+              <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>{" "}
+              Bites
+            </div>
+            <div className={styles.userIm}>
+              <Link href={`/users/${userId}`}>
+                <Image
+                  src={user.imageUrl}
+                  alt={`@${user.firstName}'s profile picture`}
+                  className="h-14 w-14 rounded-full"
+                  width={56}
+                  height={56}
+                />
+              </Link>
+              <div className={styles.dropdownMenu}>
+                <SignOutButton />
+              </div>
+            </div>
+          </h1>
+
+          <div>
+            {/* Search Bar */}
+            <div className={styles.searchBarContainer}>
+              <Searchbar
+                fetchData={fetchData}
+                setResult={setResult}
+                suggestionKey="title"
+                aria-label="Search Bar"
+              />
+              {result.map((item: ResultProps, index: number) => (
+                <Result
+                  key={index}
+                  {...item}
+                  aria-label={`Search Result ${index + 1}`}
+                />
+              ))}
+              <p className={styles.searchBarLine}></p>{" "}
+            </div>
+
+            {/* Row of Buttons */}
+            <div className={styles.buttonRow}>
+              {buttonConfigs.map((config, index) => (
+                <FilterButtons
+                  key={index}
+                  category={config.category}
+                  options={config.options}
+                  activeCategory={activeFilterCategory}
+                  setActiveCategory={setActiveFilterCategory}
+                  resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
+                  aria-label={`Filter restaurant list by ${config.category}`}
+                />
+              ))}
+              {/* Add the Reset button with styling */}
+              <div className={styles.resetButtonContainer}>
+                <button
+                  className={styles.resetButton}
+                  onClick={handleResetFilters}
+                  aria-label="Reset Filters"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            <p className={styles.searchBarLine}></p>
+          </div>
+
+          <div className={styles.restaurantBoxContainer}>
+            <Feed />
+          </div>
         </div>
       )}
     </div>

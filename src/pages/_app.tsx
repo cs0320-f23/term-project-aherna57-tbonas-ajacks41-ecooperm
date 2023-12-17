@@ -5,7 +5,7 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+
 //import Login from ".";
 //import Home from "./home";
 
@@ -15,36 +15,16 @@ import { api } from "../utils/api";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import { env } from "process";
+import { useRouter } from "next/router";
+import { ClerkProvider } from '@clerk/nextjs'
 
-
-// function App() {
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const userItem = localStorage.getItem("user");
-//     console.log(userItem);
-//     const User =
-//       userItem && userItem !== "undefined" ? JSON.parse(userItem) : null;
-//     if (!User) navigate("/login");
-//   }, [navigate]);
-
-//   return (
-//     <GoogleOAuthProvider clientId={process.env.GOOGLE_API_TOKEN!}>
-//       <div>
-//         <Routes>
-//           <Route path="login" element={<Login />} />
-//           <Route path="/*" element={<Home />} />
-//         </Routes>
-//       </div>
-//     </GoogleOAuthProvider>
-//   );
-// }
-
-// export default App;
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const router = useRouter();
   return (
-    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE!}>
+    <ClerkProvider
+      {...pageProps}
+    >
       <Head>
         <title>Bear Bites</title>
         <meta name="description" content="WIP" />
@@ -53,7 +33,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
       <Toaster position="bottom-center" />
       <Component {...pageProps} />
-    </GoogleOAuthProvider>
+    </ClerkProvider>
   );
 };
 

@@ -1,22 +1,16 @@
-
-type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  imageUrl: string;
-  GoogleOAuth: {
-    provider: string;
-    username: string;
-  }[];
-}
+import type { User } from "@clerk/nextjs/dist/types/api";
 
 export const filterUserForClient = (user: User) => {
   return {
     id: user.id,
     firstName: user.firstName,
     lastName: user.lastName,
-    profilePictureURL: user.imageUrl,
-    username: user.GoogleOAuth[0]?.username,
+    email: user.emailAddresses[0].emailAddress,
+    profileImageUrl: user.imageUrl,
+
+    externalUsername:
+      user.externalAccounts.find(
+        (externalAccount) => externalAccount.provider === "oauth_google"
+      )?.username || null,
   };
 };
-

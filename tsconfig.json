@@ -63,7 +63,7 @@
     "../src/server/api/routers/reviews.ts",
     "../src/server/utils/algorithms/overlap.ts",
     "src/**/*", "typings.d.ts"
-  ],
+, "next.config.mjs"  ],
   "exclude": [
     "node_modules"
   ],

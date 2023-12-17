@@ -1,10 +1,12 @@
 import React from "react";
-import RestaurantBox from "./RestaurantBox";
+// import RestaurantBox from "./RestaurantBox";
 import styles from "../styles/restaurantbox.module.css";
 import { api } from "../utils/api";
-import {Restaurant} from "@prisma/client";
+import {Restaurant, RestaurantCategory} from "@prisma/client";
 import { LoadingPage } from "./loading";
+import type { RouterOutputs } from "~/src/utils/api";
 // import { restaurants } from "../mockRestaurants/restaurants";
+import Link from "next/link";
 
 /**The RestaurantList component is a React functional component responsible for rendering a list of restaurants. 
  * It utilizes the RestaurantBox component to display detailed information about each restaurant. The list is sorted 
@@ -14,34 +16,70 @@ import { LoadingPage } from "./loading";
 
 // Functional component definition for the RestaurantList component
 
-const RestaurantList: React.FC = () => {
+type FullRestaurant = RouterOutputs["restaurants"]["getAll"][number];
+
+const RestaurantList = (props: FullRestaurant) => {
   // Sorting the restaurants alphabetically by name
   // const sortedRestaurants = [...restaurants].sort((a, b) =>
   //   a.name.localeCompare(b.name)
   // );
 
-  const { data, isLoading: restaurantsLoading } = api.restaurants.getAll.useQuery();
+  // const { data, isLoading: restaurantsLoading } = api.restaurants.getAll.useQuery();
 
- 
+  // if (restaurantsLoading) {
+  //    return (
+  //     <div className="flex grow">
+  //       <LoadingPage />
+  //     </div>
+  //    );
+  // }
 
-  if (restaurantsLoading) {
-    console.log(data);
-     return (
-      <div className="flex grow">
-        <LoadingPage />
-      </div>
-     );
-  }
+  // if (!data) return <div>Something went wrong...</div>;
 
+    const createStars = (count: number | null) => {
+      return Array.from({ length: count || 0 }, (_, index) => (
+        <span key={index} style={{ marginRight: "3px" }}>
+          &#9733;
+        </span>
+      ));
+    };
 
-  if (!data) return <div>Something went wrong...</div>;
-  
+    const createDollarSigns = (count: number | null) => {
+      return Array.from({ length: count || 0 }, (_, index) => (
+        <span key={index} style={{ marginRight: "3px" }}>
+          &#36;
+        </span>
+      ));
+    };
+
+    // const handleBoxClick = () => {
+    //   // Navigate to the restaurant profile page
+    //   router.push(`${name}`);
+    // };
 
   return (
-    <div className={styles.restaurantBoxContainer}>
-      {data.map((restaurant: Restaurant, index: number) => (
-        <RestaurantBox {...restaurant} key={restaurant.id}  />
-      ))}
+    <div className={styles.restaurantBoxContainer} key={props.id}>
+      {/* <RestaurantBox {...fullRestaurant} RestaurantCategory={fullRestaurant.RestaurantCategory} /> */}
+      <Link href={`/restaurants/${props.id}`} className={styles.restaurantBox}>
+        <div className={styles.imageContainer}>
+          <img src={props.imageUrl} alt="Restaurant" />
+        </div>
+        <div className={styles.infoContainer}>
+          <div className={styles.titleRest}>{props.name}</div>
+          <p className={styles.cuisine}>{}</p>
+          <div className={styles.ratings}>
+            <span style={{ marginRight: "3px" }}>&#9733;</span>
+            {createStars(props.rating)}
+            <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
+              {} reviews
+            </span>
+          </div>
+          <div className={styles.dollarSigns}>
+            {createDollarSigns(props.priceCategory)}
+          </div>
+          <p className={styles.address}>{props.address}</p>
+        </div>
+      </Link>
     </div>
   );
 };

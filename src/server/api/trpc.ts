@@ -13,8 +13,7 @@ import { ZodError } from "zod";
 import { prisma } from "../db";
 //import { getAuth } from "@clerk/nextjs/server";
 import { TRPCError } from "@trpc/server";
-import { getToken } from "next-auth/jwt";
-import { getAuth } from "@clerk/nextjs/dist/types/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 /**
  * 1. CONTEXT
@@ -32,10 +31,18 @@ import { getAuth } from "@clerk/nextjs/dist/types/server";
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req } = opts;
-  const token = await getToken({ req, secret: process.env.JWT_SECRET });
 
-  const userId: string | null = token?.sub || null;
+  /*
+  Since clerk is using JWTs, it is able to verify authentication on your server
+  using the signature of the JWT, allowing them to skip a callback to their server
+  just to verify that the user is authenticated. This lets us know for sure that 
+  this is this user and gives us a little bit of info about them, specifically
+  signedin signedout objects which tell us if they are signed in or out.
+  */
 
+  const sesh = getAuth(req);
+
+  const userId = sesh.userId;
 
   return {
     prisma,
