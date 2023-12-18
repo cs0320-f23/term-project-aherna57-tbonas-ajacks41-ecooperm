@@ -146,6 +146,7 @@ const Home = () => {
           </h1>
 
           <div>
+            
             {/* Search Bar */}
             <div className={styles.searchBarContainer}>
               <Searchbar

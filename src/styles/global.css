@@ -47,6 +47,7 @@ html, body {
   margin: 0;
   background: #f0f8ff; /* Light blue background */
   font-family: Inter, sans-serif;
+  overflow-x: hidden;
 }
 
 path {

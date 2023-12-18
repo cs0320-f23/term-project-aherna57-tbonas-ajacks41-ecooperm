@@ -2,7 +2,7 @@ import React from "react";
 // import RestaurantBox from "./RestaurantBox";
 import styles from "../styles/restaurantbox.module.css";
 import { api } from "../utils/api";
-import {Restaurant, RestaurantCategory} from "@prisma/client";
+//import {Restaurant, RestaurantCategory} from "@prisma/client";
 import { LoadingPage } from "./loading";
 import type { RouterOutputs } from "~/src/utils/api";
 // import { restaurants } from "../mockRestaurants/restaurants";
@@ -19,6 +19,7 @@ import Link from "next/link";
 type FullRestaurant = RouterOutputs["restaurants"]["getAll"][number];
 
 const RestaurantList = (props: FullRestaurant) => {
+  console.log(props)
   // Sorting the restaurants alphabetically by name
   // const sortedRestaurants = [...restaurants].sort((a, b) =>
   //   a.name.localeCompare(b.name)
@@ -67,12 +68,13 @@ const RestaurantList = (props: FullRestaurant) => {
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.titleRest}>{props.name}</div>
-          <p className={styles.cuisine}>{}</p>
+          <p className={styles.cuisine}>{props.cuisineType} Cuisine Type Here</p>
           <div className={styles.ratings}>
-            <span style={{ marginRight: "3px" }}>&#9733;</span>
-            {createStars(props.rating)}
+            {/* Placeholder */}
+            {createStars(Math.floor(Math.random() * 5) + 1)}
             <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
-              {} reviews
+              {/* Placeholder */}
+              {((numReviews) => numReviews === 0 ? "Unrated" : `${numReviews} reviews`)(0)}
             </span>
           </div>
           <div className={styles.dollarSigns}>

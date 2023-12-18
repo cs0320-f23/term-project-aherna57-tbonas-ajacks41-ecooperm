@@ -23,14 +23,14 @@
 
 /* Adjust the width of the restaurant box for larger screens */
 @media (min-width: 768px) {
-  .restaurant-box {
+  .restaurantBox {
     width: 80%;
   }
 }
 
 /* Adjust the width of the restaurant box for smaller screens */
 @media (max-width: 767px) {
-  .restaurant-box {
+  .restaurantBox {
     width: 100%;
   }
 }
