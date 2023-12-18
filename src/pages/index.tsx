@@ -47,9 +47,6 @@ export const Login = () => {
   return (
     <div className={styles.mainContainer}>
       <BearBitesVid />
-
-      <h1 className={styles.welcomeMessage}>Welcome Back!</h1>
-
       <div className={styles.loginForm}>
         <h1 className={styles.welcomeMessage}>
           Bear <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>
