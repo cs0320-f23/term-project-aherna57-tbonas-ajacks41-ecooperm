@@ -133,7 +133,7 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
 
   return (
     <div className={styles.leftContainer}>
-      {data.map((fullReview) => (
+      {data.map((fullReview : any) => (
         <ReviewView {...fullReview} key={fullReview.review.id} />
       ))}
     </div>

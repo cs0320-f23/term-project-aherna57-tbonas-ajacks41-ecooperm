@@ -49,7 +49,7 @@ const Feed = (props: FeedProps) => {
       be updated. Keep amount of time to render down slightly */
 
     <div className={styles.restaurantBoxContainer}>
-      {data.map((fullRestaurant) => (
+      {data.map((fullRestaurant : any) => (
         <RestaurantList {...fullRestaurant} key={fullRestaurant.id} />
       ))}
     </div>
@@ -116,7 +116,6 @@ const Home = () => {
       )}
 
       {isSignedIn && (
-
         <div>
           <h1 className={styles.header}>
             <div
@@ -139,7 +138,9 @@ const Home = () => {
                 />
               </Link>
               <div className={styles.dropdownMenu}>
-                <SignOutButton />
+                <SignOutButton>
+                  <button className={styles.dropbtn}>Sign out</button>
+                </SignOutButton>
               </div>
             </div>
           </h1>
@@ -201,5 +202,7 @@ const Home = () => {
     </div>
   );
 };
+
+
 
 export default Home;
