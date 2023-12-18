@@ -6,7 +6,7 @@ import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
-import styles from "../styles/home.module.css";
+import styles from "../styles/Home.module.css";
 import RestaurantProfile from "./restaurants/[restaurantprofile]";
 import { useRouter } from "next/router";
 import { api } from "~/src/utils/api";
@@ -107,7 +107,6 @@ const Home = () => {
       )}
 
       {isSignedIn && (
-
         <div>
           <h1 className={styles.header}>
             <div
@@ -133,6 +132,8 @@ const Home = () => {
                 <SignOutButton />
               </div>
             </div>
+
+            
           </h1>
 
           <div>
