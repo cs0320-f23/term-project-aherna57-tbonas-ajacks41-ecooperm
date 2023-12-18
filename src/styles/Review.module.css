@@ -1,42 +1,42 @@
 /*****************REVIEW*******************************/
-.review-container {
+.reviewContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 1em;
 }
-.time-and-delete-container {
+.timeAndDeleteContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.title-container {
+.titleContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.review-title {
+.reviewTitle {
   font-weight: 700;
   font-size: 34px;
   color: #07143B;
   margin-top: 1.5em;
 }
 
-.review-restaurant{
+.reviewRestaurant{
   font-weight: 700;
   font-size: 24px;
   color: #07143B;
 } 
 
-.main-container,
-.main-container * {
+.mainContainer,
+.mainContainer * {
   box-sizing: border-box;
 }
 
-.main-container {
+.mainContainer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   position: relative;
 }
 
-.wrapper-review {
+.wrapperReview {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -62,13 +62,13 @@
 
 
 @media screen and (min-width: 768px) { 
-  .wrapper-review {
+  .wrapperReview {
     margin-left: 9em; 
     margin-right: 0;
   }
 }
 
-.time-text {
+.timeText {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
@@ -83,7 +83,7 @@
   
 }
 
-.review-image-container {
+.reviewImageContainer {
   width: 100%; 
   height: auto; 
   display: flex;
@@ -91,7 +91,7 @@
   align-items: center;
 }
 
-.review-image {
+.reviewImage {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain; 
@@ -105,7 +105,7 @@
 
 
 
-.review-u-restaurant{
+.reviewURestaurant{
   font-weight: 700;
   font-size: 19px;
   color: #07143B;

@@ -107,6 +107,7 @@ const Home = () => {
       )}
 
       {isSignedIn && (
+
         <div>
           <h1 className={styles.header}>
             <div

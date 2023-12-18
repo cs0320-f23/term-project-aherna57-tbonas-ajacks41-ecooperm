@@ -37,29 +37,29 @@ const Review = () => {
   // JSX structure for the Review component
   return (
     <div>
-      <div className="title-container">
-        <h1 className="review-title">MY REVIEWS</h1>
+      <div className="titleContainer">
+        <h1 className="reviewTitle">MY REVIEWS</h1>
       </div>
       {/* Mapping through the reviews array and rendering individual review components */}
       {reviews.map((review, index) => (
-        <div key={index} className="wrapper-review">
+        <div key={index} className="wrapperReview">
           {/* Time Ago Text */}
-          <span className="time-text">{review.timeAgo}</span>
+          <span className="timeText">{review.timeAgo}</span>
           <hr className="divider" />
 
           {/* Restaurant Name */}
-          <div className="review-restaurant"> {review.restaurantName}</div>
+          <div className="reviewRestaurant"> {review.restaurantName}</div>
 
           {/* Rating Container */}
-          <div className="rating-container">{renderStars(review.rating)}</div>
+          <div className="ratingContainer">{renderStars(review.rating)}</div>
 
           {/* Review Text */}
-          <span className="review-text">{review.review}</span>
+          <span className="reviewText">{review.review}</span>
           <hr className="divider" />
 
           {/* Review Image Container */}
-          <div className="review-image-container">
-            <img className="review-image" src={review.image} alt="Review" />
+          <div className="reviewImageContainer">
+            <img className="reviewImage" src={review.image} alt="Review" />
           </div>
           <hr className="divider" />
         </div>
