@@ -1,4 +1,4 @@
-import "../styles/UserAbout.css";
+import styles from "../styles/about.module.css";
 
 /**The RestaurantAbout component is a React functional component responsible for
  * displaying information about a restaurant, including details such as cuisine type, phone number, and location.
@@ -10,39 +10,39 @@ import "../styles/UserAbout.css";
 // Functional component definition for the RestaurantAbout component
 const RestaurantAbout = ({ restaurant }: any) => {
   // Extracting restaurant data from props
-  restaurant = restaurant;
 
-  // Retrieving user information from local storage
-  const userItem = localStorage.getItem("user");
-  const user =
-    userItem && userItem !== "undefined"
-      ? JSON.parse(userItem)
-      : localStorage.clear();
+  // const userItem = localStorage.getItem("user");
+  // const user =
+  //     userItem && userItem !== "undefined"
+  //     ? JSON.parse(userItem)
+  //     : localStorage.clear();
 
-  // JSX structure for the RestaurantAbout component
+  if (!restaurant) {
+    return <div>No restaurant data available</div>;
+  }
+
   return (
-    <div className="ab-container">
+    <div className={styles.abContainer}>
       {/* About Section */}
-      <div className="wrapper-about">
-        <span className="header-text">About</span>
-        <hr className="divider" />
-        <div className="about-row">
-          <span className="about-info">Cuisine Type:</span>
-          <span className="about-info-ans">{restaurant.cuisineType}</span>
+      <div className={styles.wrapperAbout}>
+        <span className={styles.headerText}>About</span>
+        <hr className={styles.divider} />
+        <div className={styles.aboutRow}>
+          <span className={styles.aboutInfo}>Cuisine Type:</span>
+          <span className={styles.aboutInfoAns}>{restaurant.cuisineType}</span>
         </div>
-        <div className="about-row">
-          <span className="about-info">Phone:</span>
-          <span className="about-info-ans">{restaurant.phone}</span>
+        <div className={styles.aboutRow}>
+          <span className={styles.aboutInfo}>Phone:</span>
+          <span className={styles.aboutInfoAns}>{restaurant.phone}</span>
         </div>
-        <div className="about-row">
-          <span className="about-info">Location:</span>
-          <span className="about-info-ans">{restaurant.address}</span>
+        <div className={styles.aboutRow}>
+          <span className={styles.aboutInfo}>Location:</span>
+          <span className={styles.aboutInfoAns}>{restaurant.address}</span>
         </div>
-        <div className="about-row">
-          {/* Link to view the restaurant menu */}
+        <div className={styles.aboutRow}>
           <a
             href={restaurant.menu}
-            className="about-info-ans"
+            className={styles.aboutInfoAns}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,24 +52,22 @@ const RestaurantAbout = ({ restaurant }: any) => {
       </div>
 
       {/* Suggestions Section */}
-      <div className="sug-container">
-        <span className="header-text">Similar Restaurants:</span>
-        <hr className="divider" />
-        <div className="wrapper-suggestions">
-          {/* Placeholder suggestions for similar restaurants */}
+      <div className={styles.sugContainer}>
+        <span className={styles.headerText}>Similar Restaurants</span>
+        <hr className={styles.divider} />
+        <div className={styles.wrapperSuggestions}>
           <span>restaurant 1</span>
-          <hr className="divider" />
+          <hr className={styles.divider} />
           <span>restaurant 2</span>
-          <hr className="divider" />
+          <hr className={styles.divider} />
           <span>restaurant 3</span>
-          <hr className="divider" />
+          <hr className={styles.divider} />
           <span>restaurant 4</span>
-          <hr className="divider" />
+          <hr className={styles.divider} />
         </div>
       </div>
     </div>
   );
 };
 
-// Default export for the RestaurantAbout component
 export default RestaurantAbout;
