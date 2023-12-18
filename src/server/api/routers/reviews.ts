@@ -106,7 +106,6 @@ const addDataToReviews = async (reviews: Review[]) => {
   const userId = reviews.map((review) => review.authorId);
   const restaurantId = reviews.map((review) => review.restaurantId);
 
-
   const users = (
     await clerkClient.users.getUserList({
       //userId: posts.map((post) => post.authorId),
@@ -245,7 +244,7 @@ export const reviewsRouter = createTRPCRouter({
           orderBy: [{ createdAt: "desc" }],
         })
         .then(addUserDataToReviews)
-        .then(then((item) => addDataToReviews))
+        .then((item) => addDataToReviews)
     ),
 
   getReviewsByRestaurantId: publicProcedure
