@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -40,9 +36,7 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ]
+      "~/*": ["./*"]
     },
     "incremental": true
   },
@@ -62,12 +56,11 @@
     "../src/server/api/routers/restaurants.ts",
     "../src/server/api/routers/reviews.ts",
     "../src/server/utils/algorithms/overlap.ts",
-    "src/**/*", "typings.d.ts"
-, "next.config.mjs"  ],
-  "exclude": [
-    "node_modules"
+    "src/**/*",
+    "typings.d.ts",
+    "next.config.mjs",
+    "prisma/seed.mjs"
   ],
-  "types": [
-    "@types/jest"
-  ]
+  "exclude": ["node_modules"],
+  "types": ["@types/jest"]
 }
