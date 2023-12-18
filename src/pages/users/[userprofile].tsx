@@ -1,18 +1,13 @@
-import React, { CSSProperties, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { CSSProperties } from "react";
 import styles from "~/src/styles/userprofile.module.css";
 import UserAbout from "~/src/components/UserAbout";
-
-import Cookies from "js-cookie";
 import { api } from "~/src/utils/api";
 import { LoadingPage } from "../../components/loading";
-
+import MyHome from "~/src/container/myhome";
 import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { ReviewView } from "~/src/components/ReviewView";
 import { Review } from "@prisma/client";
-import { is } from "@babel/types";
 
 /// intrface placeholder for now --- update when reviews are implemented
 
@@ -79,6 +74,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   return (
     <div>
+      <MyHome user={data} />
       <div className={styles.userContainer} style={userBackground}>
         {/* User Top Container */}
         <div className={styles.userContent}>

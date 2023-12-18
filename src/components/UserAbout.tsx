@@ -20,7 +20,6 @@ interface Review {}
 // Functional component definition for the UserAbout component
 
 const UserAbout = ({data, recs}: any) => {  
-  console.log("recs", recs);
   const safeRecs = recs || [];
 
 
@@ -55,11 +54,18 @@ const UserAbout = ({data, recs}: any) => {
         <div className={styles.wrapperSuggestions}>
           {safeRecs.map((rec: any, index: any) => (
             <React.Fragment key={index}>
-              <Link
-                href={`/restaurants/${rec.id}`}
-                className={styles.sugText}>
-                {rec.name}
-              </Link>
+              <div className={styles.suggestionItem}>
+                <img
+                  src={rec.imageUrl}
+                  alt={rec.name}
+                  width={50}
+                  height={50}
+                  className={styles.restaurantImage}
+                />
+                <Link href={`/restaurants/${rec.id}`}>
+                  <div className={styles.sugText}>{rec.name}</div>
+                </Link>
+              </div>
               <hr className={styles.divider} />
             </React.Fragment>
           ))}

@@ -85,4 +85,17 @@ export const recsRouter = createTRPCRouter({
     });
     return restaurants;
   }),
+
+  getRandomRestaurants: publicProcedure.query(async ({ ctx }) => {
+    let restaurants = await ctx.prisma.restaurant.findMany({
+      include: {
+        categories: true,
+      },
+    });
+    for (let i = restaurants.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [restaurants[i], restaurants[j]] = [restaurants[j], restaurants[i]];
+    }
+    return restaurants.slice(0, 4);
+  }),
 });

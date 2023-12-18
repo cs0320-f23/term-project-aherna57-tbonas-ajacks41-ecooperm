@@ -114,8 +114,29 @@
   font-weight: 900;
   letter-spacing: 0.46px;
   text-align: left;
+  padding-left: 1rem;
 }
 
 .sugText:hover{
-  background-color: rgb(176, 187, 206);
+  background-color: rgb(176, 187, 206);  
+  padding-right: 1rem;
+}
+
+.aboutInfoAnsLink{
+  font-weight: 600;
+  text-align: left;
+  color: rgb(7, 20, 59);
+  letter-spacing: 0.32px;
+}
+
+
+.restaurantImage{
+  border-radius: 24px;
+  border: 1px solid rgb(0, 0, 0);
+
+}
+
+.suggestionItem{
+  display: flex;
+  flex-direction: row;
 }

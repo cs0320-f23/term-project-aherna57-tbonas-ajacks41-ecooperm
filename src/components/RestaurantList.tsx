@@ -71,7 +71,7 @@ const RestaurantList = (props: FullRestaurant) => {
           <p className={styles.cuisine}>{props.cuisineType} Cuisine Type Here</p>
           <div className={styles.ratings}>
             {/* Placeholder */}
-            {createStars(Math.floor(Math.random() * 5) + 1)}
+            {createStars(5)}
             <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
               {/* Placeholder */}
               {((numReviews) => numReviews === 0 ? "No Reviews" : `${numReviews} reviews`)(0)}

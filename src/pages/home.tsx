@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from "react";
-import UserProfile from "./users/[userprofile]";
-import { userQuery } from "../utils/data";
+import React, { useState } from "react";
 import axios from "axios";
 import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
 import styles from "../styles/home.module.css";
-import RestaurantProfile from "./restaurants/[restaurantprofile]";
 import { useRouter } from "next/router";
 import { api } from "~/src/utils/api";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Cookies from "js-cookie";
-
 import FilterButtons from "../components/FilterButtons";
 import { buttonConfigs } from "../utils/data";
-import { LoadingPage } from "../components/loading";
-
 import {
   SignInButton,
   SignOutButton,
-  UserButton,
   useUser,
 } from "@clerk/nextjs";
 import Link from "next/link";
-import type { User } from "@clerk/nextjs/dist/types/api";
 import Image from "next/image";
+import MyHome from "../container/myhome";
 
 interface FeedProps {
   selectedOption: string | null;
@@ -40,7 +32,6 @@ const Feed = (props: FeedProps) => {
       });
   // If the data is loading, render a loading message
   if (restaurantsLoading) return <div>Loading...</div>;
-  console.log(props.selectedOption, data);
 
   if (!data) return <div>Something went wrong...</div>;
 
@@ -61,7 +52,6 @@ const Home = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const { user, isLoaded: userLoaded, isSignedIn } = useUser();
-
   let userId = user?.id;
 
   const [result, setResult] = useState<any[]>([]);
@@ -71,8 +61,7 @@ const Home = () => {
   >(null);
 
   const [resetKey, setResetKey] = useState<number>(0); // Add a state to trigger a reset
-  console.log("activeFilterCategory", activeFilterCategory);
-  console.log("selectedOption", selectedOption);
+  
   const handleResetFilters = () => {
     // Reset all filters
     setActiveFilterCategory(null);
@@ -88,24 +77,13 @@ const Home = () => {
     return data.products;
   };
 
-  // Function to handle user logout
-  function handleLogout() {
-    Cookies.remove("user");
-    router.push("/");
-  }
-
-  // const handleUserImageClick = () => {
-  //   // Navigate to the user profile page
-  //   router.push(`/users/${user.id}`);
-  // };
-
-  const handleHomeClick = () => {
-    // Navigate to the home page
-    router.push("/home");
-  };
-
   //Return empty div if user isn't loaded
   if (!userLoaded) return <div />;
+
+  if (user) {
+    Cookies.set("user", JSON.stringify(user));
+  }
+
 
   return (
     <div>
@@ -117,34 +95,8 @@ const Home = () => {
 
       {isSignedIn && (
         <div>
-          <h1 className={styles.header}>
-            <div
-              className={styles.title}
-              onClick={handleHomeClick}
-              aria-label="Navigate to Home Page"
-            >
-              Bear{" "}
-              <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>{" "}
-              Bites
-            </div>
-            <div className={styles.userIm}>
-              <Link href={`/users/${userId}`}>
-                <Image
-                  src={user.imageUrl}
-                  alt={`@${user.firstName}'s profile picture`}
-                  className="h-14 w-14 rounded-full"
-                  width={56}
-                  height={56}
-                />
-              </Link>
-              <div className={styles.dropdownMenu}>
-                <SignOutButton>
-                  <button className={styles.dropbtn}>Sign out</button>
-                </SignOutButton>
-              </div>
-            </div>
-          </h1>
-
+          <MyHome user={user} />
+          
           <div>
             
             {/* Search Bar */}

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import type { RouterOutputs } from "~/src/utils/api";
-import Link from "next/link";
 import styles from "../styles/Review.module.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Link from "next/link";
+
 
 dayjs.extend(relativeTime);
 
@@ -67,7 +68,9 @@ export const ReviewView = (props: ReviewWithData) => {
       </span>
 
       <hr className={styles.divider} />
-      <div className={styles.reviewURestaurant}> {author.fullName}</div>
+      <Link href={`/users/${author.id}`}>
+        <div className={styles.reviewURestaurant}> {author.fullName}</div>
+      </Link>
       <div className={styles.ratingContainer}>{renderStars(review.rating)}</div>
       <span className={styles.reviewText}>{review.content}</span>
       <hr className={styles.divider} />
