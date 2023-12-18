@@ -7,6 +7,8 @@ interface FilterButtonsProps {
   activeCategory: string | null;
   setActiveCategory: (category: string | null) => void;
   resetKey: number;
+  selectedOption: string | null;
+  setSelectedOption: (option: string | null) => void;
 }
 interface SelectedOptions {
   [key: string]: string;
@@ -18,9 +20,10 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   activeCategory,
   setActiveCategory,
   resetKey,
+  selectedOption,
+  setSelectedOption,
 }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleButtonToggle = () => {
     if (selectedOption === "All" || selectedOption === "None") {
@@ -78,9 +81,9 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   return (
     <div className={styles.buttonContainer}>
       <button
-        className={` ${styles.toggleButton} ${selectedOption ? `${styles.selected}` : ""} ${
-          activeCategory === category ? `${styles.active}` : ""
-        }`}
+        className={` ${styles.toggleButton} ${
+          selectedOption ? `${styles.selected}` : ""
+        } ${activeCategory === category ? `${styles.active}` : ""}`}
         onClick={handleButtonToggle}
       >
         {selectedOption || category}
