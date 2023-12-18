@@ -22,14 +22,21 @@
 }
 
 .restaurantContainer {
-  background: rgb(255, 255, 255);
   background-size: contain;
-  border-radius: 0 0 24px 24px;
   display: flex;
   align-items: flex-end;
   height: 200px;
   position: relative;
   margin-left: 30px;
+  max-width: 100%;
+  max-height: 20rem;
+  margin: 10px;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: rgb(157, 187, 226);
+  overflow: hidden;
+  display: flex;
 }
 
 .restaurantContainer::before {
@@ -42,10 +49,8 @@
   height: 70px;
   background: rgba(255, 255, 255, 0.85);
   z-index: 0;
-  border-radius: 0 0 24px 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
 
 .restaurantContent {
   display: flex;
@@ -55,11 +60,46 @@
   z-index: 1;
 }
 
-
 .restaurantName {
   font-size: 2.5rem;
   font-weight: 600;
   color: #000;
   text-transform: uppercase; 
   letter-spacing: 0.01em; 
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewTitle {
+  font-size: 1.2rem;
+  text-align: center;
+  width: 75%;
+  color: #b8d2ec; 
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #122b44;
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px;
+  margin-left: 160px;
+  
+}
+
+.noReview{
+  font-size: 1rem;
+  text-align: center;
+  width: 75%;
+  color: #000000; 
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px;
+  margin-left: 150px;
 }

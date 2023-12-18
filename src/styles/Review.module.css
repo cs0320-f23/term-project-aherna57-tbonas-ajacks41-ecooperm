@@ -1,42 +1,32 @@
 /*****************REVIEW*******************************/
-.review-container {
+.reviewContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  text-align: center;
+  border: 2px solid navy;
 }
-.time-and-delete-container {
+
+.timeAndDeleteContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.title-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.review-title {
-  font-weight: 700;
-  font-size: 34px;
-  color: #07143B;
-  margin-top: 1.5em;
-}
-
-.review-restaurant{
+.reviewRestaurant{
   font-weight: 700;
   font-size: 24px;
   color: #07143B;
 } 
 
-.main-container,
-.main-container * {
+.mainContainer,
+.mainContainer * {
   box-sizing: border-box;
 }
 
-.main-container {
+.mainContainer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -46,7 +36,7 @@
   position: relative;
 }
 
-.wrapper-review {
+.wrapperReview {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -58,17 +48,19 @@
   max-width: 40vw;
   justify-content: center;
   margin-bottom: 1em;
+  text-align: center;
+  border: 2px solid navy;
 }
 
 
 @media screen and (min-width: 768px) { 
-  .wrapper-review {
+  .wrapperReview {
     margin-left: 9em; 
     margin-right: 0;
   }
 }
 
-.time-text {
+.timeText {
   flex-shrink: 0;
   flex-basis: auto;
   position: relative;
@@ -80,10 +72,9 @@
   text-align: center;
   white-space: nowrap;
   letter-spacing: 0.26px;
-  
 }
 
-.review-image-container {
+.reviewImageContainer {
   width: 100%; 
   height: auto; 
   display: flex;
@@ -91,23 +82,24 @@
   align-items: center;
 }
 
-.review-image {
+.reviewImage {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain; 
   margin: 10px;
   border-radius: 20px;
   border: 2px solid #000000;
-
 }
 
-
-
-
-
-.review-u-restaurant{
+.reviewURestaurant{
   font-weight: 700;
   font-size: 19px;
   color: #07143B;
+}
 
+.divider {
+  height: 1px;
+  background-color: rgb(227, 225, 225); 
+  width: 100%; 
+  margin: 0;
 }

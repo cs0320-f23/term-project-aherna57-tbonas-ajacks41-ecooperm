@@ -1,21 +1,30 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import styles from "../../styles/RestaurantProfile.module.css";
+import styles from "../../styles/restaurantprofile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
 import ReviewR from "../../components/ReviewR";
 import { api } from "~/src/utils/api";
 import { toast } from "react-hot-toast";
-//import { Restaurant } from "@prisma/client";
+import { Restaurant } from "@prisma/client";
 
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { LoadingPage, LoadingSpinner } from "~/src/components/loading";
 import { ReviewView } from "~/src/components/ReviewView";
+import MyHome from "~/src/container/myhome";
+import Cookies from "js-cookie";
 
 interface input {
   restaurantId: string;
   rating: number;
+}
+
+
+interface UserInfo {
+  id: any;
+  name: any;
+  profileImageUrl: any;
 }
 
 const CreatePostWizard = (props: input) => {
@@ -129,11 +138,23 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
-    return <div>Restaurant reviews are loading.</div>;
+    return (
+      <>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.reviewTitle}> REVIEWS ({data.length})</h1>{" "}
+        </div>
+        <div className={styles.noReview}>
+          Restaurant has no reviews. Be the first to review!
+        </div>
+      </>
+    );
 
   return (
     <div className={styles.leftContainer}>
-      {data.map((fullReview) => (
+      <div className={styles.titleContainer}>
+        <h1 className={styles.reviewTitle}>REVIEWS ({data.length})</h1>{" "}
+      </div>
+      {data.map((fullReview: any) => (
         <ReviewView {...fullReview} key={fullReview.review.id} />
       ))}
     </div>
@@ -144,15 +165,23 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
   const { data } = api.restaurants.getById.useQuery({
     id,
   });
+  const recs = api.recommendations.getRandomRestaurants.useQuery().data;
 
   if (!data) return <div>404</div>;
 
   const restBackground: CSSProperties = {
     backgroundImage: data ? `url(${data.imageUrl})` : "",
   };
+  const user = JSON.parse(Cookies.get("user") || "null");
+  const userInfo: UserInfo = {
+    id: user?.id,
+    name: user?.fullName,
+    profileImageUrl: user?.imageUrl,
+  };
 
   return (
     <div>
+      <MyHome user={userInfo} />
       <div className={styles.restaurantContainer} style={restBackground}>
         {/* User Top Container */}
         <div className={styles.restaurantContent}>
@@ -164,7 +193,7 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
           <RestaurantFeed restaurantId={data.id} />
         </div>
         <div className={styles.rightContainer}>
-          <RestaurantAbout restaurant={data.description} />
+          <RestaurantAbout props={data} recs={recs} />{" "}
         </div>
       </div>
       <div>

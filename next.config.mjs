@@ -20,7 +20,13 @@ const config = {
   // },
 
   images: {
-    domains: ["images.clerk.dev", "img.clerk.com"],
+    domains: [
+      "images.clerk.dev",
+      "img.clerk.com",
+      "lh5.googleusercontent.com",
+      "lh3.googleusercontent.com",
+      "resizer.otstatic.com",
+    ],
   },
 
   /**

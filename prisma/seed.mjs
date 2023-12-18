@@ -16,11 +16,11 @@ const load = async () => {
     await prisma.category.createMany({
       data: categories,
     });
-    console.log("Categories loaded");
+    //console.log("Categories loaded");
     await prisma.restaurant.createMany({
       data: restaurants,
     });
-    console.log("Restaurants loaded");
+    //console.log("Restaurants loaded");
 
     for (let key in restaurantCategories) {
       let keyCategories = restaurantCategories[key];
@@ -33,7 +33,7 @@ const load = async () => {
           where: { name: category },
         });
         if (restaurantRecord && categoryRecord) {
-          console.log(restaurantRecord.id, categoryRecord.id);
+          //console.log(restaurantRecord.id, categoryRecord.id);
           await prisma.restaurantCategory.create({
             data: {
               restaurantId: restaurantRecord.id,
