@@ -23,17 +23,17 @@ const CreatePostWizard = (props: input) => {
   const { user } = useUser();
 
   const [input, setInput] = useState("");
+  const [rating, setRating] = useState(1);
 
   //When we post, we wanted to update the post on the screen. To do this, we
   //grab the context of the whole TRPC cache through the api context call.
   const ctx = api.useContext();
 
-  console.log("props", props);
-
   const { mutate, isLoading: isPosting } = api.reviews.create.useMutation({
     //When a user hits post, we clear the text box
     onSuccess: () => {
       setInput("");
+      setRating(1);
       //Updating feed when post gets posted.
       void ctx.reviews.getAll.invalidate();
     },
@@ -66,33 +66,44 @@ const CreatePostWizard = (props: input) => {
           },
         }}
       />
-      <input
-        placeholder="Let us know what you think!"
-        className="grow bg-transparent outline-none"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            if (input !== "") {
-              mutate({
-                content: input,
-                restaurantId: props.restaurantId,
-                rating: props.rating,
-              });
+      <div className="flex flex-col w-screen">
+        <input
+          type="number"
+          min="1"
+          max="5"
+          w-10
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+          className="bg-transparent outline-none w-20"
+        />
+        <input
+          placeholder="Let us know what you think!"
+          className="grow bg-transparent outline-none w-full"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              if (input !== "") {
+                mutate({
+                  content: input,
+                  restaurantId: props.restaurantId,
+                  rating: rating,
+                });
+              }
             }
-          }
-        }}
-        // Wanna make sure input is disabled while a post is occuring
-        disabled={isPosting}
-      />
+          }}
+          // Wanna make sure input is disabled while a post is occuring
+          disabled={isPosting}
+        />
+      </div>
       {input !== "" && !isPosting && (
         <button
           onClick={() =>
             mutate({
               content: input,
               restaurantId: props.restaurantId,
-              rating: props.rating,
+              rating: rating,
             })
           }
           disabled={isPosting}
@@ -118,7 +129,7 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
-    return <div>Restaurant reviews cannot be shown right now.</div>;
+    return <div>Restaurant reviews are loading.</div>;
 
   return (
     <div className={styles.leftContainer}>
