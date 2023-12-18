@@ -22,15 +22,12 @@ import { ClerkProvider } from '@clerk/nextjs'
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
   return (
-    <ClerkProvider
-      {...pageProps}
-    >
+    <ClerkProvider {...pageProps}>
       <Head>
         <title>Bear Bites</title>
         <meta name="description" content="WIP" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
-
       <Toaster position="bottom-center" />
       <Component {...pageProps} />
     </ClerkProvider>
