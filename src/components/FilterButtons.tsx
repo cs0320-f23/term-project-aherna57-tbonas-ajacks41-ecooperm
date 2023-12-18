@@ -10,11 +10,13 @@ import styles from "../styles/filterbuttons.module.css";
 
 // Props interface for the FilterButtons component
 interface FilterButtonsProps {
-  category: string; // Category label for the filter
-  options: string[]; // Array of available filter options
-  activeCategory: string | null; // Currently active category
-  setActiveCategory: (category: string | null) => void; // Function to set the active category
-  resetKey: number; // Key to trigger a reset of the component
+  category: string;
+  options: string[];
+  activeCategory: string | null;
+  setActiveCategory: (category: string | null) => void;
+  resetKey: number;
+  selectedOption: string | null;
+  setSelectedOption: (option: string | null) => void;
 }
 
 // Interface to represent the selected filter options
@@ -29,10 +31,11 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   activeCategory,
   setActiveCategory,
   resetKey,
+  selectedOption,
+  setSelectedOption,
 }) => {
   // State variables for managing dropdown visibility and selected option
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleButtonToggle = () => {
     if (selectedOption === "All" || selectedOption === "None") {
