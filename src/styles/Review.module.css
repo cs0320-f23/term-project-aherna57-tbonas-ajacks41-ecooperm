@@ -5,24 +5,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  text-align: center;
+  border: 2px solid navy;
 }
+
 .timeAndDeleteContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.titleContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.reviewTitle {
-  font-weight: 700;
-  font-size: 34px;
-  color: #07143B;
-  margin-top: 1.5em;
 }
 
 .reviewRestaurant{
@@ -58,6 +48,8 @@
   max-width: 40vw;
   justify-content: center;
   margin-bottom: 1em;
+  text-align: center;
+  border: 2px solid navy;
 }
 
 
@@ -80,7 +72,6 @@
   text-align: center;
   white-space: nowrap;
   letter-spacing: 0.26px;
-  
 }
 
 .reviewImageContainer {
@@ -98,16 +89,17 @@
   margin: 10px;
   border-radius: 20px;
   border: 2px solid #000000;
-
 }
-
-
-
-
 
 .reviewURestaurant{
   font-weight: 700;
   font-size: 19px;
   color: #07143B;
+}
 
+.divider {
+  height: 1px;
+  background-color: rgb(227, 225, 225); 
+  width: 100%; 
+  margin: 0;
 }

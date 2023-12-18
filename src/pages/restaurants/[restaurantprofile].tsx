@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import styles from "../../styles/RestaurantProfile.module.css";
+import styles from "../../styles/restaurantprofile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
 import ReviewR from "../../components/ReviewR";
@@ -129,11 +129,23 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
-    return <div>Restaurant reviews are loading.</div>;
+    return (
+      <>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.reviewTitle}> REVIEWS ({data.length})</h1>{" "}
+        </div>
+        <div className={styles.noReview}>
+          Restaurant has no reviews. Be the first to review!
+        </div>
+      </>
+    );
 
   return (
     <div className={styles.leftContainer}>
-      {data.map((fullReview : any) => (
+      <div className={styles.titleContainer}>
+        <h1 className={styles.reviewTitle}>REVIEWS ({data.length})</h1>{" "}
+      </div>
+      {data.map((fullReview: any) => (
         <ReviewView {...fullReview} key={fullReview.review.id} />
       ))}
     </div>

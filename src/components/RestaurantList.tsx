@@ -74,7 +74,7 @@ const RestaurantList = (props: FullRestaurant) => {
             {createStars(Math.floor(Math.random() * 5) + 1)}
             <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
               {/* Placeholder */}
-              {((numReviews) => numReviews === 0 ? "Unrated" : `${numReviews} reviews`)(0)}
+              {((numReviews) => numReviews === 0 ? "No Reviews" : `${numReviews} reviews`)(0)}
             </span>
           </div>
           <div className={styles.dollarSigns}>

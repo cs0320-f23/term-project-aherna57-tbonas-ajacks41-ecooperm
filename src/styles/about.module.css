@@ -98,10 +98,24 @@
 .wrapperSuggestions {
   display: flex;
   flex-direction: column;
+
   align-items: flex-start;
   flex-wrap: nowrap;
   flex-shrink: 0;
   gap: 32px;
   position: relative;
   width: 317px;
+}
+
+
+.sugText{
+  flex-shrink: 0;
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+  letter-spacing: 0.46px;
+  text-align: left;
+}
+
+.sugText:hover{
+  background-color: rgb(176, 187, 206);
 }

@@ -52,7 +52,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-
 .restaurantContent {
   display: flex;
   align-items: center;
@@ -61,11 +60,46 @@
   z-index: 1;
 }
 
-
 .restaurantName {
   font-size: 2.5rem;
   font-weight: 600;
   color: #000;
   text-transform: uppercase; 
   letter-spacing: 0.01em; 
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewTitle {
+  font-size: 1.2rem;
+  text-align: center;
+  width: 75%;
+  color: #b8d2ec; 
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #122b44;
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px;
+  margin-left: 160px;
+  
+}
+
+.noReview{
+  font-size: 1rem;
+  text-align: center;
+  width: 75%;
+  color: #000000; 
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px;
+  margin-left: 150px;
 }

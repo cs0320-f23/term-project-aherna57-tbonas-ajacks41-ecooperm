@@ -11,13 +11,7 @@ import styles from "../styles/about.module.css";
 // Functional component definition for the RestaurantAbout component
 const RestaurantAbout = (props: { restaurant: Restaurant }) => {
   const restaurant = props.restaurant;
-  // Extracting restaurant data from props
 
-  // const userItem = localStorage.getItem("user");
-  // const user =
-  //     userItem && userItem !== "undefined"
-  //     ? JSON.parse(userItem)
-  //     : localStorage.clear();
 
   if (!restaurant) {
     return <div>No restaurant data available</div>;
@@ -59,7 +53,7 @@ const RestaurantAbout = (props: { restaurant: Restaurant }) => {
 
       {/* Suggestions Section */}
       <div className={styles.sugContainer}>
-        <span className={styles.headerText}>Similar Restaurants</span>
+        <span className={styles.headerText}>Suggestions</span>
         <hr className={styles.divider} />
         <div className={styles.wrapperSuggestions}>
           <span>restaurant 1</span>
