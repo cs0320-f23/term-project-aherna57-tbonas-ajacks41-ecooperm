@@ -1,3 +1,4 @@
+import { Restaurant } from "@prisma/client";
 import styles from "../styles/about.module.css";
 
 /**The RestaurantAbout component is a React functional component responsible for
@@ -8,7 +9,8 @@ import styles from "../styles/about.module.css";
  * appealing display of restaurant details along with suggestions for users. */
 
 // Functional component definition for the RestaurantAbout component
-const RestaurantAbout = ({ restaurant }: any) => {
+const RestaurantAbout = (props: { restaurant: Restaurant }) => {
+  const restaurant = props.restaurant;
   // Extracting restaurant data from props
 
   // const userItem = localStorage.getItem("user");
@@ -29,7 +31,7 @@ const RestaurantAbout = ({ restaurant }: any) => {
         <hr className={styles.divider} />
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Cuisine Type:</span>
-          <span className={styles.aboutInfoAns}>{restaurant.cuisineType}</span>
+          <span className={styles.aboutInfoAns}>Feature coming soon!</span>
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Phone:</span>
@@ -40,14 +42,18 @@ const RestaurantAbout = ({ restaurant }: any) => {
           <span className={styles.aboutInfoAns}>{restaurant.address}</span>
         </div>
         <div className={styles.aboutRow}>
-          <a
-            href={restaurant.menu}
-            className={styles.aboutInfoAns}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Menu
-          </a>
+          {restaurant.menuUrl !== null ? (
+            <a
+              href={restaurant.menuUrl}
+              className={styles.aboutInfoAns}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Menu
+            </a>
+          ) : (
+            <span className={styles.aboutInfo}> Sorry, no menu found</span>
+          )}
         </div>
       </div>
 
