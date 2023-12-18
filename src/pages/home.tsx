@@ -27,13 +27,20 @@ import Link from "next/link";
 import type { User } from "@clerk/nextjs/dist/types/api";
 import Image from "next/image";
 
-const Feed = () => {
-  const { data, isLoading: restaurantsLoading } =
-    api.restaurants.getAll.useQuery();
-
-  console.log("data", data);
+interface FeedProps {
+  selectedOption: string | null;
+}
+const Feed = (props: FeedProps) => {
+  let selectedOption: string | null = props.selectedOption;
+  // Get all restaurants from the API
+  const { data, isLoading: restaurantsLoading } = !selectedOption
+    ? api.restaurants.getAll.useQuery()
+    : api.restaurants.getByCategory.useQuery({
+        categoryName: selectedOption,
+      });
   // If the data is loading, render a loading message
   if (restaurantsLoading) return <div>Loading...</div>;
+  console.log(props.selectedOption, data);
 
   if (!data) return <div>Something went wrong...</div>;
 
@@ -51,6 +58,7 @@ const Feed = () => {
 
 const Home = () => {
   const router = useRouter();
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const { user, isLoaded: userLoaded, isSignedIn } = useUser();
 
@@ -63,7 +71,8 @@ const Home = () => {
   >(null);
 
   const [resetKey, setResetKey] = useState<number>(0); // Add a state to trigger a reset
-
+  console.log("activeFilterCategory", activeFilterCategory);
+  console.log("selectedOption", selectedOption);
   const handleResetFilters = () => {
     // Reset all filters
     setActiveFilterCategory(null);
@@ -164,6 +173,8 @@ const Home = () => {
                   setActiveCategory={setActiveFilterCategory}
                   resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
                   aria-label={`Filter restaurant list by ${config.category}`}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
                 />
               ))}
               {/* Add the Reset button with styling */}
@@ -182,7 +193,7 @@ const Home = () => {
           </div>
 
           <div className={styles.restaurantBoxContainer}>
-            <Feed />
+            <Feed selectedOption={selectedOption} />
           </div>
         </div>
       )}
