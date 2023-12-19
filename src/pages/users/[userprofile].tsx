@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, use } from "react";
 import styles from "~/src/styles/userprofile.module.css";
 import UserAbout from "~/src/components/UserAbout";
 import { api } from "~/src/utils/api";
@@ -8,27 +8,26 @@ import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { ReviewView } from "~/src/components/ReviewView";
 import { Review } from "@prisma/client";
+import { Clerk } from "@clerk/clerk-sdk-node";
 
 /// intrface placeholder for now --- update when reviews are implemented
 
 const ProfileFeed = (props: { userId: string }) => {
-  // const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
-  //   userId: props.userId,
-  // });
-
-  const data : any[] = [];
-  const isLoading = false;
+  const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
+    userId: props.userId,
+  });
 
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
-  
     return (
       <>
         <div className={styles.titleContainer}>
-          <h1 className={styles.reviewTitle}> MY REVIEWS ({data.length})</h1>{" "}
+          <h1 className={styles.reviewTitle}> MY REVIEWS </h1>{" "}
         </div>
-        <div className={styles.noReview}>User has not reviewed any restaurants.</div>
+        <div className={styles.noReview}>
+          User has not reviewed any restaurants.
+        </div>
       </>
     );
 
@@ -51,7 +50,6 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
     userId,
   });
   const recs = api.recommendations.getTopRestaurants.useQuery().data;
-  
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
