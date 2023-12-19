@@ -12,6 +12,7 @@ type ReviewWithData = RouterOutputs["reviews"]["getAll"][number];
 
 export const ReviewView = (props: ReviewWithData) => {
   const { review, author, restaurant } = props;
+  console.log(review)
 
   const handleDelete = (index: number) => {
     console.log("deleting review", index);
