@@ -6,23 +6,30 @@ import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import React from "react";
 import Link from "next/link";
-
+import type { UserResource } from "@clerk/types/dist/user.d.ts";
+import { api } from "../utils/api";
 
 /// intrface placeholder for now --- update when reviews are implemented
 interface Review {}
 
-/**The UserAbout component is a React functional component that retrieves and displays user information stored in local storage. 
- * It includes sections for the user's bio, email, phone, and location. In case of any parsing errors or missing user data, 
- * the component returns a message indicating the absence of user data. Additionally, the component displays a section for restaurant 
- * suggestions with placeholder names. The overall purpose of the file is to present a structured and visually appealing display of 
+/**The UserAbout component is a React functional component that retrieves and displays user information stored in local storage.
+ * It includes sections for the user's bio, email, phone, and location. In case of any parsing errors or missing user data,
+ * the component returns a message indicating the absence of user data. Additionally, the component displays a section for restaurant
+ * suggestions with placeholder names. The overall purpose of the file is to present a structured and visually appealing display of
  * user information and restaurant suggestions. */
 
 // Functional component definition for the UserAbout component
 
-const UserAbout = ({data, recs}: any) => {  
-  const safeRecs = recs || [];
+interface UserAboutProps {
+  user: UserResource;
+}
 
-
+const UserAbout = (props: UserAboutProps) => {
+  const { user } = props;
+  const safeRecs =
+    api.recommendations.getRecsForUser.useQuery({
+      userId: user.id,
+    }).data ?? [];
   return (
     <div className={styles.abContainer}>
       {/* About Section */}
@@ -35,11 +42,19 @@ const UserAbout = ({data, recs}: any) => {
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Email:</span>
-          <span className={styles.aboutInfoAns}>{data.email}</span>
+          <span className={styles.aboutInfoAns}>
+            {!user.emailAddresses[0]
+              ? "No Email Address"
+              : user.emailAddresses[0].emailAddress}
+          </span>
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Phone:</span>
-          <span className={styles.aboutInfoAns}>No Phone</span>
+          <span className={styles.aboutInfoAns}>
+            {!user.phoneNumbers[0]
+              ? "No Phone Number"
+              : user.phoneNumbers[0].phoneNumber}
+          </span>
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Location:</span>
