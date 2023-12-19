@@ -16,18 +16,20 @@ export const ReviewView = (props: ReviewWithData) => {
   const handleDelete = (index: number) => {
     console.log("deleting review", index);
   };
+  console.log(review.rating)
 
   const renderStars = (rating: number) => {
     let stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
-        <span key={i} className={i <= rating ? "star filled" : "star"}>
+        <span key={i} className={i <= rating ? styles.starFilled : styles.star}>
           &#9733;
         </span>
       );
     }
     return stars;
   };
+
 
   return (
     // <div
@@ -72,6 +74,7 @@ export const ReviewView = (props: ReviewWithData) => {
         <div className={styles.reviewURestaurant}> {author.fullName}</div>
       </Link>
       <div className={styles.ratingContainer}>{renderStars(review.rating)}</div>
+
       <span className={styles.reviewText}>{review.content}</span>
       <hr className={styles.divider} />
 
