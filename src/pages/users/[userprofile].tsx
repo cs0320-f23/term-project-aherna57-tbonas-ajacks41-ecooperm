@@ -8,30 +8,28 @@ import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { ReviewView } from "~/src/components/ReviewView";
 import { Review } from "@prisma/client";
+import { useUser } from "@clerk/nextjs";
 
 /// intrface placeholder for now --- update when reviews are implemented
 
 const ProfileFeed = (props: { userId: string }) => {
-  // const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
-  //   userId: props.userId,
-  // });
-
-  const data : any[] = [];
-  const isLoading = false;
+  const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
+    userId: props.userId,
+  });
 
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
-  
     return (
       <>
         <div className={styles.titleContainer}>
-          <h1 className={styles.reviewTitle}> MY REVIEWS ({data.length})</h1>{" "}
+          <h1 className={styles.reviewTitle}> MY REVIEWS </h1>{" "}
         </div>
-        <div className={styles.noReview}>User has not reviewed any restaurants.</div>
+        <div className={styles.noReview}>
+          User has not reviewed any restaurants.
+        </div>
       </>
     );
-
   return (
     <>
       <div className={styles.titleContainer}>
@@ -46,12 +44,10 @@ const ProfileFeed = (props: { userId: string }) => {
   );
 };
 
-const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
-  const { data } = api.profile.getUserById.useQuery({
-    userId,
-  });
+const UserProfile: NextPage<{ userId: string }> = () => {
+  const { user, isLoaded } = useUser();
+
   const recs = api.recommendations.getTopRestaurants.useQuery().data;
-  
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
@@ -61,7 +57,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   // console.log("data", data);
 
-  if (!data) return <div>404</div>;
+  if (!user) return <div>Could not find user</div>;
 
   const getMembershipStatus = (reviews: Review[]) => {
     const numberOfReviews = reviews.length;
@@ -74,16 +70,16 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   return (
     <div>
-      <MyHome user={data} />
+      <MyHome user={user} />
       <div className={styles.userContainer} style={userBackground}>
         {/* User Top Container */}
         <div className={styles.userContent}>
           <div className={styles.userImage}>
             <>
               <img
-                src={data.profileImageUrl}
+                src={user.imageUrl}
                 alt={`${
-                  data.firstName ?? data.email ?? "unknown"
+                  user.firstName ?? user.emailAddresses ?? "unknown"
                 }'s profile pic`}
                 className={styles.avatar}
               />
@@ -92,7 +88,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
           <div className={styles.userInfo}>
             <span className={styles.userName}>
-              {`${data.firstName} ${data.lastName}`}
+              {`${user.firstName} ${user.lastName}`}
             </span>
             <span className={styles.userClass}>{}</span>
           </div>
@@ -101,12 +97,12 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
       <div className={styles.mainUserContainer}>
         {/* User Reviews */}
         <div className={styles.leftContainer}>
-          <ProfileFeed userId={data.id} />
+          <ProfileFeed userId={user.id} />
         </div>
 
         {/* User About & Suggestions */}
         <div className={styles.rightContainer}>
-          <UserAbout data={data} recs={recs} />
+          <UserAbout data={user} recs={recs} />
         </div>
       </div>
     </div>

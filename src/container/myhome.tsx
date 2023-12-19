@@ -10,14 +10,11 @@ import {
 } from "@clerk/nextjs";
 import styles from "../styles/home.module.css";
 
-const MyHome = ({ user } : any) => {
-    const handleHomeClick = () => {
-      // Navigate to the home page
-      router.push("/home");
-    };
-    console.log("chchch" ,user);
-
-
+const MyHome = ({ user }: any) => {
+  const handleHomeClick = () => {
+    // Navigate to the home page
+    router.push("/home");
+  };
 
   return (
     <h1 className={styles.header}>
