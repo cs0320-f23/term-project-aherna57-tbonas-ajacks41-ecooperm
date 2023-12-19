@@ -54,7 +54,7 @@ model Review {
   rating       Int
   updatedAt    DateTime   @updatedAt
   createdAt    DateTime   @default(now())
-  imageUrl     File?
+  imageUrl     String?
   authorId     String
   content      String     @db.VarChar(255)
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
