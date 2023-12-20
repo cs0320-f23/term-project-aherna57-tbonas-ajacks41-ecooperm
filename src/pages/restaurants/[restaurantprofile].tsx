@@ -2,29 +2,18 @@ import React, { CSSProperties, useState, useEffect } from "react";
 import styles from "../../styles/restaurantprofile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
-import ReviewR from "../../components/ReviewR";
 import { api } from "~/src/utils/api";
 import { toast } from "react-hot-toast";
-import { Restaurant } from "@prisma/client";
-
 import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { LoadingPage, LoadingSpinner } from "~/src/components/loading";
 import { ReviewView } from "~/src/components/ReviewView";
 import MyHome from "~/src/container/myhome";
-import Cookies from "js-cookie";
 
 interface input {
   restaurantId: string;
   rating: number;
   image: File | null;
-}
-
-interface UserInfo {
-  id: any;
-  name: any;
-  profileImageUrl: any;
 }
 
 const CreatePostWizard = (props: input) => {
@@ -56,6 +45,7 @@ const CreatePostWizard = (props: input) => {
       setSelectedImage("");
       //Updating feed when post gets posted.
       void ctx.reviews.getAll.invalidate();
+      //window.location.reload();
     },
 
     onError: (e) => {
@@ -167,13 +157,14 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
     return (
       <>
         <div className={styles.titleContainer}>
-          <h1 className={styles.reviewTitle}> REVIEWS ({data.length})</h1>{" "}
+          <h1 className={styles.reviewTitle}> REVIEWS ({data?.length})</h1>{" "}
         </div>
         <div className={styles.noReview}>
           Restaurant has no reviews. Be the first to review!
         </div>
       </>
     );
+
 
   return (
     <div className={styles.leftContainer}>
@@ -194,7 +185,6 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
   const recs = api.recommendations.getRandomRestaurants.useQuery().data;
   const [isModalOpen, setModalOpen] = useState(false);
 
-
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
@@ -204,16 +194,10 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
   const restBackground: CSSProperties = {
     backgroundImage: data ? `url(${data.imageUrl})` : "",
   };
-  const user = JSON.parse(Cookies.get("user") || "null");
-  const userInfo: UserInfo = {
-    id: user?.id,
-    name: user?.fullName,
-    profileImageUrl: user?.imageUrl,
-  };
 
   return (
     <div>
-      <MyHome user={userInfo} />
+      <MyHome />
       <div className={styles.restaurantContainer} style={restBackground}>
         {/* User Top Container */}
         <div className={styles.restaurantContent}>

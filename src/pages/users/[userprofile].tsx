@@ -6,7 +6,7 @@ import { LoadingPage } from "../../components/loading";
 import MyHome from "~/src/container/myhome";
 import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
-import { ReviewView } from "~/src/components/ReviewView";
+import { ReviewViewUser } from "~/src/components/ReviewViewUser";
 import { Review } from "@prisma/client";
 import { Clerk } from "@clerk/clerk-sdk-node";
 
@@ -38,7 +38,7 @@ const ProfileFeed = (props: { userId: string }) => {
       </div>
       <div className={styles.leftContainer}>
         {data.map((fullReview: any) => (
-          <ReviewView {...fullReview} key={fullReview.review.id} />
+          <ReviewViewUser {...fullReview} key={fullReview.review.id} />
         ))}
       </div>
     </>
@@ -54,10 +54,6 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
   };
-
-  //const { userId } = useParams();
-
-  // console.log("data", data);
 
   if (!data) return <div>404</div>;
 

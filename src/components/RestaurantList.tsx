@@ -19,7 +19,6 @@ import Link from "next/link";
 type FullRestaurant = RouterOutputs["restaurants"]["getAll"][number];
 
 const RestaurantList = (props: FullRestaurant) => {
-  console.log(props)
   // Sorting the restaurants alphabetically by name
   // const sortedRestaurants = [...restaurants].sort((a, b) =>
   //   a.name.localeCompare(b.name)
