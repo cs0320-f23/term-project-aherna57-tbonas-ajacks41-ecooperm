@@ -10,7 +10,13 @@ Estimated completion time: 30 hours
 
 ### 1. Functionality/Design
 
-Our program is divided into two separate packages, our frontend and our backend. 
+Our program is divided into three packages. The public package contains all of the photos and videos needed for our website. The prisma package contains the data, schema and seed files. Our src package contains all the subfolders for our frontend components. 
+
+The data.mjs file within the prisma package is where all of the restaurant data has been manually inputted by our team. Here we export the restaurants, and the restaurant categories and use this data in teh front end to render all of the relevant information about each place such as address, menu, cuisine etc. 
+
+Schema.prisma file is used for defining the data model of a database and generating a Prisma client for interacting with that database. Within it, we define a generator named "client" using the Prisma JavaScript client provider. The Prisma client is a set of auto-generated functions that allow you to interact with your database using a type-safe API. The schema defines several models representing different entities in the database, such as Category, Restaurant, RestaurantCategory, Review, and CategoryToRestaurant. Each model has properties (fields) that define the structure of the corresponding database table. The schema includes an index on the authorId field in the Review model and defines a unique constraint on the combination of fields A and B in the CategoryToRestaurant model. The file also contains a pragma section which defines the name of the database table to which the CategoryToRestaurant model is mapped.
+
+The seed.mjs file acts as a script for loading seed data into a database using Prisma. This includes  an asynchronous function named load that will perform the loading of seed data into the database. We have a section that deletes existing data in the database tables for restaurantCategory, review, category, and restaurant. This ensures a clean slate before loading new data. Inside a try-catch block, the script attempts to load new data into the database. If an error occurs, it is caught and logged. If there are no errors, we load new seed data into the database, and establishes relationships between restaurants and categories.  
 
 For our backend implementation, we used....
 
