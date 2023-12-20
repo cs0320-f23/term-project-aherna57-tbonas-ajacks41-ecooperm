@@ -2,22 +2,33 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import router from "next/router";
-import {
-  SignInButton,
-  SignOutButton,
-  UserButton,
-  useUser,
-} from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import styles from "../styles/home.module.css";
-
-const MyHome = ({ user } : any) => {
-    const handleHomeClick = () => {
-      // Navigate to the home page
-      router.push("/home");
-    };
-    console.log("chchch" ,user);
+import Cookies from "js-cookie";
 
 
+interface UserInfo {
+  id: any;
+  name: any;
+  profileImageUrl: any;
+}
+
+const MyHome = () => {
+  const handleHomeClick = () => {
+    // Navigate to the home page
+    router.push("/home");
+  };
+
+  const handleSignOut = () => {
+    router.push("/");
+  }
+
+  const userInfo = JSON.parse(Cookies.get("user") || "null");
+  const user: UserInfo = {
+    id: userInfo?.id,
+    name: userInfo?.fullName,
+    profileImageUrl: userInfo?.imageUrl,
+  };
 
   return (
     <h1 className={styles.header}>
@@ -33,7 +44,7 @@ const MyHome = ({ user } : any) => {
         <Link href={`/users/${user.id}`}>
           <Image
             src={user.profileImageUrl}
-            alt={`@${user.firstName}'s profile picture`}
+            alt={`@${user.name}'s profile picture`}
             className="h-14 w-14 rounded-full"
             width={56}
             height={56}
@@ -41,7 +52,7 @@ const MyHome = ({ user } : any) => {
         </Link>
         <div className={styles.dropdownMenu}>
           <SignOutButton>
-            <button className={styles.dropbtn}>Sign out</button>
+            <button className={styles.dropbtn} onClick={handleSignOut}>Sign out</button>
           </SignOutButton>
         </div>
       </div>

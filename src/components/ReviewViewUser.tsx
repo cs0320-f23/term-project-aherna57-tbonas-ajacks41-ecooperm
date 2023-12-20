@@ -4,14 +4,20 @@ import styles from "../styles/Review.module.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
+import { auth } from "@clerk/nextjs";
+import { api } from "~/src/utils/api";
 
 
 dayjs.extend(relativeTime);
 
 type ReviewWithData = RouterOutputs["reviews"]["getAll"][number];
 
-export const ReviewView = (props: ReviewWithData) => {
-  const { review, author, restaurant } = props;
+export const ReviewViewUser = (props: ReviewWithData) => {
+  const { review, author } = props;
+  const { data: restaurantdata } = api.restaurants.getById.useQuery({
+    id: review.restaurantId,
+  });
+
 
   const handleDelete = (index: number) => {
     console.log("deleting review", index);
@@ -28,7 +34,6 @@ export const ReviewView = (props: ReviewWithData) => {
     }
     return stars;
   };
-
 
   return (
     // <div
@@ -69,8 +74,8 @@ export const ReviewView = (props: ReviewWithData) => {
       </span>
 
       <hr className={styles.divider} />
-      <Link href={`/users/${author.id}`}>
-        <div className={styles.reviewURestaurant}> {author.fullName}</div>
+      <Link href={`/restaurants/${restaurantdata?.id}`}>
+        <div className={styles.reviewURestaurant}> {restaurantdata?.name}</div>
       </Link>
       <div className={styles.ratingContainer}>{renderStars(review.rating)}</div>
 
