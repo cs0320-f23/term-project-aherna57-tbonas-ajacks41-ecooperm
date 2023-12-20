@@ -244,10 +244,7 @@ export const reviewsRouter = createTRPCRouter({
           orderBy: [{ createdAt: "desc" }],
         })
         .then(addUserDataToReviews)
-        .then((data) => {
-          addDataToReviews(data.map((item) => item.review));
-          return data;
-        })
+        .then((item) => addDataToReviews)
     ),
 
   getReviewsByRestaurantId: publicProcedure
