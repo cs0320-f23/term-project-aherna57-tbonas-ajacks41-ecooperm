@@ -1,4 +1,3 @@
-<<<<<<< HEAD:backend/tests/api/routers/TestRecs.test.ts
 //@ts-nocheck
 import { PrismaClient, Restaurant } from "@prisma/client";
 import { appRouter } from "~/api/root";
@@ -14,19 +13,10 @@ afterEach(async () => {
   await prisma.$disconnect();
 });
 
-=======
-import { PrismaClient } from "@prisma/client";
-import { appRouter } from "~/src/server/api/root";
-import assert from "assert";
-
-
-const prisma = new PrismaClient();
->>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/server/tests/api/routers/TestRecs.test.ts
 test("add a new function to TestCommandToFunction", () => {
   console.log("hello world");
 });
 
-<<<<<<< HEAD:backend/tests/api/routers/TestRecs.test.ts
 test("get boba shops from database", async () => {
   console.log("got to here");
   const restaurants = await appRouter.restaurants.getByCategory({
@@ -54,5 +44,3 @@ test("get boba shops from database", async () => {
     );
   }
 });
-=======
->>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/server/tests/api/routers/TestRecs.test.ts

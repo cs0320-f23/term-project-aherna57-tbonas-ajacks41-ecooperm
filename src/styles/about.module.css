@@ -28,7 +28,6 @@
   gap: 0.35em;
 }
 
-<<<<<<< HEAD:frontend/src/styles/UserAbout.css
 .sug-container {
   display: flex;
   flex-direction: column;
@@ -63,9 +62,6 @@
 }
 
 .wrapper-about {
-=======
-.sugContainer {
->>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/styles/about.module.css
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -93,7 +89,6 @@
   flex-shrink: 0;
   position: relative;
   color: rgb(7, 20, 59);
-<<<<<<< HEAD:frontend/src/styles/UserAbout.css
   letter-spacing: 0.32px;
   text-decoration: underline;
 }
@@ -107,14 +102,6 @@
 }
 
 .wrapper-suggestions {
-=======
-  font-size: 23px;
-  font-weight: 700;
-  letter-spacing: 0.46px;
-}
-
-.wrapperAbout {
->>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/styles/about.module.css
   display: flex;
   flex-direction: column;
   align-items: flex-start;
