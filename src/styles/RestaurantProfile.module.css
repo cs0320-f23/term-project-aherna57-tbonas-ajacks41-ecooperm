@@ -131,3 +131,79 @@
   margin: 25px;
   margin-left: 150px;
 }
+
+/* Styling for the main post container */
+.postContainer {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+
+/* Styling for the explanatory labels */
+.label {
+  color: #001f3f; /* Navy color */
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Styling for the textboxes */
+.textbox {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Styling for the close button */
+.closeButton {
+  width: 30px;
+  height: 30px; 
+  font-size: 14px;
+  color: #001f3f;
+  background-color: #001f3f; /* Navy color */
+  border: none;
+  border-radius: 50%; /* Make it a rounded square */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Styling for the user profile icon */
+.userProfileIcon {
+  margin-right: 0; /* Remove margin-right for alignment */
+  order: 1; /* Move it to the beginning of the flex container */
+}
+
+/* Additional styling for the post container */
+.postContainer {
+  position: relative;
+}
+
+/* Styling for the post button */
+.postButton {
+  padding: 10px;
+  background-color: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Add some spacing between the textboxes and the button */
+}
+
+/* Styling for explanatory labels */
+.label {
+  color: #001f3f;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-top: 10px; /* Add some spacing between the textboxes and the labels */
+}

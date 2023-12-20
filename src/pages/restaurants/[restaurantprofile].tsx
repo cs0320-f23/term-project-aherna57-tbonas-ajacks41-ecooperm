@@ -10,44 +10,33 @@ import { LoadingPage, LoadingSpinner } from "~/src/components/loading";
 import { ReviewView } from "~/src/components/ReviewView";
 import MyHome from "~/src/container/myhome";
 
-interface input {
+interface Input {
   restaurantId: string;
   rating: number;
   image: File | null;
 }
 
-const CreatePostWizard = (props: input) => {
-  //Get user info
+const CreatePostWizard = (props: Input) => {
+  // Get user info
   const { user } = useUser();
 
   const [input, setInput] = useState("");
   const [rating, setRating] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
 
-
-  //When we post, we wanted to update the post on the screen. To do this, we
-  //grab the context of the whole TRPC cache through the api context call.
   const ctx = api.useContext();
-  const handleImageChange = (event : any) => {
-    console.log("imagege", event.target.files[0]);
-    console.log("tyeeppe", event.target.files[0].type);
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
 
-    console.log("immi", URL.createObjectURL(event.target.files[0]));
-    
+  const handleImageChange = (event: any) => {
+    setSelectedImage(URL.createObjectURL(event.target.files[0]));
   };
 
   const { mutate, isLoading: isPosting } = api.reviews.create.useMutation({
-    //When a user hits post, we clear the text box
     onSuccess: () => {
       setInput("");
       setRating(1);
       setSelectedImage("");
-      //Updating feed when post gets posted.
       void ctx.reviews.getAll.invalidate();
-      //window.location.reload();
     },
-
     onError: (e) => {
       const errorMessage = e.data?.zodError?.fieldErrors.content;
       if (errorMessage && errorMessage[0]) {
@@ -60,35 +49,36 @@ const CreatePostWizard = (props: input) => {
     },
   });
 
-  //If no user, return null for now
   if (!user) return null;
 
-  //By this point we should have a user because we checked above
   return (
-    <div className="flex w-full gap-4">
-      <UserButton
-        appearance={{
-          elements: {
-            userButtonAvatarBox: {
-              width: 56,
-              height: 56,
+    <div className={styles.postContainer}>
+      <div className={styles.userProfileIcon}>
+        <UserButton
+          appearance={{
+            elements: {
+              userButtonAvatarBox: {
+                width: 45,
+                height: 45,
+              },
             },
-          },
-        }}
-      />
-      <div className="flex flex-col w-screen">
+          }}
+        />
+      </div>
+      <div className={styles.userProfileIcon}>
+        <label className={styles.label}>Star Rating (1/5):</label>
         <input
           type="number"
           min="1"
           max="5"
-          w-10
           value={rating}
           onChange={(e) => setRating(Number(e.target.value))}
-          className="bg-transparent outline-none w-20"
+          className={styles.textbox}
         />
+        <label className={styles.label}>Comment:</label>
         <input
           placeholder="Let us know what you think!"
-          className="grow bg-transparent outline-none w-full"
+          className={styles.textbox}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
@@ -104,12 +94,12 @@ const CreatePostWizard = (props: input) => {
               }
             }
           }}
-          // Wanna make sure input is disabled while a post is occuring
           disabled={isPosting}
         />
         <div className={styles.inputImage}>
+          <label className={styles.label}>Photo:</label>
           <input
-            className={styles.inputImage}
+            className={styles.textbox}
             type="file"
             onChange={handleImageChange}
           />
@@ -132,6 +122,7 @@ const CreatePostWizard = (props: input) => {
             })
           }
           disabled={isPosting}
+          className={styles.postButton}
         >
           Post
         </button>
@@ -165,7 +156,6 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
       </>
     );
 
-
   return (
     <div className={styles.leftContainer}>
       <div className={styles.titleContainer}>
@@ -188,7 +178,6 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
-
   if (!data) return <div>404</div>;
 
   const restBackground: CSSProperties = {
@@ -199,7 +188,6 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
     <div>
       <MyHome />
       <div className={styles.restaurantContainer} style={restBackground}>
-        {/* User Top Container */}
         <div className={styles.restaurantContent}>
           <span className={styles.restaurantName}>{data.name}</span>
         </div>
@@ -210,7 +198,9 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
         {isModalOpen && (
           <div className={styles.modalBackground}>
             <div className={styles.modal}>
-              <button onClick={closeModal}>Close</button>
+              <button onClick={closeModal} className={styles.closeButton}>
+                Close
+              </button>
 
               <CreatePostWizard
                 restaurantId={data.id}
