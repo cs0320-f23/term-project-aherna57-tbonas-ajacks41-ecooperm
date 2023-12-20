@@ -1,0 +1,195 @@
+.abContainer {
+  overflow: hidden;
+}
+
+.abContainer,
+.abContainer * {
+  box-sizing: border-box;
+}
+
+.abContainer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 40px;
+  position: relative;
+  width: 383px;
+  margin-left: auto;
+  margin-right: 5em;
+  margin-top: 1em;
+}
+
+.aboutRow {
+  display: flex; 
+  align-items: center; 
+  gap: 0.35em;
+}
+
+<<<<<<< HEAD:frontend/src/styles/UserAbout.css
+.sug-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 24px;
+  position: relative;
+  width: 384px;
+  padding: 24px 24px 24px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(21px);
+  border: 3px solid navy;
+  margin-top: 20px;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgb(227, 225, 225); 
+  width: 100%; 
+  margin: 0;
+}
+
+.header-text {
+  flex-shrink: 0;
+  position: relative;
+  color: rgb(7, 20, 59);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.46px;
+}
+
+.wrapper-about {
+=======
+.sugContainer {
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/styles/about.module.css
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 24px;
+  position: relative;
+  width: 384px;
+  padding: 24px 24px 24px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(21px);
+  border: 3px solid navy;
+  margin-top: 20px;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgb(227, 225, 225); 
+  width: 100%; 
+  margin: 0;
+}
+
+.headerText {
+  flex-shrink: 0;
+  position: relative;
+  color: rgb(7, 20, 59);
+<<<<<<< HEAD:frontend/src/styles/UserAbout.css
+  letter-spacing: 0.32px;
+  text-decoration: underline;
+}
+
+.about-info-ans {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  color: rgb(7, 20, 59);
+  letter-spacing: 0.32px;
+}
+
+.wrapper-suggestions {
+=======
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.46px;
+}
+
+.wrapperAbout {
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/styles/about.module.css
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 24px;
+  position: relative;
+  width: 384px;
+  padding: 24px 24px 24px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(21px);
+  border: 3px solid navy;
+  margin-top: 20px;
+}
+
+.aboutInfo {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  color: rgb(7, 20, 59);
+  letter-spacing: 0.32px;
+  text-decoration: underline;
+}
+
+.aboutInfoAns {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  color: rgb(7, 20, 59);
+  letter-spacing: 0.32px;
+}
+
+.wrapperSuggestions {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 32px;
+  position: relative;
+  width: 317px;
+}
+
+
+.sugText{
+  flex-shrink: 0;
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+  letter-spacing: 0.46px;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.sugText:hover{
+  background-color: rgb(176, 187, 206);  
+  padding-right: 1rem;
+}
+
+.aboutInfoAnsLink{
+  font-weight: 600;
+  text-align: left;
+  color: rgb(7, 20, 59);
+  letter-spacing: 0.32px;
+}
+
+
+.restaurantImage{
+  border-radius: 24px;
+  border: 1px solid rgb(0, 0, 0);
+
+}
+
+.suggestionItem{
+  display: flex;
+  flex-direction: row;
+}

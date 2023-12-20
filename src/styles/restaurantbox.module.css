@@ -1,0 +1,116 @@
+/* Container for the restaurant boxes */
+.restaurantBoxContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 98%;
+  margin: 0 auto;
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+/* Restaurant box styling */
+.restaurantBox {
+  max-width: 100%;
+  max-height: 20rem;
+  margin: 10px;
+  border: 2px solid #001f3f; /* Navy color */
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: rgb(157, 187, 226);
+  overflow: hidden;
+  display: flex;
+}
+
+/* Adjust the width of the restaurant box for larger screens */
+@media (min-width: 768px) {
+  .restaurantBox {
+    width: 80%;
+  }
+}
+
+/* Adjust the width of the restaurant box for smaller screens */
+@media (max-width: 767px) {
+  .restaurantBox {
+    width: 100%;
+  }
+}
+
+.imageContainer {
+  width: 50%;
+  overflow: hidden;
+  border-right: 2px solid #001f3f; /* Navy color */
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+
+}
+
+.infoContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Added width for the text container */
+}
+
+.titleRest {
+  font-size: 1.2rem;
+  width: 75%;
+  color: #f0f8ff;
+  text-decoration: none;
+  font-weight: bold;
+  align-items: center;
+  border: 2px solid #122b44; /* Navy color */
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.cuisine {
+  font-size: 1.5 rem;
+  margin-bottom: 7px;
+  color: #001f3f; /* Navy color */
+}
+
+/* Add this CSS to center stars above the dollar signs */
+.ratings {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 7px;
+}
+
+.ratings span {
+  margin-right: 3px;
+}
+
+/* Add this CSS for the reviews in a smaller font on the right side */
+.ratings span:last-child {
+  margin-left: auto;
+  font-size: 1.3 rem;
+}
+
+/* Add this CSS for the dollar signs */
+.dollarSigns {
+  display: flex;
+  align-items: center;
+  margin-top: 5px; 
+  margin-bottom: 5px;
+}
+
+.dollarSigns span {
+  margin-right: 3px;
+  font-size: 1 rem;
+}
+
+
+.address {
+  font-size: 0.9rem;
+  color: #122b44;
+}
