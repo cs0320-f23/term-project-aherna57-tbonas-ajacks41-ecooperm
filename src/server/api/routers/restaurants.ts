@@ -22,7 +22,11 @@ export const restaurantsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const restaurants = await ctx.prisma.restaurant.findMany({
       take: 100,
+<<<<<<< HEAD:backend/api/routers/restaurants.ts
+      orderBy: [{ rating: "desc" }],
+=======
       orderBy: [{ name: "asc" }],
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/server/api/routers/restaurants.ts
       include: {
         RestaurantCategory: true,
       },
@@ -61,9 +65,12 @@ export const restaurantsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const restaurants = await ctx.prisma.restaurant.findMany({
         where: { rating: { gte: input.rating } },
+<<<<<<< HEAD:backend/api/routers/restaurants.ts
+=======
         include: {
           RestaurantCategory: true,
         },
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/server/api/routers/restaurants.ts
       });
 
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
@@ -99,6 +106,8 @@ export const restaurantsRouter = createTRPCRouter({
         include: {
           RestaurantCategory: true,
         },
+<<<<<<< HEAD:backend/api/routers/restaurants.ts
+=======
       });
 
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
@@ -114,6 +123,7 @@ export const restaurantsRouter = createTRPCRouter({
         include: {
           RestaurantCategory: true,
         },
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:src/server/api/routers/restaurants.ts
       });
 
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });

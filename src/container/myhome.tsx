@@ -1,3 +1,4 @@
+// Importing necessary dependencies and styles
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,7 +6,6 @@ import router from "next/router";
 import { SignOutButton } from "@clerk/nextjs";
 import styles from "../styles/home.module.css";
 import Cookies from "js-cookie";
-
 
 interface UserInfo {
   id: any;
@@ -30,17 +30,22 @@ const MyHome = () => {
     profileImageUrl: userInfo?.imageUrl,
   };
 
+  // Main component rendering the home page header
   return (
     <h1 className={styles.header}>
+      {/* Title and logo, clickable to navigate to the home page */}
       <div
         className={styles.title}
         onClick={handleHomeClick}
         aria-label="Navigate to Home Page"
       >
-        Bear <img className={styles.iconTop} src="/logo.png" alt="Logo"></img>{" "}
+        Bear <img className={styles.iconTop} src="/logo.png" alt="Logo" />
         Bites
       </div>
+
+      {/* User information and profile image */}
       <div className={styles.userIm}>
+        {/* Link to the user's profile page */}
         <Link href={`/users/${user.id}`}>
           <Image
             src={user.profileImageUrl}
@@ -50,6 +55,8 @@ const MyHome = () => {
             height={56}
           />
         </Link>
+
+        {/* Dropdown menu with a sign-out button */}
         <div className={styles.dropdownMenu}>
           <SignOutButton>
             <button className={styles.dropbtn} onClick={handleSignOut}>Sign out</button>
@@ -60,4 +67,5 @@ const MyHome = () => {
   );
 };
 
+// Exporting the MyHome component as the default export
 export default MyHome;

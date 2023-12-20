@@ -15,7 +15,29 @@
   justify-content: center;
 }
 
-.reviewRestaurant{
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-title {
+  font-size: 1.2rem;
+  text-align: center;
+  width: 75%;
+  color: #b8d2ec; 
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #122b44; /* Navy color */
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 25px;
+  margin-left: 160px;
+  
+}
+
+.review-restaurant{
   font-weight: 700;
   font-size: 24px;
   color: #07143B;

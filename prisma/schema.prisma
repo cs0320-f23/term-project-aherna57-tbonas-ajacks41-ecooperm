@@ -1,8 +1,18 @@
+<<<<<<< HEAD:frontend/prisma/schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+=======
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
+<<<<<<< HEAD:frontend/prisma/schema.prisma
+  provider = "postgresql"
+  url      = env("mysql://0zob4eucwgke1mufthjn:************@aws.connect.psdb.cloud/bearbites?sslaccept=strict")
+=======
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
@@ -13,7 +23,6 @@ model Category {
   name               String
   updatedAt          DateTime             @updatedAt
   createdAt          DateTime             @default(now())
-  restaurants        Restaurant[]
   RestaurantCategory RestaurantCategory[]
 }
 
@@ -33,7 +42,6 @@ model Restaurant {
   phone              String?
   priceCategory      Int
   rating             Float?
-  categories         Category[]
   RestaurantCategory RestaurantCategory[]
   Review             Review[]
 }
@@ -69,4 +77,5 @@ model CategoryToRestaurant {
   @@unique([A, B], map: "_CategoryToRestaurant_AB_unique")
   @@index([B], map: "_CategoryToRestaurant_B_index")
   @@map("_CategoryToRestaurant")
+>>>>>>> 9652e22eb720c1a7d37553064613ae9359524aa6:prisma/schema.prisma
 }

@@ -1,5 +1,11 @@
 /******************* HOME PAGE *******************/
 
+.dropbtn{
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
 /* Header container styling */
 .headerContainer {
   background-color: #14487b; /* Navy color */
@@ -33,6 +39,36 @@
   cursor: pointer;
 }
 
+.userIm {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  display: block; 
+  position: absolute;
+  right: -170px; 
+  top: 50%;
+  min-width: 160px;
+  z-index: 1000;
+  transition: right 0.5s ease; 
+}
+
+.userIm:hover .dropdown-menu {
+    right: 0; 
+}
+
+.dropdown-menu a {
+  color: black;
+  font-size: 16px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #ddd;
+}
+
 /* Icon styling */
 .iconTop {
   width: 20%;
@@ -47,9 +83,7 @@
   position: relative;
   display: inline-block;
   transition: transform 0.2s ease-in-out;
-  cursor: pointer;
   border: 5px #000000;
-  z-index: 1000;
 }
 
 .userIm img {

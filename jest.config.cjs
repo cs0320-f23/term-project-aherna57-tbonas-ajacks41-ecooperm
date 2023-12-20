@@ -6,7 +6,12 @@
 module.exports = {
   preset: "ts-jest/presets/js-with-ts",
   testEnvironment: "node",
-  transform: { "^.+\\.mjs$": "ts-jest" },
+  transform: { "^.+\\.m?js$": "babel-jest", "^.+\\.ts?$": "ts-jest" },
+  transformIgnorePatterns: ["node_modules/(?!(superjson)/)"],
   testMatch: ["<rootDir>/tests/**/*.test.ts"],
+  moduleNameMapper: {
+    "^~/(.*)$": "<rootDir>/$1",
+  },
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node", "cjs"],
 };

@@ -128,8 +128,8 @@ const Home = () => {
                   setActiveCategory={setActiveFilterCategory}
                   resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
                   aria-label={`Filter restaurant list by ${config.category}`}
-                  selectedOption={selectedOption}
-                  setSelectedOption={setSelectedOption}
+                  //selectedOption={selectedOption}
+                  //setSelectedOption={setSelectedOption}
                 />
               ))}
               {/* Add the Reset button with styling */}

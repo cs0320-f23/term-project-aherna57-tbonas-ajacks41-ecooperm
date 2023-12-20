@@ -7,7 +7,7 @@
   justify-content: center;
   max-width: 95%;
   margin: 0 auto;
-  background-color: #c7def3; /* Light blue background */
+  background-color: #f0f8ff; /* Light blue background */
 }
 
 /* Restaurant box styling */
@@ -18,7 +18,7 @@
   border: 2px solid #001f3f; /* Navy color */
   border-radius: 10px;
   transition: box-shadow 0.3s ease-in-out;
-  background-color: rgb(94, 145, 217);
+  background-color: rgb(157, 187, 226);
   overflow: hidden;
   display: flex;
 }
@@ -61,12 +61,12 @@
 .titleRest {
   font-size: 1.2rem;
   width: 75%;
-  color: #122b44; /* Navy color */
+  color: #f0f8ff; /* Navy color */
   text-decoration: none;
   font-weight: bold;
   align-items: center;
   border: 2px solid #122b44; /* Navy color */
-  background-color: #95b5d5;
+  background-color: #003366;
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 5px;
@@ -75,8 +75,9 @@
 }
 
 .cuisine {
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 7px;
   color: #001f3f; /* Navy color */
 }
 
@@ -85,7 +86,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 
 .ratings span {
@@ -95,18 +96,19 @@
 /* Add this CSS for the reviews in a smaller font on the right side */
 .ratings span:last-child {
   margin-left: auto;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
 }
 
 .dollar-signs {
   display: flex;
   align-items: center;
   margin-top: 5px; 
+  margin-bottom: 5px;
 }
 
 .dollar-signs span {
   margin-right: 3px;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 
