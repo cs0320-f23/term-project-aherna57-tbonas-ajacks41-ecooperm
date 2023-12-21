@@ -181,6 +181,7 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
     id,
   });
   const recs = api.recommendations.getRandomRestaurants.useQuery().data;
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);

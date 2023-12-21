@@ -5,7 +5,7 @@ import {
   decodedMockResponse,
   userMockSchema,
 } from "../mockedUser/user1Mock";
-import styles from "../styles/login.module.css";
+import styles from "../styles/Login.module.css";
 
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";

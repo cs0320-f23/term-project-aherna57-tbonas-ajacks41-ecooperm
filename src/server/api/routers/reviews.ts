@@ -122,7 +122,7 @@ const addDataToReviews = async (reviews: Review[]) => {
     },
   });
 
-  console.log(restaurants, "restaurants");
+
 
   return reviews.map((review) => {
     const author = users.find((user) => user.id == review.authorId);
@@ -130,14 +130,14 @@ const addDataToReviews = async (reviews: Review[]) => {
 
     for (let i = 0; i < restaurants.length; i++) {
       if (restaurants[i].id == review.restaurantId) {
-        console.log("restaurant found");
+       
         restaurant = restaurants[i];
-        console.log("restaurant: " + restaurant.id);
+   
         break;
       }
     }
 
-    console.log("restaurant undefined: " + restaurant);
+  
 
     if (!author) {
       throw new TRPCError({
