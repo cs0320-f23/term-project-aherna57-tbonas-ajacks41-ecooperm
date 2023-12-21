@@ -19,6 +19,12 @@ import Link from "next/link";
 type FullRestaurant = RouterOutputs["restaurants"]["getAll"][number];
 
 const RestaurantList = (props: FullRestaurant) => {
+  let data2;
+  if (props) {
+    ({ data: data2 } = api.restaurants.getRestaurantCategory.useQuery({
+      restaurantid: props.id,
+    }));
+  }
   // Sorting the restaurants alphabetically by name
   // const sortedRestaurants = [...restaurants].sort((a, b) =>
   //   a.name.localeCompare(b.name)
@@ -67,13 +73,14 @@ const RestaurantList = (props: FullRestaurant) => {
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.titleRest}>{props.name}</div>
-          <p className={styles.cuisine}>{props.cuisineType} Cuisine Type Here</p>
+          <p className={styles.cuisine}>{data2?.[0]?.name}</p>
           <div className={styles.ratings}>
             {/* Placeholder */}
             {createStars(5)}
             <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
               {/* Placeholder */}
-              {((numReviews) => numReviews === 0 ? "No Reviews" : `${numReviews} reviews`)(0)}
+              {((numReviews) =>
+                numReviews === 0 ? "No Reviews" : `${numReviews} reviews`)(0)}
             </span>
           </div>
           <div className={styles.dollarSigns}>

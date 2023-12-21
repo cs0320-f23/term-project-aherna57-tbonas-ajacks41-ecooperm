@@ -2,6 +2,8 @@ import { Restaurant } from "@prisma/client";
 import styles from "../styles/about.module.css";
 import React from "react";
 import Link from "next/link";
+import { api } from "~/src/utils/api";
+
 
 /**The RestaurantAbout component is a React functional component responsible for
  * displaying information about a restaurant, including details such as cuisine type, phone number, and location.
@@ -21,6 +23,12 @@ const RestaurantAbout: React.FC<RestaurantAboutProps> = ({ props, recs }) => {
   const restaurant = props;
   const safeRecs = recs || [];
 
+  let data2;
+  if (restaurant) {
+    ({ data: data2 } = api.restaurants.getRestaurantCategory.useQuery({
+      restaurantid: restaurant.id,
+    }));
+  }
   if (!restaurant) {
     return <div>No restaurant data available</div>;
   }
@@ -34,7 +42,7 @@ const RestaurantAbout: React.FC<RestaurantAboutProps> = ({ props, recs }) => {
         <hr className={styles.divider} />
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Cuisine Type:</span>
-          <span className={styles.aboutInfoAns}>Feature coming soon!</span>
+          <span className={styles.aboutInfoAns}>{data2?.[0]?.name}</span>
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Phone:</span>
@@ -75,24 +83,24 @@ const RestaurantAbout: React.FC<RestaurantAboutProps> = ({ props, recs }) => {
         <span className={styles.headerText}>Suggestions</span>
         <hr className={styles.divider} />
         <div className={styles.wrapperSuggestions}>
-      {safeRecs.map((rec, index) => (
-        <React.Fragment key={index}>
-          <div className={styles.suggestionItem}>
-            <img
-              src={rec.imageUrl} 
-              alt={rec.name}
-              width={50} 
-              height={50}
-              className={styles.restaurantImage}
-            />
-            <Link href={`/restaurants/${rec.id}`}>
-              <div className={styles.sugText}>{rec.name}</div>
-            </Link>
-          </div>
-          <hr className={styles.divider} />
-        </React.Fragment>
-      ))}
-    </div>
+          {safeRecs.map((rec, index) => (
+            <React.Fragment key={index}>
+              <div className={styles.suggestionItem}>
+                <img
+                  src={rec.imageUrl}
+                  alt={rec.name}
+                  width={50}
+                  height={50}
+                  className={styles.restaurantImage}
+                />
+                <Link href={`/restaurants/${rec.id}`}>
+                  <div className={styles.sugText}>{rec.name}</div>
+                </Link>
+              </div>
+              <hr className={styles.divider} />
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );

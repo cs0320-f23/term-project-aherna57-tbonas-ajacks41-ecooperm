@@ -150,7 +150,6 @@ const RestaurantFeed = (props: { restaurantId: string }) => {
   const { data, isLoading } = api.reviews.getReviewsByRestaurantId.useQuery({
     restaurantId: props.restaurantId,
   });
-
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
