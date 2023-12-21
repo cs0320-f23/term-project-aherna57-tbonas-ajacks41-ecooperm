@@ -68,7 +68,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   return (
     <div>
-      <MyHome user={data} />
+      <MyHome />
       <div className={styles.userContainer} style={userBackground}>
         {/* User Top Container */}
         <div className={styles.userContent}>
@@ -100,7 +100,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
         {/* User About & Suggestions */}
         <div className={styles.rightContainer}>
-          <UserAbout data={data} recs={recs} />
+          <UserAbout user={data} recs={recs} />
         </div>
       </div>
     </div>

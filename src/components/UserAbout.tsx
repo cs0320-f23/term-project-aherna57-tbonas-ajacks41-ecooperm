@@ -6,6 +6,8 @@ import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import React from "react";
 import Link from "next/link";
+import { api } from "../utils/api";
+import { useUser } from "@clerk/nextjs";
 
 
 /// intrface placeholder for now --- update when reviews are implemented
@@ -19,8 +21,25 @@ interface Review {}
 
 // Functional component definition for the UserAbout component
 
-const UserAbout = ({data, recs}: any) => {  
+const UserAbout = ({user, recs}: any) => {  
   const safeRecs = recs || [];
+
+
+
+  const recommendations = api.recommendations.getRecsForUser.useQuery({
+    userId: user.id,
+  })
+
+
+  const { data, isLoading: recommendationsLoading } =  api.recommendations.getRecsForUser.useQuery({
+    userId: user!.id,
+  })
+    
+  // If the data is loading, render a loading message
+  if (recommendationsLoading) return <div>Loading...</div>;
+
+  if (!data) return <div>Something went wrong...</div>;
+  
 
 
   return (
@@ -35,7 +54,7 @@ const UserAbout = ({data, recs}: any) => {
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Email:</span>
-          <span className={styles.aboutInfoAns}>{data.email}</span>
+          <span className={styles.aboutInfoAns}>{user.email}</span>
         </div>
         <div className={styles.aboutRow}>
           <span className={styles.aboutInfo}>Phone:</span>
@@ -52,7 +71,7 @@ const UserAbout = ({data, recs}: any) => {
         <span className={styles.headerText}>Suggestions</span>
         <hr className={styles.divider} />
         <div className={styles.wrapperSuggestions}>
-          {safeRecs.map((rec: any, index: any) => (
+          {data.map((rec: any, index: any) => (
             <React.Fragment key={index}>
               <div className={styles.suggestionItem}>
                 <img

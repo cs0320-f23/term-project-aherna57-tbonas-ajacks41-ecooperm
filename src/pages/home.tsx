@@ -95,7 +95,7 @@ const Home = () => {
 
       {isSignedIn && (
         <div>
-          <MyHome user={user} />
+          <MyHome />
           
           <div>
             
