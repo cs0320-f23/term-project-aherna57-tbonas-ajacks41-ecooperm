@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import router from "next/router";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
-import styles from "../styles/home.module.css";
+import styles from "../styles/Home.module.css";
 import Cookies from "js-cookie";
 
 
@@ -23,7 +23,7 @@ const MyHome = () => {
   //   name: userInfo?.fullName,
   //   profileImageUrl: userInfo?.imageUrl,
   // };
-  
+
   const handleHomeClick = () => {
     // Navigate to the home page
     router.push("/home");
