@@ -33,6 +33,7 @@ export const restaurantsRouter = createTRPCRouter({
       },
     });
 
+    
     return restaurants;
   }),
 

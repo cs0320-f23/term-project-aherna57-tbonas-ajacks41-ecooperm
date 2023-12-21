@@ -46,6 +46,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
   const reviews = api.reviews.getReviewsByUserId.useQuery({
     userId: userId,
   }).data;
+  const crawl = api.recommendations.getFoodCrawl.useQuery();
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
@@ -98,7 +99,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
         {/* User About & Suggestions */}
         <div className={styles.rightContainer}>
-          <UserAbout data={data} recs={recs} />
+          <UserAbout user={data} recs={recs} />
         </div>
       </div>
     </div>
