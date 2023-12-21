@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
@@ -147,52 +147,53 @@ const Home = () => {
 
       {isSignedIn && (
         <div>
-          <MyHome />
           <div>
-            {/* Search Bar */}
-            <div className={styles.searchBarContainer}>
-              <Searchbar
-                fetchData={(value) =>
-                  names.filter((name) =>
-                    name.toLowerCase().includes(value.toLowerCase())
-                  )
-                }
-                setResult={setResult}
-                aria-label="Search Bar"
-              />
-              {result.map((item: ResultProps, index: number) => (
-                <Result
-                  key={index}
-                  {...item}
-                  aria-label={`Search Result ${index + 1}`}
+            <MyHome />
+            <div>
+              {/* Search Bar */}
+              <div className={styles.searchBarContainer}>
+                <Searchbar
+                  fetchData={(value) =>
+                    names.filter((name) =>
+                      name.toLowerCase().includes(value.toLowerCase())
+                    )
+                  }
+                  setResult={setResult}
+                  aria-label="Search Bar"
+                  restaurants={data}
                 />
-              ))}
-              <p className={styles.searchBarLine}></p>{" "}
-            </div>
 
-            {/* Row of Buttons */}
-            <div className={styles.buttonRow}>
-              {buttonConfigs.map((config, index) => (
-                <FilterButtons
-                  key={index}
-                  category={config.category}
-                  options={config.options}
-                  activeCategory={activeFilterCategory}
-                  setActiveCategory={setActiveFilterCategory}
-                  resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
-                  aria-label={`Filter restaurant list by ${config.category}`}
-                />
-              ))}
-              {/* Add the Reset button with styling */}
-              <div className={styles.resetButtonContainer}>
-                <button
-                  className={styles.resetButton}
-                  onClick={handleResetFilters}
-                  aria-label="Reset Filters"
-                >
-                  Reset
-                </button>
+                
+                
+                <p className={styles.searchBarLine}></p>{" "}
               </div>
+
+              {/* Row of Buttons */}
+              <div className={styles.buttonRow}>
+                {buttonConfigs.map((config, index) => (
+                  <FilterButtons
+                    key={index}
+                    category={config.category}
+                    options={config.options}
+                    activeCategory={activeFilterCategory}
+                    setActiveCategory={setActiveFilterCategory}
+                    resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
+                    aria-label={`Filter restaurant list by ${config.category}`}
+                  />
+                ))}
+                {/* Add the Reset button with styling */}
+                <div className={styles.resetButtonContainer}>
+                  <button
+                    className={styles.resetButton}
+                    onClick={handleResetFilters}
+                    aria-label="Reset Filters"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+              <p className={styles.searchBarLine}></p>
             </div>
 
             <p className={styles.searchBarLine}></p>
