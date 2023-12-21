@@ -14,6 +14,7 @@ import {
 } from "@clerk/nextjs";
 import MyHome from "../container/myhome";
 import { FilterContext } from "./FilterProvider";
+import router from "next/router";
 
 
 
@@ -56,7 +57,7 @@ const Feed = () => {
     filteredData = filteredData.sort((a : any , b : any) => b.priceCategory - a.priceCategory);
   } else if (selectedSort === "Low to High") {
     console.log("Orncnkcjes", " Low");
-    filteredData = filteredData.sort((a, b) => a.priceCategory - b.priceCategory);
+    filteredData = filteredData.sort((a: { priceCategory: number; }, b: { priceCategory: number; }) => a.priceCategory - b.priceCategory);
   }
 
   const averageRating = (restaurant : any) => {
@@ -123,6 +124,10 @@ const Home = () => {
     setResetKey((prevKey) => prevKey + 1);
   };
 
+  const handleFoodCrawl = () => {
+      router.push("/foodcrawl");
+  }
+
 
   //Return empty div if user isn't loaded
   if (!userLoaded) return <div />;
@@ -133,14 +138,15 @@ const Home = () => {
 
 
   return (
-      <div>
-        {!isSignedIn && (
-          <div className="flex justify-center">
-            <SignInButton />
-          </div>
-        )}
+    <div>
+      {!isSignedIn && (
+        <div className="flex justify-center">
+          <SignInButton />
+        </div>
+      )}
 
-        {isSignedIn && (
+      {isSignedIn && (
+        <div>
           <div>
             <MyHome />
             <div>
@@ -190,12 +196,20 @@ const Home = () => {
               <p className={styles.searchBarLine}></p>
             </div>
 
-            <div className={styles.restaurantBoxContainer}>
-              <Feed />
-            </div>
+            <p className={styles.searchBarLine}></p>
           </div>
-        )}
-      </div>
+
+          {/* Foodcrawlbutton */}
+          <div className={styles.foodCrawl}>
+            <button onClick={handleFoodCrawl}>Click here to get a personalised foodcrawl map!</button>
+          </div>
+
+          <div className={styles.restaurantBoxContainer}>
+            <Feed />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
