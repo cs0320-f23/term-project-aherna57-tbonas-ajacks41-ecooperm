@@ -16,10 +16,8 @@ import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import { env } from "process";
 import { useRouter } from "next/router";
-import { ClerkProvider } from '@clerk/nextjs'
-import FilterProvider from "./FilterProvider";
-
-
+import { ClerkProvider } from "@clerk/nextjs";
+import FilterProvider from "../components/FilterProvider";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
