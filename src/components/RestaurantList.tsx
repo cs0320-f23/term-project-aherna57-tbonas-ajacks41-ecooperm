@@ -19,35 +19,16 @@ import Link from "next/link";
 type FullRestaurant = RouterOutputs["restaurants"]["getAll"][number];
 
 const RestaurantList = (props: FullRestaurant) => {
-  let data2;
-  if (props) {
-    ({ data: data2 } = api.restaurants.getRestaurantCategory.useQuery({
-      restaurantid: props.id,
-    }));
-  }
-  // Sorting the restaurants alphabetically by name
-  // const sortedRestaurants = [...restaurants].sort((a, b) =>
-  //   a.name.localeCompare(b.name)
-  // );
-
-  // const { data, isLoading: restaurantsLoading } = api.restaurants.getAll.useQuery();
-
-  // if (restaurantsLoading) {
-  //    return (
-  //     <div className="flex grow">
-  //       <LoadingPage />
-  //     </div>
-  //    );
-  // }
-
-  // if (!data) return <div>Something went wrong...</div>;
-
-  const createStars = (count: number | null) => {
-    return Array.from({ length: count || 0 }, (_, index) => (
-      <span key={index} style={{ marginRight: "3px" }}>
-        &#9733;
-      </span>
-    ));
+  const renderStars = (rating: number) => {
+    let stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= rating ? styles.starFilled : styles.star}>
+          &#9733;
+        </span>
+      );
+    }
+    return stars;
   };
 
   const createDollarSigns = (count: number | null) => {
@@ -58,29 +39,34 @@ const RestaurantList = (props: FullRestaurant) => {
     ));
   };
 
-  // const handleBoxClick = () => {
-  //   // Navigate to the restaurant profile page
-  //   router.push(`${name}`);
-  // };
-
-  // JSX structure for the RestaurantList component
+  let averageRating = 0;
+  if (props.Review && props.Review.length > 0) {
+    const totalRating = props.Review.reduce(
+      (total, review) => total + review.rating,
+      0
+    );
+    averageRating = Math.ceil(totalRating / props.Review.length);
+  }
   return (
     <div className={styles.restaurantBoxContainer} key={props.id}>
-      {/* <RestaurantBox {...fullRestaurant} RestaurantCategory={fullRestaurant.RestaurantCategory} /> */}
       <Link href={`/restaurants/${props.id}`} className={styles.restaurantBox}>
         <div className={styles.imageContainer}>
           <img src={props.imageUrl} alt="Restaurant" />
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.titleRest}>{props.name}</div>
-          <p className={styles.cuisine}>{data2?.[0]?.name}</p>
+          <p className={styles.cuisine}>
+            {props.RestaurantCategory[0]?.category?.name}
+          </p>
           <div className={styles.ratings}>
-            {/* Placeholder */}
-            {createStars(5)}
+            {averageRating === 0 ? renderStars(5) : renderStars(averageRating)}
+            &nbsp;
             <span style={{ marginLeft: "auto", fontSize: "0.8rem" }}>
-              {/* Placeholder */}
-              {((numReviews) =>
-                numReviews === 0 ? "No Reviews" : `${numReviews} reviews`)(0)}
+              {props.Review && props.Review.length > 0
+                ? `${props.Review.length} ${
+                    props.Review.length > 1 ? "reviews" : "review"
+                  }`
+                : "No Reviews"}
             </span>
           </div>
           <div className={styles.dollarSigns}>

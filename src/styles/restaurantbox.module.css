@@ -114,3 +114,15 @@
   font-size: 0.9rem;
   color: #122b44;
 }
+
+.star {
+  color: rgb(255, 253, 253);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.starFilled {
+    font-size: 20px; 
+    color: #080808; 
+}
+

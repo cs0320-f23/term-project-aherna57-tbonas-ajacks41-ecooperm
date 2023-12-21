@@ -24,7 +24,12 @@ export const restaurantsRouter = createTRPCRouter({
       take: 100,
       orderBy: [{ name: "asc" }],
       include: {
-        RestaurantCategory: true,
+        RestaurantCategory: {
+          include: {
+            category: true, 
+          },
+        },
+        Review: true,
       },
     });
 
