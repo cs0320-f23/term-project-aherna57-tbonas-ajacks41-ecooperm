@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import styles from "../../styles/restaurantprofile.module.css";
+import styles from "../../styles/RestaurantProfile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
 import { api } from "~/src/utils/api";
