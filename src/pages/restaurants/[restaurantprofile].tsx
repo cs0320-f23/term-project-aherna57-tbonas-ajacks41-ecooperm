@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useEffect } from "react";
+import React, { CSSProperties, useState, ChangeEvent, useEffect } from "react";
 import styles from "../../styles/restaurantprofile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
@@ -104,18 +104,18 @@ const CreatePostWizard = (props: Input) => {
           <input
             className={styles.textbox}
             type="file"
+            accept="image/*"
             onChange={handleImageChange}
           />
           {selectedImage && (
             <img
               src={selectedImage}
+              
               alt="Preview"
               className={styles.imagePreview}
             />
           )}
         </div>
-
-        
 
         {input !== "" && !isPosting && (
           <div className={styles.postButton}>
