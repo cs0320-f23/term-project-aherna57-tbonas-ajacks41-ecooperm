@@ -121,5 +121,36 @@ test("check rendering of user about", async ({ page }) => {
   await expect(page.locator(".suggestions-section-selector")).toBeVisible();
 });
 
+////////////////////////// RESTAURANT PAGE TESTS //////////////////////////
 
+test("Check restaurant details on the page", async ({ page }) => {
+  await page.goto("http://localhost:3000/restaurants/clqequqc6000xco2grcq9upus");
+  await expect(page.locator("restaurant.id")).toBeVisible();
+  await expect(page.locator("restaurant.description")).toBeVisible();
+  await expect(page.locator("data2?.[0]?.name")).toBeVisible();
+  await expect(page.locator("restaurant.phone")).toBeVisible();
+  await expect(page.locator("restaurant.address")).toBeVisible();
+  await expect(page.locator("restaurant.menuUrl")).toBeVisible();
+});
 
+test("View menu link should navigate to the restaurant's menu", async ({
+  page,
+}) => {
+  await page.goto(
+    "http://localhost:3000/restaurants/clqequqc6000xco2grcq9upus"
+  );
+
+  await page.click("restaurant.menuUrl");
+  await page.waitForNavigation();
+
+  expect(page.url()).toBe("https://www.exploretock.com/alfornorestaurant/");
+});
+
+test("Check suggestions section on the restaurant page", async ({ page }) => {
+  await page.goto(
+    "http://localhost:3000/restaurants/clqequqc6000xco2grcq9upusL"
+  );
+
+  await expect(page.locator("safeRecs")).toBeVisible();
+
+});
