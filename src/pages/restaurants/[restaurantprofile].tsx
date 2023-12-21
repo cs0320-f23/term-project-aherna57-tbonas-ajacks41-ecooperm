@@ -1,5 +1,5 @@
-import React, { CSSProperties, useState, useEffect } from "react";
-import styles from "../../styles/RestaurantProfile.module.css";
+import React, { CSSProperties, useState, ChangeEvent, useEffect } from "react";
+import styles from "../../styles/restaurantprofile.module.css";
 import { UserButton, useUser } from "@clerk/nextjs";
 import RestaurantAbout from "../../components/RestaurantAbout";
 import { api } from "~/src/utils/api";
@@ -53,19 +53,22 @@ const CreatePostWizard = (props: Input) => {
 
   return (
     <div className={styles.postContainer}>
-      <div className={styles.userProfileIcon}>
-        <UserButton
-          appearance={{
-            elements: {
-              userButtonAvatarBox: {
-                width: 45,
-                height: 45,
+      <div className={styles.headerContainer}>
+        <div className={styles.userProfileIcon}>
+          <UserButton
+            appearance={{
+              elements: {
+                userButtonAvatarBox: {
+                  width: 35,
+                  height: 35,
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       </div>
-      <div className={styles.userProfileIcon}>
+
+      <div className={styles.textContainer}>
         <label className={styles.label}>Star Rating (1/5):</label>
         <input
           type="number"
@@ -101,47 +104,52 @@ const CreatePostWizard = (props: Input) => {
           <input
             className={styles.textbox}
             type="file"
+            accept="image/*"
             onChange={handleImageChange}
           />
           {selectedImage && (
             <img
               src={selectedImage}
+              
               alt="Preview"
               className={styles.imagePreview}
             />
           )}
         </div>
-      </div>
-      {input !== "" && !isPosting && (
-        <button
-          onClick={() =>
-            mutate({
-              content: input,
-              restaurantId: props.restaurantId,
-              rating: rating,
-            })
-          }
-          disabled={isPosting}
-          className={styles.postButton}
-        >
-          Post
-        </button>
-      )}
 
-      {isPosting && (
-        <div className="flex items-center justify-center">
-          <LoadingSpinner size={20} />
-        </div>
-      )}
+        {input !== "" && !isPosting && (
+          <div className={styles.postButton}>
+            <button
+              onClick={() =>
+                mutate({
+                  content: input,
+                  restaurantId: props.restaurantId,
+                  rating: rating,
+                  ...(selectedImage ? { imageUrl: selectedImage } : {}),
+                })
+              }
+              disabled={isPosting}
+            >
+              Post
+            </button>
+          </div>
+        )}
+        {isPosting && (
+          <div className="flex items-center justify-center">
+            <LoadingSpinner size={20} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
+
+ 
 
 const RestaurantFeed = (props: { restaurantId: string }) => {
   const { data, isLoading } = api.reviews.getReviewsByRestaurantId.useQuery({
     restaurantId: props.restaurantId,
   });
-
   if (isLoading) return <LoadingPage />;
 
   if (!data || data.length === 0)
@@ -194,7 +202,9 @@ const RestaurantProfile: NextPage<{ id: string }> = ({ id }) => {
         </div>
       </div>
       <div>
-        <button onClick={openModal}>Add a Review</button>
+        <div className={styles.reviewButton}>
+          <button onClick={openModal}>Add a Review</button>
+        </div>
 
         {isModalOpen && (
           <div className={styles.modalBackground}>

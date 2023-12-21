@@ -34,6 +34,7 @@ export const buttonConfigs = [
     ],
   },
   {
+    id: 4,
     category: "Ratings",
     options: ["High to low", "Low to high", "5 star only"],
   },

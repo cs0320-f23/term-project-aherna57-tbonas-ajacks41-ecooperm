@@ -17,19 +17,23 @@ import { Toaster } from "react-hot-toast";
 import { env } from "process";
 import { useRouter } from "next/router";
 import { ClerkProvider } from '@clerk/nextjs'
+import FilterProvider from "./FilterProvider";
+
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
   return (
     <ClerkProvider {...pageProps}>
-      <Head>
-        <title>Bear Bites</title>
-        <meta name="description" content="WIP" />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-      <Toaster position="bottom-center" />
-      <Component {...pageProps} />
+      <FilterProvider>
+        <Head>
+          <title>Bear Bites</title>
+          <meta name="description" content="WIP" />
+          <link rel="icon" href="/logo.png" />
+        </Head>
+        <Toaster position="bottom-center" />
+        <Component {...pageProps} />
+      </FilterProvider>
     </ClerkProvider>
   );
 };
