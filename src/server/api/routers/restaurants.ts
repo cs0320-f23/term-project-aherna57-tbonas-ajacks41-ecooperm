@@ -24,10 +24,14 @@ export const restaurantsRouter = createTRPCRouter({
       take: 100,
       orderBy: [{ name: "asc" }],
       include: {
-        RestaurantCategory: true,
+        RestaurantCategory: {
+          include: {
+            category: true, 
+          },
+        },
+        Review: true,
       },
     });
-    
 
     return restaurants;
   }),
@@ -37,6 +41,10 @@ export const restaurantsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const restaurant = await ctx.prisma.restaurant.findUnique({
         where: { id: input.id },
+        include: {
+          categories: true,
+          RestaurantCategory: true,
+        },
       });
 
       if (!restaurant) throw new TRPCError({ code: "NOT_FOUND" });
@@ -104,6 +112,26 @@ export const restaurantsRouter = createTRPCRouter({
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
 
       return restaurants;
+    }),
+
+  getRestaurantCategory: publicProcedure
+    .input(z.object({ restaurantid: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const categories = await ctx.prisma.category.findMany({
+        where: {
+          RestaurantCategory: {
+            some: {
+              restaurant: {
+                id: input.restaurantid,
+              },
+            },
+          },
+        },
+      });
+
+      if (!categories) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return categories;
     }),
 
   getNamesWith: publicProcedure

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../styles/filterbuttons.module.css";
+import { FilterContext } from "../pages/FilterProvider";
 
 /**The FilterButtons component is a React functional component designed to create a filter button 
  * with an associated dropdown menu. It takes in various props, such as the filter category label, 
@@ -10,13 +11,11 @@ import styles from "../styles/filterbuttons.module.css";
 
 // Props interface for the FilterButtons component
 interface FilterButtonsProps {
-  category: string;
-  options: string[];
-  activeCategory: string | null;
-  setActiveCategory: (category: string | null) => void;
-  resetKey: number;
-  selectedOption: string | null;
-  setSelectedOption: (option: string | null) => void;
+  category: string; // Category label for the filter
+  options: string[]; // Array of available filter options
+  activeCategory: string | null; // Currently active category
+  setActiveCategory: (category: string | null) => void; // Function to set the active category
+  resetKey: number; // Key to trigger a reset of the component
 }
 
 // Interface to represent the selected filter options
@@ -31,15 +30,17 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   activeCategory,
   setActiveCategory,
   resetKey,
-  selectedOption,
-  setSelectedOption,
 }) => {
   // State variables for managing dropdown visibility and selected option
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const { selectedOptions, setSelectedOptions } = useContext(FilterContext);
 
+  // Function to handle button toggle and filter selection
   const handleButtonToggle = () => {
     if (selectedOption === "All" || selectedOption === "None") {
       // If "All" or "None" is selected, immediately revert to the original state
+      setSelectedOptions({});
       setActiveCategory(null);
       setShowDropdown(false);
       setSelectedOption(null);
@@ -51,15 +52,24 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
       setShowDropdown(true);
     }
   };
-
-  // Function to handle button toggle and filter selection
+  
+  // Function to handle dropdown option selection
   const handleFilterDropdownSelect = (option: string) => {
     // If "All" or "None" is selected, immediately revert to the original state
-    if (option === "All" || option === "None") {
+    if (option === "All") {
+      const { "Cuisine":_, ...rest } = selectedOptions;
+      setSelectedOptions(rest);
       setActiveCategory(null);
       setShowDropdown(false);
       setSelectedOption(null);
-    } else {
+    } else if (option === "None") {
+      const { "Dietary Restrictions": _, ...rest } = selectedOptions;
+      setSelectedOptions(rest);
+      setActiveCategory(null);
+      setShowDropdown(false);
+      setSelectedOption(null);
+    }else {
+      setSelectedOptions({ ...selectedOptions, [category]: option });
       setSelectedOption(option);
       setShowDropdown(false);
       setActiveCategory(null);
@@ -80,9 +90,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
         {options.map((option, index) => (
           <div
             key={index}
-            //const videoClassName = isFadingOut ? `${styles.video} ${styles.fadeOut}` : `${styles.video} ${styles.fadeIn}`;
             className={`${styles.dropdownItem} ${
-              selectedOption === option ? `${styles.selected}` : ""
+              selectedOption === option ? styles.selected : ""
             }`}
             onClick={() => handleFilterDropdownSelect(option)}
           >
@@ -110,5 +119,4 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   );
 };
 
-// Exporting the FilterButtons component as the default export
 export default FilterButtons;

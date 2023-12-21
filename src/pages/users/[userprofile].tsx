@@ -1,4 +1,4 @@
-import React, { CSSProperties, use } from "react";
+import React, { CSSProperties } from "react";
 import styles from "~/src/styles/userprofile.module.css";
 import UserAbout from "~/src/components/UserAbout";
 import { api } from "~/src/utils/api";
@@ -7,19 +7,11 @@ import MyHome from "~/src/container/myhome";
 import type { GetStaticProps, NextPage } from "next";
 import { generateSSGHelper } from "~/src/server/helpers/ssghelper";
 import { ReviewViewUser } from "~/src/components/ReviewViewUser";
-import { Review } from "@prisma/client";
-import { Clerk } from "@clerk/clerk-sdk-node";
 
-/// intrface placeholder for now --- update when reviews are implemented
+interface Review {}
 
-const ProfileFeed = (props: { userId: string }) => {
-  const { data, isLoading } = api.reviews.getReviewsByUserId.useQuery({
-    userId: props.userId,
-  });
-
-  if (isLoading) return <LoadingPage />;
-
-  if (!data || data.length === 0)
+const ProfileFeed = ({ userId, reviews }: { userId: string, reviews: Review[] }) => {
+  if (!reviews || reviews.length === 0)
     return (
       <>
         <div className={styles.titleContainer}>
@@ -34,12 +26,13 @@ const ProfileFeed = (props: { userId: string }) => {
   return (
     <>
       <div className={styles.titleContainer}>
-        <h1 className={styles.reviewTitle}>REVIEWS ({data.length})</h1>{" "}
+        <h1 className={styles.reviewTitle}>REVIEWS ({reviews.length})</h1>{" "}
       </div>
       <div className={styles.leftContainer}>
-        {data.map((fullReview: any) => (
-          <ReviewViewUser {...fullReview} key={fullReview.review.id} />
-        ))}
+        {Array.isArray(reviews) &&
+          reviews.map((fullReview: any) => (
+            <ReviewViewUser {...fullReview} key={fullReview.review.id} />
+          ))}
       </div>
     </>
   );
@@ -50,6 +43,9 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
     userId,
   });
   const recs = api.recommendations.getTopRestaurants.useQuery().data;
+  const reviews = api.reviews.getReviewsByUserId.useQuery({
+    userId: userId,
+  }).data;
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
@@ -57,18 +53,18 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
 
   if (!data) return <div>404</div>;
 
-  const getMembershipStatus = (reviews: Review[]) => {
-    const numberOfReviews = reviews.length;
-    if (numberOfReviews <= 3) return "Brunonian Bites Novice";
-    if (numberOfReviews <= 6) return "Pembroke Palate Explorer";
-    if (numberOfReviews <= 10) return "Ivy League Gastronome";
-    if (numberOfReviews <= 20) return "College Hill Culinary Connoisseur";
+  const getMembershipStatus = (numberOfReviews: any) => {
+    if (numberOfReviews === undefined || numberOfReviews <= 10)
+      return "Brunonian Bites Novice";
+    if (numberOfReviews <= 20) return "Pembroke Palate Explorer";
+    if (numberOfReviews <= 30) return "Ivy League Gastronome";
+    if (numberOfReviews <= 40) return "College Hill Culinary Connoisseur";
     return "President's Table Elite";
   };
 
   return (
     <div>
-      <MyHome user={data} />
+      <MyHome />
       <div className={styles.userContainer} style={userBackground}>
         {/* User Top Container */}
         <div className={styles.userContent}>
@@ -88,14 +84,16 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
             <span className={styles.userName}>
               {`${data.firstName} ${data.lastName}`}
             </span>
-            <span className={styles.userClass}>{}</span>
+            <span className={styles.userClass}>
+              {getMembershipStatus(reviews?.length)}
+            </span>
           </div>
         </div>
       </div>
       <div className={styles.mainUserContainer}>
         {/* User Reviews */}
         <div className={styles.leftContainer}>
-          <ProfileFeed userId={data.id} />
+          <ProfileFeed userId={data.id} reviews={reviews} />
         </div>
 
         {/* User About & Suggestions */}
