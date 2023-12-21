@@ -3,11 +3,19 @@
 import React, { useState } from "react";
 import styles from "../styles/foodcrawl.module.css";
 import MyHome from "../container/myhome";
+import { api } from "../utils/api";
 
 const sampleRestaurantData = ["Restaurant A", "Restaurant B", "Restaurant C"];
 
 const FoodCrawl: React.FC = () => {
   const [input, setInput] = useState("");
+
+  const { data, isLoading } = api.recommendations.getFoodCrawl.useQuery();
+
+  // If the data is loading, render a loading message
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!data) return <div>Something went wrong...</div>;
 
   return (
     <div>
@@ -27,9 +35,9 @@ const FoodCrawl: React.FC = () => {
           <h2 className={styles.listTitle}>Start Here!</h2>
 
           <p>
-            {sampleRestaurantData.map((restaurant, index) => (
+            {data.map((restaurant, index) => (
               <li key={index}>
-                <div className={styles.restaurantItem}>{restaurant}</div>
+                <div className={styles.restaurantItem}>{restaurant.name}</div>
                 <div className={styles.arrowContainer}>
                   <img
                     className={styles.arrowImage}

@@ -237,7 +237,7 @@ export const recsRouter = createTRPCRouter({
     let newArray = restaurants.filter((e, i) => i !== itemIndex);
 
     for (const restaurant of newArray) {
-      if (crawl.length === 4) {
+      if (crawl.length === 3) {
         break;
       }
 

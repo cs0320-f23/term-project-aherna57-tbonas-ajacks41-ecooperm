@@ -51,6 +51,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
     userId: userId,
   }).data;
 
+  
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,
@@ -120,6 +121,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const userId = userprofile.replace("@", "");
 
   await ssg.profile.getUserById.prefetch({ userId });
+  await ssg.reviews.getReviewsByUserId.prefetch({ userId });
 
   return {
     props: {
