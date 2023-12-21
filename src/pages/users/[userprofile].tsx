@@ -50,6 +50,7 @@ const UserProfile: NextPage<{ userId: string }> = ({ userId }) => {
     userId,
   });
   const recs = api.recommendations.getTopRestaurants.useQuery().data;
+  const crawl = api.recommendations.getFoodCrawl.useQuery();
 
   const userBackground: CSSProperties = {
     backgroundImage: `url('https://www.mowglistreetfood.com/wp-content/uploads/2023/01/Landing_image_Desktop-1024x576.jpg')`,

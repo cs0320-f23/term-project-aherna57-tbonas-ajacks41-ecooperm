@@ -35,9 +35,11 @@ function createVector(
  * @returns
  */
 function countWords(st: string, categories: Category[]): number {
+    console.log("categories: ", categories);    
     if (categories.length === 0) {
         return 0;
     } else {
+        
         if (st.toLowerCase() === categories[0].name.toLowerCase() ){
             return 1 + countWords(st, categories.slice(1));
         } else {
@@ -62,7 +64,9 @@ function individualVectors(
     if (uniqWords.length === 0) {
         return [];
     } else {
-        return [countWords(uniqWords[0].name, categories)].concat(individualVectors(uniqWords.slice(1), categories));
+        console.log("uniqWords: ", uniqWords);
+        console.log("uniqWords[0] type", typeof(uniqWords[1]));
+        return [countWords(uniqWords[0], categories)].concat(individualVectors(uniqWords.slice(1), categories));
     }
 }
 

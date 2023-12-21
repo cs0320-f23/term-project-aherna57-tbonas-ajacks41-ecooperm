@@ -2,10 +2,15 @@ import { z } from "zod";
 import { createTRPCRouter, privateProcedure, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { overlap } from "~/src/server/utils/algorithms/overlap";
+import { distance } from "../../utils/algorithms/distance";
 import { Restaurant } from "@prisma/client";
 import { clerkClient } from "@clerk/nextjs";
 import { filterUserForClient } from "../../helpers/filterUserForClient";
+import { startTransition } from "react";
 
+/**
+ * Retrieves recommendations for users and restaurants.
+ */
 export const recsRouter = createTRPCRouter({
   getRecsForUser: publicProcedure
     .input(z.object({ userId: z.string() }))
@@ -70,21 +75,54 @@ export const recsRouter = createTRPCRouter({
             const review = reviews[i];
             if (review) {
               const userRestaurant = review.restaurant;
+              // After fetching the data
+              console.log("Fetched userRestaurant data:", userRestaurant);
+
               if (userRestaurant) {
-                //console.log("checking over here", userRestaurant);
-                let calcOverlap;
-                for (const restaurant of restaurants) {
-                  console.log("checking over here (outside if):", restaurant);
-                  if (restaurant.id !== userRestaurant.id) {
-                    console.log("checking over here", restaurant.categories);
-                    console.log("checking over here", userRestaurant.categories);
-                    calcOverlap = overlap(
-                      userRestaurant.categories,
-                      restaurant.categories
-                    );
-                   //console.log("checking over here", calcOverlap);
-                    if (calcOverlap >= 0.7) {
-                      recRestaurants.push(restaurant);
+                const userResCategories = await ctx.prisma.category.findMany({
+                  where: {
+                    RestaurantCategory: {
+                      some: {
+                        restaurant: {
+                          name: userRestaurant.name,
+                        },
+                      },
+                    },
+                  },
+                });
+                // After fetching the data
+                console.log(
+                  "Fetched userRestaurantCat data:",
+                  userResCategories
+                );
+                if (userResCategories.length === 0) {
+                  continue;
+                } else {
+                  let calcOverlap;
+
+                  for (const restaurant of restaurants) {
+                    const resCategories = await ctx.prisma.category.findMany({
+                      where: {
+                        RestaurantCategory: {
+                          some: {
+                            restaurant: {
+                              name: restaurant.name,
+                            },
+                          },
+                        },
+                      },
+                    });
+                    //console.log("checking over here (outside if):", restaurant);
+                    if (restaurant.id !== userRestaurant.id) {
+                      // Before using the data
+                      console.log(
+                        "UserRestaurant categories:",
+                        userResCategories
+                      );
+                      calcOverlap = overlap(userResCategories, resCategories);
+                      if (calcOverlap >= 0.7) {
+                        recRestaurants.push(restaurant);
+                      }
                     }
                   }
                 }
@@ -176,5 +214,47 @@ export const recsRouter = createTRPCRouter({
       [restaurants[i], restaurants[j]] = [restaurants[j], restaurants[i]];
     }
     return restaurants.slice(0, 4);
+  }),
+
+  getFoodCrawl: publicProcedure.query(async ({ ctx }) => {
+    let restaurants = await ctx.prisma.restaurant.findMany({
+      include: {
+        categories: true,
+      },
+    });
+
+    if (!restaurants) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "No restaurants found",
+      });
+    }
+
+    let start = restaurants[Math.floor(Math.random() * restaurants.length)];
+    let crawl = [start];
+
+    let itemIndex = restaurants.indexOf(start);
+    let newArray = restaurants.filter((e, i) => i !== itemIndex);
+
+    for (const restaurant of newArray) {
+      if (crawl.length === 4) {
+        break;
+      }
+
+      let prevRes = crawl[crawl.length - 1];
+      //console.log("checking over here", prevRes);
+      let distancee = distance(prevRes, restaurant);
+      //console.log("checking over here", distancee);
+      let bound = Math.random() * (0.01 - 0.002) + 0.002;
+      console.log("checking over here", bound);
+      if (distancee < bound) {
+        crawl.push(restaurant);
+        itemIndex = newArray.indexOf(restaurant);
+        newArray = newArray.filter((e, i) => i !== itemIndex);
+      }
+    }
+
+    console.log("checking over here", crawl);
+    return crawl;
   }),
 });
