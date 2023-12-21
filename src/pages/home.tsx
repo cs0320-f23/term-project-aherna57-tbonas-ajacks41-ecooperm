@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
@@ -154,14 +154,11 @@ const Home = () => {
                   }
                   setResult={setResult}
                   aria-label="Search Bar"
+                  restaurants={data}
                 />
-                {result.map((item: ResultProps, index: number) => (
-                  <Result
-                    key={index}
-                    {...item}
-                    aria-label={`Search Result ${index + 1}`}
-                  />
-                ))}
+
+                
+                
                 <p className={styles.searchBarLine}></p>{" "}
               </div>
 

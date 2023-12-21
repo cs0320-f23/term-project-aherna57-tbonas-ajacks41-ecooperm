@@ -1,6 +1,8 @@
 import React, { SetStateAction, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce.js";
 import styles from "../styles/RestaurantSearch.module.css";
+import router from "next/router";
+
 
 /** The SearchBar component is a React functional component responsible for rendering a search input with dynamic suggestions. 
  * It interacts with a parent component by utilizing props, such as fetchData for fetching suggestions based on input, setResult 
@@ -11,6 +13,7 @@ import styles from "../styles/RestaurantSearch.module.css";
 interface SearchBarProps {
   fetchData: (value: string) => string[];
   setResult: (result: any) => void; // setResult now takes an array
+  restaurants: any;
 }
 
 // Definition of SuggestionItem interface to describe the structure of suggestion items
@@ -19,13 +22,19 @@ interface SuggestionItem {
 }
 
 // Functional component definition for the SearchBar component
-const SearchBar: React.FC<SearchBarProps> = ({ fetchData, setResult }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ fetchData, setResult, restaurants }) => {
   const [value, setValue] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [hideSuggestions, setHideSuggestions] = useState(true);
 
-  const findResult = (value: any) => {
-    setResult(value);
+  console.log("restaurants", restaurants);
+
+  const findResult = (value: string) => {
+    const filteredRestaurants = restaurants.filter((restaurant: any) =>
+      restaurant.name.toLowerCase().includes(value.toLowerCase())
+    );
+    const restaurantId = filteredRestaurants[0].id; 
+    router.push(`/restaurants/${restaurantId}`);
   };
 
   useDebounce(

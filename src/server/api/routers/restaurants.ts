@@ -26,7 +26,7 @@ export const restaurantsRouter = createTRPCRouter({
       include: {
         RestaurantCategory: {
           include: {
-            category: true, 
+            category: true,
           },
         },
         Review: true,
@@ -147,5 +147,19 @@ export const restaurantsRouter = createTRPCRouter({
       if (!restaurants) throw new TRPCError({ code: "NOT_FOUND" });
 
       return restaurants;
+    }),
+  getRestaurantByName: publicProcedure
+    .input(z.object({ name: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const restaurant = await ctx.prisma.restaurant.findFirst({
+        where: { name: input.name },
+        include: {
+          RestaurantCategory: true,
+        },
+      });
+
+      if (!restaurant) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return restaurant;
     }),
 });
