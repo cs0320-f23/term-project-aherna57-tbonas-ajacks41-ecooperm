@@ -39,6 +39,8 @@
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
     "next-videos": "^1.4.1",
+    "playwright": "^1.40.1",
+    "playwright-test": "^14.0.0",
     "prisma": "^5.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,6 +54,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.0.3",
+    "@playwright/test": "^1.40.1",
     "@types/cookie": "^0.6.0",
     "@types/eslint": "^8.44.7",
     "@types/js-cookie": "^3.0.6",
