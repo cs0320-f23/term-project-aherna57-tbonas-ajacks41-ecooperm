@@ -1,6 +1,6 @@
 
 import React, { CSSProperties } from "react";
-import styles from "~/src/styles/userprofile.module.css";
+import styles from "~/src/styles/UserProfile.module.css";
 
 import UserAbout from "~/src/components/UserAbout";
 import { api } from "~/src/utils/api";

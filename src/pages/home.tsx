@@ -3,7 +3,7 @@ import Result from "../container/Result";
 import Searchbar from "../container/SearchBar";
 import { ResultProps } from "../container/Result";
 import RestaurantList from "../components/RestaurantList";
-import styles from "../styles/home.module.css";
+import styles from "../styles/Home.module.css";
 import { api } from "~/src/utils/api";
 import Cookies from "js-cookie";
 import FilterButtons from "../components/FilterButtons";
