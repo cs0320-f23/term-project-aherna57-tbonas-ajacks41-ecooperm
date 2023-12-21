@@ -148,7 +148,38 @@ We also included aria labels throughout our code, such as in home.tsx to enhance
 
 An explanation of our design choices for our backend package is written below.
 
+Backend
+Our backend is built using Prisma, NextJS, and tRPC. Here's a brief overview of each technology and why we chose to use it:
 
+Prisma
+Prisma is an open-source database toolkit. It includes an ORM, a database schema migration tool, and a database proxy for reading and writing data. We chose Prisma because it provides a strong type-safe database access, which helps us to catch potential issues at compile time rather than runtime.
+
+NextJS
+NextJS is a React framework that enables server-side rendering and generating static websites for React based web applications. It's a production-ready framework that helps to scale projects easily. We chose NextJS because it provides a seamless way to build React applications that can leverage server-side rendering.
+
+tRPC
+tRPC is a framework for building typesafe APIs, and it is agnostic to the transport used. We chose tRPC because it allows us to have end-to-end typesafety from the database to the client.
+
+Running the Backend Locally
+To run the backend locally, follow these steps:
+
+Install the dependencies:
+npm install
+
+Start the development server:
+npm run dev
+The server will start on localhost:3000.
+
+
+Testing
+We use Jest for testing our backend. To run the tests, use the following command:
+npm run test
+
+Deployment
+Our backend is deployed on Vercel. To deploy your own instance, you can use the Vercel CLI:
+vercel
+
+Follow the prompts to deploy the backend.
 
 
 ### 2. Errors/Bugs:
