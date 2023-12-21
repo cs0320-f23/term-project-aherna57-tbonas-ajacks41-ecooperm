@@ -12,7 +12,7 @@ export const recsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       try {
         const restaurants = await ctx.prisma.restaurant.findMany({
-          take: 100,
+          take: 200,
           orderBy: [{ createdAt: "desc" }],
           include: {
             categories: true,
@@ -62,30 +62,88 @@ export const recsRouter = createTRPCRouter({
           const backup = restaurants
             .sort(() => 0.5 - Math.random())
             .slice(0, 4);
-          console.log("checking over here", backup);
+          //console.log("checking over here", backup);
           return backup;
         } else {
+          //console.log("checking over here", reviews);
           for (let i = 0; i < reviews.length; i++) {
             const review = reviews[i];
             if (review) {
               const userRestaurant = review.restaurant;
               if (userRestaurant) {
+                //console.log("checking over here", userRestaurant);
                 let calcOverlap;
-                restaurants.map((restaurant: any) => {
+                for (const restaurant of restaurants) {
+                  console.log("checking over here (outside if):", restaurant);
                   if (restaurant.id !== userRestaurant.id) {
+                    console.log("checking over here", restaurant.categories);
+                    console.log("checking over here", userRestaurant.categories);
                     calcOverlap = overlap(
                       userRestaurant.categories,
                       restaurant.categories
                     );
+                   //console.log("checking over here", calcOverlap);
                     if (calcOverlap >= 0.7) {
-                      recRestaurants.push(userRestaurant);
+                      recRestaurants.push(restaurant);
                     }
                   }
-                });
+                }
               }
             }
           }
         }
+
+        console.log("checking over here", recRestaurants);
+        return recRestaurants;
+      } catch (error) {
+        // Log the error and rethrow it as a TRPCError
+        console.error("Error in getRecsForUser procedure:", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", cause: error });
+      }
+    }),
+
+  getRecsForRestaurant: publicProcedure
+    .input(z.object({ restaurantId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const currRestaurant = await ctx.prisma.restaurant.findUnique({
+          where: {
+            id: input.restaurantId,
+          },
+          include: {
+            categories: true,
+          },
+        });
+
+        if (!currRestaurant) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "User not found",
+          });
+        }
+
+        const restaurants = await ctx.prisma.restaurant.findMany({
+          take: 200,
+          orderBy: [{ createdAt: "desc" }],
+          include: {
+            categories: true,
+          },
+        });
+
+        let recRestaurants: Restaurant[] = [];
+
+        let calcOverlap;
+        restaurants.map((restaurant: any) => {
+          if (currRestaurant.id !== restaurant.id) {
+            calcOverlap = overlap(
+              currRestaurant.categories,
+              restaurant.categories
+            );
+            if (calcOverlap >= 0.8) {
+              recRestaurants.push(restaurant);
+            }
+          }
+        });
 
         console.log("checking over here", recRestaurants);
         return recRestaurants;
