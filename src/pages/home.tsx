@@ -14,6 +14,7 @@ import {
 } from "@clerk/nextjs";
 import MyHome from "../container/myhome";
 import { FilterContext } from "./FilterProvider";
+import router from "next/router";
 
 
 
@@ -56,7 +57,7 @@ const Feed = () => {
     filteredData = filteredData.sort((a : any , b : any) => b.priceCategory - a.priceCategory);
   } else if (selectedSort === "Low to High") {
     console.log("Orncnkcjes", " Low");
-    filteredData = filteredData.sort((a, b) => a.priceCategory - b.priceCategory);
+    filteredData = filteredData.sort((a: { priceCategory: number; }, b: { priceCategory: number; }) => a.priceCategory - b.priceCategory);
   }
 
   const averageRating = (restaurant : any) => {
@@ -123,6 +124,10 @@ const Home = () => {
     setResetKey((prevKey) => prevKey + 1);
   };
 
+  const handleFoodCrawl = () => {
+      router.push("/foodcrawl");
+  }
+
 
   //Return empty div if user isn't loaded
   if (!userLoaded) return <div />;
@@ -133,72 +138,77 @@ const Home = () => {
 
 
   return (
-      <div>
-        {!isSignedIn && (
-          <div className="flex justify-center">
-            <SignInButton />
-          </div>
-        )}
+    <div>
+      {!isSignedIn && (
+        <div className="flex justify-center">
+          <SignInButton />
+        </div>
+      )}
 
-        {isSignedIn && (
+      {isSignedIn && (
+        <div>
+          <MyHome />
           <div>
-            <MyHome />
-            <div>
-              {/* Search Bar */}
-              <div className={styles.searchBarContainer}>
-                <Searchbar
-                  fetchData={(value) =>
-                    names.filter((name) =>
-                      name.toLowerCase().includes(value.toLowerCase())
-                    )
-                  }
-                  setResult={setResult}
-                  aria-label="Search Bar"
+            {/* Search Bar */}
+            <div className={styles.searchBarContainer}>
+              <Searchbar
+                fetchData={(value) =>
+                  names.filter((name) =>
+                    name.toLowerCase().includes(value.toLowerCase())
+                  )
+                }
+                setResult={setResult}
+                aria-label="Search Bar"
+              />
+              {result.map((item: ResultProps, index: number) => (
+                <Result
+                  key={index}
+                  {...item}
+                  aria-label={`Search Result ${index + 1}`}
                 />
-                {result.map((item: ResultProps, index: number) => (
-                  <Result
-                    key={index}
-                    {...item}
-                    aria-label={`Search Result ${index + 1}`}
-                  />
-                ))}
-                <p className={styles.searchBarLine}></p>{" "}
-              </div>
-
-              {/* Row of Buttons */}
-              <div className={styles.buttonRow}>
-                {buttonConfigs.map((config, index) => (
-                  <FilterButtons
-                    key={index}
-                    category={config.category}
-                    options={config.options}
-                    activeCategory={activeFilterCategory}
-                    setActiveCategory={setActiveFilterCategory}
-                    resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
-                    aria-label={`Filter restaurant list by ${config.category}`}
-                  />
-                ))}
-                {/* Add the Reset button with styling */}
-                <div className={styles.resetButtonContainer}>
-                  <button
-                    className={styles.resetButton}
-                    onClick={handleResetFilters}
-                    aria-label="Reset Filters"
-                  >
-                    Reset
-                  </button>
-                </div>
-              </div>
-
-              <p className={styles.searchBarLine}></p>
+              ))}
+              <p className={styles.searchBarLine}></p>{" "}
             </div>
 
-            <div className={styles.restaurantBoxContainer}>
-              <Feed />
+            {/* Row of Buttons */}
+            <div className={styles.buttonRow}>
+              {buttonConfigs.map((config, index) => (
+                <FilterButtons
+                  key={index}
+                  category={config.category}
+                  options={config.options}
+                  activeCategory={activeFilterCategory}
+                  setActiveCategory={setActiveFilterCategory}
+                  resetKey={resetKey} // Pass the resetKey as a prop to trigger a reset
+                  aria-label={`Filter restaurant list by ${config.category}`}
+                />
+              ))}
+              {/* Add the Reset button with styling */}
+              <div className={styles.resetButtonContainer}>
+                <button
+                  className={styles.resetButton}
+                  onClick={handleResetFilters}
+                  aria-label="Reset Filters"
+                >
+                  Reset
+                </button>
+              </div>
             </div>
+
+            <p className={styles.searchBarLine}></p>
           </div>
-        )}
-      </div>
+
+          {/* Foodcrawlbutton */}
+          <div className={styles.foodCrawl}>
+            <button onClick={handleFoodCrawl}>Click here to get a personalised foodcrawl map!</button>
+          </div>
+
+          <div className={styles.restaurantBoxContainer}>
+            <Feed />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

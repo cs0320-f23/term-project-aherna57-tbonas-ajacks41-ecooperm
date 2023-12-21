@@ -319,3 +319,21 @@
   margin: 0 auto;
   background-color: #f0f8ff; /* Light blue background */
 }
+
+.foodCrawl button {
+  width: 95%;
+  font-size: 20 px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8d2ec;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 20px;
+  margin-left: 30px;
+}
