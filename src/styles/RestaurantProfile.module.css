@@ -11,26 +11,15 @@
   z-index: 1000;
 }
 
-.modal {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  /* Adjust the width as needed */
-  width: 50%;
-}
-
-
-.imagePreview{
+.imagePreview {
   max-width: 300px;
   max-height: 300px;
 }
 
-
-.mainUserContainer{
+.mainUserContainer {
   display: flex;
-  flex-direction: row; 
-  gap: 20px; 
+  flex-direction: row;
+  gap: 20px;
   align-items: start;
 }
 
@@ -41,10 +30,10 @@
   }
 }
 
-
 .leftContainer {
   flex: 1;
 }
+
 .rightContainer {
   flex: 1;
 }
@@ -68,7 +57,7 @@
 }
 
 .restaurantContainer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: auto;
   right: 0;
@@ -83,8 +72,8 @@
 .restaurantContent {
   display: flex;
   align-items: center;
-  padding: 10px; 
-  width: 100%; 
+  padding: 10px;
+  width: 100%;
   z-index: 1;
 }
 
@@ -92,8 +81,8 @@
   font-size: 2.5rem;
   font-weight: 600;
   color: #000;
-  text-transform: uppercase; 
-  letter-spacing: 0.01em; 
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .titleContainer {
@@ -106,7 +95,7 @@
   font-size: 1.2rem;
   text-align: center;
   width: 75%;
-  color: #b8d2ec; 
+  color: #b8d2ec;
   text-decoration: none;
   font-weight: bold;
   border: 2px solid #122b44;
@@ -115,14 +104,13 @@
   padding: 10px;
   margin: 25px;
   margin-left: 160px;
-  
 }
 
-.noReview{
+.noReview {
   font-size: 1rem;
   text-align: center;
   width: 75%;
-  color: #000000; 
+  color: #000000;
   text-decoration: none;
   font-weight: bold;
   background-color: #ffffff;
@@ -134,8 +122,10 @@
 
 /* Styling for the main post container */
 .postContainer {
+  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   padding: 20px;
   border: 2px solid #001f3f; /* Navy color */
   border-radius: 10px;
@@ -143,18 +133,52 @@
   margin-top: 20px;
 }
 
+/* Styling for the main post container */
+.textContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+
+/* Styling for the header container */
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+/* Styling for the user profile icon */
+.userProfileIcon {
+  width: 29px;
+  height: 20px;
+  display: flex;
+  justify-content: flex-end; /* Adjusted to move the icon to the right */
+  align-items: center; 
+}
+
 /* Styling for the explanatory labels */
 .label {
   color: #001f3f; /* Navy color */
   font-weight: bold;
   margin-right: 10px;
+  margin-bottom: 5px; /* Add some spacing between the labels and the textboxes */
 }
 
 /* Styling for the textboxes */
 .textbox {
-  flex: 1;
+  width: 95%;
+  height: 20px; /* Adjusted height for consistency */
   padding: 10px;
-  margin-right: 10px;
+  margin-bottom: 15px; /* Add some spacing between the textboxes */
+  margin-right: 20px; /* Added margin-right for spacing */
   border: 2px solid #001f3f; /* Navy color */
   border-radius: 5px;
   outline: none;
@@ -162,48 +186,74 @@
 
 /* Styling for the close button */
 .closeButton {
-  width: 30px;
-  height: 30px; 
+  width: 100%;
   font-size: 14px;
-  color: #001f3f;
-  background-color: #001f3f; /* Navy color */
+  color: #ffffff;
+  background-color: #003366;
   border: none;
-  border-radius: 50%; /* Make it a rounded square */
+  border-radius: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-/* Styling for the user profile icon */
-.userProfileIcon {
-  margin-right: 0; /* Remove margin-right for alignment */
-  order: 1; /* Move it to the beginning of the flex container */
-}
-
-/* Additional styling for the post container */
-.postContainer {
-  position: relative;
+  margin-top: 10px; /* Adjusted margin-top */
 }
 
 /* Styling for the post button */
-.postButton {
-  padding: 10px;
-  background-color: #003366;
-  color: #ffffff;
+.postButton button {
+  width: 95%;
+  font-size: 20 px;
   border: none;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8d2ec;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
   cursor: pointer;
-  margin-top: 10px; /* Add some spacing between the textboxes and the button */
+  margin-left: 20px;
 }
 
-/* Styling for explanatory labels */
-.label {
-  color: #001f3f;
+/* Styling for the write a review button */
+.reviewButton button {
+  width: 95%;
+  font-size: 1.2rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8d2ec;
+  text-decoration: none;
   font-weight: bold;
-  margin-right: 10px;
-  margin-top: 10px; /* Add some spacing between the textboxes and the labels */
+  background-color: #003366;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+/* Styling for the modal */
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  /* Adjust the width as needed */
+  width: 50%;
 }
